@@ -1,0 +1,326 @@
+/*Global Styles*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 62.5%;
+  --fb-blue: #1a4789;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 6rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+h4 {
+  font-size: var(--header4);
+}
+
+h5 {
+  font-size: var(--header4);
+}
+
+label,
+input,
+button,p {
+  font-size: 1.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*NAV SECTION*/
+.first-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("./Assests/FrontBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-head {
+  background: rgba(246, 177, 27, 0.57);
+  height: 7vh;
+  padding-top: 8px;
+}
+nav {
+  display: flex;
+  width: 95%;
+  margin: 0 0 0 auto;
+  z-index: 2;
+  font-weight: 600;
+}
+#logo {
+  display: flex;
+  flex: 1 1 20rem;
+}
+ #logo .logo {
+  background: url("./Assests/Logo/KUoomLOGO2.png");
+  background-size: 100% 100%;
+  height: 5vh;
+  width: 10%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+#logo img {
+  width: 10%;
+  height: auto;
+  cursor: pointer;
+}
+.left-nav-links {
+  display: flex;
+  flex: 1 1 20rem;
+  align-items: center;
+}
+.left-nav-links a {
+  margin: 0 2rem;
+  color: white;
+  font-size: 1.6rem;
+}
+.right-nav-links {
+  display: flex;
+  color: white;
+  align-items: center;
+}
+.right-nav-links a {
+  margin: 0 2rem;
+  color: white;
+  font-size: 1.8rem;
+}
+.right-nav-links a:hover,
+.left-nav-links a:hover {
+  color: var(--fb-blue);
+}
+
+/*First Section*/
+.mid-container {
+  height: 80vh;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mid-container-title {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+}
+.mid-container-title h2 {
+  text-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.mid-container-title p {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+.search-bar {
+  display: flex;
+}
+.search-bar input {
+  background: #f6b21b;
+  padding: 1rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 1rem;
+  color: black;
+}
+
+.search {
+  background: #f6b21b;
+  width: 4rem;
+  height: 4rem;
+  margin-top: 1rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+.search-icon {
+  width: 1.5rem;
+  margin: 1.2rem;
+}
+
+/*Our Reach*/
+
+.section-reach {
+  background: #f6b21b;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.section-reach h3 {
+  text-align: center;
+  margin: 2rem 0 2rem 0;
+}
+
+.image-lower{
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 20%;
+}
+
+.container {
+  height: 40vh;
+  width: 60%;
+  margin: 0 auto 5rem auto;
+}
+.container ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container ul li {
+  margin: 1rem 2rem;
+}
+.city-photo img {
+  height: 20vh;
+}
+.gallery {
+  position: relative;
+}
+figcaption {
+  font-size: 1.5rem;
+  color: black;
+  position: absolute;
+  top: 40%;
+  right: 25%;
+  background: rgba(255, 255, 255, 0.63);
+  border: none;
+  padding: 0.5rem 4rem;
+  border-radius: 1rem;
+}
+
+.reach-text {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+  width: 50%;
+  margin: auto;
+}
+.reach-text p {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.reach-text button {
+  text-align: center;
+  padding: 1rem 3rem;
+  border: none;
+  background-color: #dd9c0d;
+  border-radius: 2rem;
+  color: black;
+  
+}
+
+/*BOOK US*/
+.section-bookUs {
+  background: #f6b21b;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.image-back{
+  width: 20%;
+  position: absolute;
+}
+
+.section-bookUs h3 {
+  margin-top: 1rem;
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+.last-container {
+  display: flex;
+  justify-content: center;
+}
+.card{
+  margin: 0 2rem 2rem 2rem;
+  width:25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+.card img{
+  width:20%; 
+ 
+  
+}
+.card h1, .card p{
+  text-align: center;
+  padding: 0.5rem;
+  width: 80%;
+}
+.section-bookUs button{
+  text-align: center;
+  margin: 2rem auto;
+  padding: 0.8rem 2rem;
+  border: none;
+  color: black;
+}
+
+
+/*FOOTER*/
+footer{
+  width: 90%;
+  margin:auto;
+  text-align: center;
+}
+
+footer .logo{
+  background: url("./Assests/Logo/KUoomLOGO1.png");
+  background-size: 100% 100%;
+  height: 4vh;
+  width: 10%;
+  margin:1rem auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+}
+
+footer h1{
+  font-size: 1.8rem;
+  border-bottom: 1px solid black;
+  width: 30%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 0.5rem;
+}
+
+footer ul{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+footer ul li{
+  text-decoration: none;
+  margin: 2rem;
+}
+footer ul li a{
+  color:black;
+  font-size: 1rem;
+}
