@@ -1,0 +1,127 @@
+<div class="main-container">
+    <div></div>
+    <img src="/src/assets/LoginPageicon/1.png" alt="">
+    <img src="/src/assets/LoginPageicon/2.png" alt="">
+    <img src="src/assets/LoginPageicon/3.png">
+    <div class="mid-container">
+        <div class="title">
+            <h1>Sign Up</h1>
+        </div>
+        <div>
+            <mat-tab-group mat-align-tabs="center" dynamicHeight>
+                <mat-tab label="Tenant">
+                    <div class="tenantloginform">
+                        <form class="login-form">
+
+
+                            <div style="display: flex;">
+                                <mat-form-field class="firstnamefield">
+                                    <mat-label>First name</mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+
+                                <mat-form-field class="lastnamefield">
+                                    <mat-label> Last Name </mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+
+                            </div>
+
+                            <mat-form-field class="emailfield">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Ex. praz@example.com">
+                                <!-- <mat-error
+                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field class="passwordfield">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="passwordfield">
+                                <mat-label>Re-Password</mat-label>
+                                <input matInput type="password" placeholder="">
+                            </mat-form-field>
+                        </form>
+
+                        <button style="background: #008037;" class="custom-register-btn"
+                            mat-raised-button>Register</button>
+                        <hr>
+                        <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
+                            mat-raised-button>Connect With Facebook</button>
+                        <button style="background: #D9D9D9; margin-top:1rem; color: black;" class="custom-google-btn"
+                            mat-raised-button>Connect With Google</button>
+
+                    </div>
+                </mat-tab>
+                <mat-tab label="Landlord">
+                    <div class="divform">
+                        <form class="login-form">
+
+
+                            <div style="display: flex;">
+                                <mat-form-field class="firstnamefield">
+                                    <mat-label>First name</mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+
+                                <mat-form-field class="lastnamefield">
+                                    <mat-label> Last Name </mat-label>
+                                    <input matInput>
+                                </mat-form-field>
+
+                            </div>
+
+
+                            <mat-form-field class="emailfield">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Ex. praz@example.com">
+                                <!-- <mat-error
+                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field class="phonenofield">
+                                <mat-label>Phone Number</mat-label>
+                                <input matInput type="number" placeholder="">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="passwordfield">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="passwordfield">
+                                <mat-label>Re-Password</mat-label>
+                                <input matInput type="password" placeholder="">
+                            </mat-form-field>
+                        </form>
+
+                        <button style="background: #008037;" class="custom-register-btn"
+                            mat-raised-button>Register</button>
+                        <hr>
+                        <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
+                            mat-raised-button>Connect With Facebook</button>
+                        <button style="background: #D9D9D9; margin-top:1rem; color: black;" class="custom-google-btn"
+                            mat-raised-button>Connect With Google</button>
+
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+    </div>
+</div>

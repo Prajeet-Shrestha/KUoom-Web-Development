@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+html,body{
+    font-family: "Titillium Web", sans-serif;
+    padding: 0%;
+    font-size: 62.5%;
+    margin: 0%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-ink-bar{
+    border: 1px solid #1A4789;
+    color: #1A4789;
+    background: #1A4789;
+}
+
+.mat-ripple.mat-tab-label.mat-focus-indicator.ng-star-inserted.mat-tab-label-active,.mat-ripple.mat-tab-label.mat-focus-indicator.ng-star-inserted.mat-tab-label-active{
+    color: #1A4789;
+}
+
+.mat-ripple.mat-tab-label.mat-focus-indicator.mat-tab-label-active.ng-star-inserted{
+    color:  #1A4789;
+    font-weight: bold;
+}
