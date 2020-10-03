@@ -2,6 +2,8 @@
     background-color: #F4B436;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
     font-size: 1rem;
     color: #000;
 }
@@ -91,3 +93,5 @@ hr{
   margin-top:1.5rem;
   margin-left: 2.7rem;
 }
+
+

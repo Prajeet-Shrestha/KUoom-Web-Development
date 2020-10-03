@@ -1,6 +1,7 @@
 html,body{
     font-family: "Titillium Web", sans-serif;
     padding: 0%;
+    scroll-behavior: smooth;
     font-size: 62.5%;
     margin: 0%;
 }
@@ -22,3 +23,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color:  #1A4789;
     font-weight: bold;
 }
+
+
+::-webkit-scrollbar{
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent, #F4B436);
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent, #1A4789);
+    border-radius: 6px;
+  }

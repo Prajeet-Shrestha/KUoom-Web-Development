@@ -39,9 +39,24 @@
 }
 
 .mid-notification{
-    height: 10vh;
+    height: 8vh;
+    padding: 1.1rem;
+    padding-top: 1.3rem;
     border-radius: 1rem;
+    color: white;
     background:#FF5757;
+}
+
+.main-notification{
+    font-size: 2rem;
+    font-weight: lighter;
+}
+
+.sub-notification{
+    margin-top: .7rem;
+    font-size: 1.7rem;
+    font-weight: lighter;
+
 }
 
 .product-display{
@@ -61,6 +76,7 @@
 
 .product-img{
     width: 20%;
+    cursor: pointer;
     /* background:url("src/assets/Roomexample/1.png"); */
     background-size: cover;
     height: 100%;
