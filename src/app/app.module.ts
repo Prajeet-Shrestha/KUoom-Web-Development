@@ -17,8 +17,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatTabsModule } from "@angular/material/tabs";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchviewComponent } from './modules/searchview/searchview.component';
-import { ProductprofileComponent } from './modules/searchview/productprofile/productprofile.component';
 import { FindroomComponent } from './modules/searchview/findroom/findroom.component';
+import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
+import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +30,9 @@ import { FindroomComponent } from './modules/searchview/findroom/findroom.compon
     RegisterComponent,
     ForgotPasswordComponent,
     SearchviewComponent,
+    FindroomComponent,
     ProductprofileComponent,
-    FindroomComponent
+    SearchroomComponent
   ],
   imports: [
     MatTabsModule,

@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
   }
 
   search(){
-    this._router.navigate(['/search/findroom']);
+    this._router.navigate(['/search/fr/sr']);
   }
 
 }

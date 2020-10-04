@@ -7,6 +7,8 @@ import { UserComponent } from './modules/user/user.component';
 import { RegisterComponent } from './modules/user/register/register.component';
 import { SearchviewComponent } from './modules/searchview/searchview.component';
 import { FindroomComponent } from './modules/searchview/findroom/findroom.component';
+import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
+import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 
 const routes: Routes = [
 
@@ -24,8 +26,12 @@ const routes: Routes = [
   ]},
 
   {path:"search",component:SearchviewComponent,children:[
-    {path:'',redirectTo:"/search/findroom", pathMatch:'full'},
-    {path:'findroom',component:FindroomComponent}
+    {path:'',redirectTo:"/search/fr", pathMatch:'full'},
+    {path:'fr',component:FindroomComponent, children:[
+      {path:'',redirectTo:"/search/fr/sr", pathMatch:'full'},
+      {path:'sr',component:SearchroomComponent},
+      {path:'profile',component:ProductprofileComponent}
+    ]}
   ]}
 
 ];
