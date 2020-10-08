@@ -10,15 +10,30 @@
   ul{
       list-style: none;
   }
-    .main-head {
+
+  .profile-img{
+    border-radius: 100%;
+    width: 45px;
+    height: 45px;
+  }
+    .main-head{
+      background: rgba(246, 177, 27,0.5);
+      height: 7vh;
+      width: 100%;
+      padding-top: .2%;
+      position: fixed;
+    }
+
+    .main-head.SearchRoom{
       background: rgba(246, 177, 27);
       height: 7vh;
       width: 100%;
-      padding-top: 8px;
+      /* padding-top: 8px; */
       position: fixed;
     }
     nav {
       display: flex;
+      /* background-color: tomato; */
       width: 95%;
       margin: 0 0 0 auto;
       z-index: 2;
@@ -33,6 +48,17 @@
       background-size: 100% 100%;
       height: 5vh;
       width: 10%;
+      border: none;
+      margin-top: .2%;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    #logo .logo:focus {
+      background: url("src/assets/Logo/KUoomLOGO2.png");
+      background-size: 100% 100%;
+      height: 5vh;
+      width: 10%;
+      border: none;
       background-repeat: no-repeat;
       cursor: pointer;
     }
@@ -61,6 +87,20 @@
       margin-top: 1rem;
       color: white;
       align-items: center;
+    }
+
+    .profile{
+    display: flex;
+    margin-top: .2rem;
+    color: white;
+    margin-right: 1rem;
+    align-items: center;
+    }
+    .profile-img{
+      border-radius: 100%;
+    
+      width: 40px;
+      height: 40px;
     }
     .right-nav-links li {
       margin: 0 2rem;

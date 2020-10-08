@@ -1,23 +1,29 @@
 <div class="maincontainer" style="background: #F4B436;">
     
-    <header class="main-head">
+    <header class="main-head" [ngClass]="{'':NavRouteUpdateFlag.Index,'SearchRoom':NavRouteUpdateFlag.SearchRoom}">
         <nav>
             <div id="logo">
-                <div class="logo">
-    
+                <div  [routerLink]="['/cover/index']" class="logo">
                 </div>
     
                 <ul class="left-nav-links">
-                    <li>How does this work</li>
+                    <li >How does this work</li>
                     <li>Landlord Portal</li>
                     <li>About us</li>
                 </ul>
             </div>
-            <ul class="right-nav-links">
+            <ul class="right-nav-links" *ngIf="NavRouteUpdateFlag.Index || NavRouteUpdateFlag.Register ">
                 <li (click)="gotoregister()" >Sign Up</li>
                 |
                 <li>Login</li>
             </ul>
+
+            <ul class="profile" *ngIf="NavRouteUpdateFlag.SearchRoom" >
+                <span style="margin-right:5px;">Welcome,</span>
+                <img class="profile-img" src="../assets/img/prelia.jpg" alt="">
+                <span style="margin-left:5px;"> Prelisa Dahal </span>
+            </ul>
+
         </nav>
     </header>
     <router-outlet></router-outlet>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +15,7 @@ export class IndexComponent implements OnInit {
   }
 
   search(){
-    this._router.navigate(['/search/fr/sr']);
+    this._router.navigate([Url_SuperPath['SearchRoom']]);
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
+
 
 export interface room{
   index:number;
@@ -78,7 +80,9 @@ export class SearchroomComponent implements OnInit {
     },
   ]; 
 
-  constructor(private _router:Router) { }
+
+  constructor(private _router:Router) {
+   }
 
   ngOnInit(): void {
   }
@@ -95,6 +99,6 @@ export class SearchroomComponent implements OnInit {
   }
 
   RoomProfileNavigate(){
-    this._router.navigate(['/search/fr/profile']);
+    this._router.navigate([Url_SuperPath['ProductProfile']]);
   }
 }
