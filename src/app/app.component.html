@@ -15,13 +15,14 @@
             <ul class="right-nav-links" *ngIf="NavRouteUpdateFlag.Index || NavRouteUpdateFlag.Register ">
                 <li (click)="gotoregister()" >Sign Up</li>
                 |
-                <li>Login</li>
+                <li [routerLink]="['/auth/login']" >Login</li>
             </ul>
-
             <ul class="profile" *ngIf="NavRouteUpdateFlag.SearchRoom" >
                 <span style="margin-right:5px;">Welcome,</span>
-                <img class="profile-img" src="../assets/img/prelia.jpg" alt="">
+                <img class="profile-img" src="assets/img/prelia.jpg" alt="">
                 <span style="margin-left:5px;"> Prelisa Dahal </span>
+                <!-- <img class="profile-img" src="assets/img/profile.jpg" alt="">
+                <span style="margin-left:5px;"> Prajeet Shrestha </span> -->
             </ul>
 
         </nav>

@@ -22,7 +22,8 @@ const routes: Routes = [
   
   {path:"auth",component:UserComponent,children:[
     { path: '', redirectTo: '/auth/register', pathMatch: 'full' },
-    {path:'register',component:RegisterComponent}
+    {path:'register',component:RegisterComponent},
+    {path:'login',component:LoginComponent}
   ]},
 
   {path:"search",component:SearchviewComponent,children:[
@@ -37,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

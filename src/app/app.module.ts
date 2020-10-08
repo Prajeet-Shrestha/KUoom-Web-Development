@@ -20,6 +20,7 @@ import { SearchviewComponent } from './modules/searchview/searchview.component';
 import { FindroomComponent } from './modules/searchview/findroom/findroom.component';
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,7 @@ import { SearchroomComponent } from './modules/searchview/findroom/searchroom/se
     BrowserAnimationsModule,
  
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

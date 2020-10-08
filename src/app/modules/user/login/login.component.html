@@ -1,0 +1,99 @@
+<div class="main-container">
+    <div></div>
+    <img class="img img1" src="assets/LoginPageicon/1.png" alt="">
+    <img class="img img2" src="assets/LoginPageicon/2.png" alt="">
+    <img class="img img3" src="assets/LoginPageicon/3.png">
+    <div class="manandloginbox">
+        <img class="Logininguy" src="assets/LoginPageicon/login.png" alt="">
+        <div class="mid-container">
+            <div class="title">
+                <h1>Login</h1>
+            </div>
+            <div>
+                <mat-tab-group mat-align-tabs="center" dynamicHeight>
+                    <mat-tab label="Tenant">
+                        <div class="tenantloginform">
+                            <form class="login-form">
+
+
+                                <mat-form-field class="emailfield">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Ex. praz@example.com">
+                                    <!-- <mat-error
+                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error> -->
+                                </mat-form-field>
+
+                                <mat-form-field class="passwordfield">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" placeholder="">
+
+                                </mat-form-field>
+
+
+                            </form>
+
+                            <button style="background: #008037;" class="custom-register-btn"
+                                mat-raised-button>Login</button>
+                            <hr>
+                            <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
+                            mat-raised-button>
+                            <img class="fb-logo" src="assets/Icon/8.png" alt="">
+                            Connect With Facebook</button>
+                        <button style="background: #f3f0f0; margin-top:1rem; color: black;" class="custom-google-btn"
+                            mat-raised-button>
+                            <img class="fb-logo" src="assets/Icon/9.png" alt="">Connect With Google</button>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Landlord">
+                        <div class="divform">
+                            <form class="login-form">
+
+
+                                <mat-form-field class="emailfield">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Ex. praz@example.com">
+                                    <!-- <mat-error
+                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error> -->
+                                </mat-form-field>
+
+
+                                <mat-form-field class="passwordfield">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" placeholder="">
+
+                                </mat-form-field>
+
+
+                            </form>
+
+                            <button style="background: #008037;" class="custom-register-btn"
+                                mat-raised-button>Login</button>
+                            <hr>
+                            <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
+                            mat-raised-button>
+                            <img class="fb-logo" src="assets/Icon/8.png" alt="">
+                            Connect With Facebook</button>
+                        <button style="background: #f3f0f0; margin-top:1rem; color: black;" class="custom-google-btn"
+                            mat-raised-button>
+                            <img class="fb-logo" src="assets/Icon/9.png" alt="">Connect With Google</button>
+
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+              <div class="footer">
+                Don't have an account?<span [routerLink]="['/auth/register']"> Sign in </span>
+              </div>  
+            </div>
+        </div>
+    </div>
+</div>

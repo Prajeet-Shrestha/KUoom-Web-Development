@@ -95,3 +95,21 @@ hr{
 }
 
 
+.footer{
+  margin-top: 1rem;
+  padding: .5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.footer span{
+  color: blue;
+  font-weight: bold;
+cursor: pointer;
+}
+
+.fb-logo{
+  z-index: 1000;
+  width: 10%;
+  height: 5vh;
+  margin-right: 10%;
+}

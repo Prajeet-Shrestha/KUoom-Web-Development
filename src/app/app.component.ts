@@ -52,8 +52,8 @@ export class AppComponent {
   constructor(private _router:Router){
     this._router.events.subscribe(
       (val)=>{
-        console.log(location.pathname);
-        this.UPDATE_NAV_ROUTER_FLAG(location.pathname)
+        console.log(this._router.url);
+        this.UPDATE_NAV_ROUTER_FLAG(this._router.url)
         
       },
       (err)=>{

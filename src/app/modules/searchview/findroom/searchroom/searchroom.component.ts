@@ -26,7 +26,7 @@ export class SearchroomComponent implements OnInit {
     {
       index:0,
       like:false,
-      url:"../../../../assets/Roomexample/1.png",
+      url:"assets/Roomexample/1.png",
       title:"FURNISHED PRIVATE ROOM",
       subtitle:"Single Room in 28 Kilo Neighbour",
       location:"28 Kilo, Dhulikhel",
@@ -37,7 +37,7 @@ export class SearchroomComponent implements OnInit {
     {
       index:1,
       like:false,
-      url:"../../../../assets/Roomexample/4.png",
+      url:"assets/Roomexample/4.png",
       title:"FURNISHED PRIVATE ROOM",
       subtitle:"Single Room in 28 Kilo Neighbour",
       location:"28 Kilo, Dhulikhel",
@@ -48,7 +48,7 @@ export class SearchroomComponent implements OnInit {
     {
       index:2,
       like:true,
-      url:"../../../../assets/Roomexample/3.png",
+      url:"assets/Roomexample/3.png",
       title:"FURNISHED PRIVATE ROOM",
       subtitle:"Single Room in 28 Kilo Neighbour",
       location:"28 Kilo, Dhulikhel",
@@ -59,7 +59,7 @@ export class SearchroomComponent implements OnInit {
     {
       index:3,
       like:false,
-      url:"../../../../assets/Roomexample/5.png",
+      url:"assets/Roomexample/5.png",
       title:"FURNISHED PRIVATE ROOM",
       subtitle:"Single Room in 28 Kilo Neighbour",
       location:"28 Kilo, Dhulikhel",
@@ -70,7 +70,7 @@ export class SearchroomComponent implements OnInit {
     {
       index:4,
       like:false,
-      url:"../../../../assets/Roomexample/6.png",
+      url:"assets/Roomexample/6.png",
       title:"FURNISHED PRIVATE ROOM",
       subtitle:"Single Room in 28 Kilo Neighbour",
       location:"28 Kilo, Dhulikhel",
