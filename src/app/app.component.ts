@@ -29,7 +29,7 @@ export class AppComponent {
         this.NavRouteUpdateFlag[Pages[i]] = false;
       }
     }
-    console.log(this.NavRouteUpdateFlag);
+    // console.log(this.NavRouteUpdateFlag);
   }
 
   UPDATE_NAV_ROUTER_FLAG(CurrentPage:any)
@@ -37,7 +37,7 @@ export class AppComponent {
     switch(CurrentPage)
     {
       case Url_SuperPath['SearchRoom']:
-        console.log("CASE SEARCH ROOM");
+        // console.log("CASE SEARCH ROOM");
         this.AUTO_NAV_ROUTER_UPDATER('SearchRoom');
         break
       case Url_SuperPath['Register']:
@@ -52,7 +52,7 @@ export class AppComponent {
   constructor(private _router:Router){
     this._router.events.subscribe(
       (val)=>{
-        console.log(this._router.url);
+        // console.log(this._router.url);
         this.UPDATE_NAV_ROUTER_FLAG(this._router.url)
         
       },
@@ -68,7 +68,7 @@ export class AppComponent {
 
   GetCurrentRoute(){
     let CurrentRoute = this._router.url;
-    console.log(CurrentRoute);
+    // console.log(CurrentRoute);
   }
 
  

@@ -21,6 +21,7 @@
       background: rgba(246, 177, 27,0.5);
       height: 7vh;
       width: 100%;
+      z-index: 10000000;
       padding-top: .2%;
       position: fixed;
     }

@@ -21,6 +21,11 @@ import { FindroomComponent } from './modules/searchview/findroom/findroom.compon
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSelectModule} from '@angular/material/select';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +43,12 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   imports: [
     MatTabsModule,
     BrowserModule,
+    MatSliderModule,
+    MatSelectModule,
     MatNativeDateModule,
     MatInputModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     AppRoutingModule,
     BrowserAnimationsModule,

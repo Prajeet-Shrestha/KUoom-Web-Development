@@ -9,19 +9,21 @@
 
 .filtersidenav{
 
-    width: 25%;
+    width: 18%;
     margin-left: 2rem;
     margin-top: 8rem;
     border-radius: 3rem;
     background-color: white;
     height: 100vh;
+    padding: 2.5rem;
 }
 
 .rightside{
     margin-left: 2rem;
     margin-top: 8rem;
+    margin-right: 1.5rem;
     border-radius: 3rem;
-    width: 70%;
+    width: 77%;
     height: 90vh;
     background-color: transparent;
 }
@@ -69,7 +71,6 @@
     border-radius: 1rem;
     margin-top: 1rem;
     padding: 1rem;
-    cursor: pointer;
     display: flex;
     background: white;
 }
@@ -83,6 +84,7 @@
 }
 .product-details{
     width: 80%;
+    height: 100%;
     padding-left: 1rem;
 }
 
@@ -91,14 +93,14 @@
     justify-content: space-between;
 }
 .title{
-   
+    cursor: pointer;
     font-weight: 200px;
 }
 
 .love{
 
-    background:url("src/assets/Icon/unlike.png") no-repeat;
-    background-size: cover;
+    background:url("src/assets/Icon/love_outline.png") no-repeat;
+    background-size: 20px;
     width: 3%;
     height: 3vh;
     cursor: pointer;
@@ -107,7 +109,7 @@
 .love.like{
 
     background:url("src/assets/Icon/19.png") no-repeat;
-    background-size: cover;
+    background-size: 20px;
     width: 3%;
     height: 3vh;
     cursor: pointer;
@@ -126,7 +128,7 @@
 
 .top3 .location-icon{
     width: 3%;
-    height: 3vh;
+    height: 3%;
 }
 
 .price .permonth{
@@ -157,4 +159,49 @@
     color: white;
     height: 2.9vh;
     background:#FF5757;
+}
+.placetype{
+    padding-top:1rem ;
+}
+.placetype h4{
+    /* background: #1A4789; */
+    font-weight: 550;
+   
+    margin-bottom: .3rem;
+}
+
+.PlaceType_checkBoxes{
+    display: flex;
+    flex-direction: column;
+    padding: 0%;
+    /* background: red; */
+}
+
+.priceRange{
+    padding-top: 1.3rem;
+}
+
+.priceRange h4{
+    margin-bottom: 0%;
+    /* background-color: yellow; */
+}
+
+/* .priceRange .Slider{
+    background-color: violet;
+} */
+
+.Services{
+    padding-top: 1rem;
+}
+.Verification{
+    padding-top: 1rem;
+}
+
+.Services h4,.Verification h4,.AvailableFromDate h4,.location h4{
+    margin: 0%;
+    font-weight: 550;
+}
+.locationSelect{
+    background-color: #D9D9D9;
+    border-radius: .5rem;
 }

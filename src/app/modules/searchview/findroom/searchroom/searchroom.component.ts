@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
+import { Observable, Observer } from 'rxjs';
 
 
 export interface room{
@@ -21,7 +22,11 @@ export interface room{
   styleUrls: ['./searchroom.component.css']
 })
 export class SearchroomComponent implements OnInit {
-
+  locations = [
+    {code: 'steak-0', name: 'Dhulikhel'},
+    {code: 'pizza-1', name: '28, Kilo'},
+    {code: 'tacos-2', name: 'Basghari'}
+  ];
   products:room[] =[
     {
       index:0,
@@ -100,5 +105,20 @@ export class SearchroomComponent implements OnInit {
 
   RoomProfileNavigate(){
     this._router.navigate([Url_SuperPath['ProductProfile']]);
+  }
+  price = 3000;
+ 
+  MaxPrice = 3000;
+
+  
+  PriceRangeformatLabel(value: number) {
+    this.MaxPrice = value;
+    // console.log(this.MaxPrice);
+    if (value >= 1000) {
+      
+      return Math.round(value / 1000) + 'k';
+    }
+
+   
   }
 }
