@@ -14,7 +14,7 @@
     margin-top: 8rem;
     border-radius: 3rem;
     background-color: white;
-    height: 100vh;
+    height: fit-content;
     padding: 2.5rem;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .mid-notification{
-    height: 8vh;
+    height: fit-content;
     padding: 1.1rem;
     padding-top: 1.3rem;
     border-radius: 1rem;
@@ -67,7 +67,7 @@
 }
 
 .product-card{
-    height: 20vh;
+    height: fit-content;
     border-radius: 1rem;
     margin-top: 1rem;
     padding: 1rem;
@@ -76,14 +76,16 @@
 }
 
 .product-img{
-    width: 20%;
+    width: 100%;
     cursor: pointer;
+
     /* background:url("src/assets/Roomexample/1.png"); */
     background-size: cover;
     height: 100%;
 }
 .product-details{
     width: 80%;
+    /* background-color: yellow; */
     height: 100%;
     padding-left: 1rem;
 }
@@ -157,7 +159,7 @@
     margin-top: -.8rem;
     width: 10%;
     color: white;
-    height: 2.9vh;
+    height: fit-content;
     background:#FF5757;
 }
 .placetype{

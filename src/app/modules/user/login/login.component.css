@@ -37,7 +37,7 @@
     margin: 20vh 7%;
     width: 30%;
     z-index: 3;
-    height: 60vh;
+    height: fit-content;
     background-color: #FFFFFF;
     border-radius: 6%;
 }

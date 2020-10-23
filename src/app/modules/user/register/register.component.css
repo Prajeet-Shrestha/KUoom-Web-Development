@@ -13,7 +13,7 @@
     padding: 1rem;
     margin: 8vh auto;
     width: 30%;
-    height: 83vh;
+    height: fit-content;
     background-color: #FFFFFF;
     border-radius: 6%;
 }
