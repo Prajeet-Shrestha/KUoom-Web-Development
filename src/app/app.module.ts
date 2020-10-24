@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoverpageComponent } from './modules/coverpage/coverpage.component';
@@ -21,10 +23,20 @@ import { FindroomComponent } from './modules/searchview/findroom/findroom.compon
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
+
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import {environment} from "src/environments/environment";
 
 @NgModule({
   declarations: [
@@ -45,13 +57,18 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     MatSliderModule,
     MatSelectModule,
-    MatNativeDateModule,
+    MatNativeDateModule,FormsModule, ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule, // storage
+    MatMenuModule
  
   ],
   providers: [MatDatepickerModule,{provide: LocationStrategy, useClass: HashLocationStrategy}],

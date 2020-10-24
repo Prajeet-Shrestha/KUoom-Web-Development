@@ -2,5 +2,6 @@
     "Index":"/cover/index",
     "Register":"/auth/register",
     "SearchRoom":"/search/fr/sr",
-    "ProductProfile":"/search/fr/profile"
+    "ProductProfile":"/search/fr/profile",
+    "login":"/auth/login"
 }

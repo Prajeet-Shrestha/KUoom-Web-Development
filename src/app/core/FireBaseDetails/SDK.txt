@@ -1,0 +1,24 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDRZSk92CSvQW2EadK3BK86P1xjdOwecaA",
+    authDomain: "kuoom-pp2020.firebaseapp.com",
+    databaseURL: "https://kuoom-pp2020.firebaseio.com",
+    projectId: "kuoom-pp2020",
+    storageBucket: "kuoom-pp2020.appspot.com",
+    messagingSenderId: "113467701394",
+    appId: "1:113467701394:web:aeff1f5d167f230df70e4b",
+    measurementId: "G-2FWBYBLT6R"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

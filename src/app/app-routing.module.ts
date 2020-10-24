@@ -9,11 +9,16 @@ import { SearchviewComponent } from './modules/searchview/searchview.component';
 import { FindroomComponent } from './modules/searchview/findroom/findroom.component';
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
+import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
+
+
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([Url_SuperPath['login']]);
+
 
 const routes: Routes = [
-
-
-
   { path:"",redirectTo:'/cover/index',pathMatch:"full"},
   {path:"cover",component:CoverpageComponent,children:[
     { path: '', redirectTo: '/cover/index', pathMatch: 'full' },
@@ -26,7 +31,7 @@ const routes: Routes = [
     {path:'login',component:LoginComponent}
   ]},
 
-  {path:"search",component:SearchviewComponent,children:[
+  {path:"search",component:SearchviewComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin },children:[
     {path:'',redirectTo:"/search/fr", pathMatch:'full'},
     {path:'fr',component:FindroomComponent, children:[
       {path:'',redirectTo:"/search/fr/sr", pathMatch:'full'},

@@ -1,30 +1,37 @@
 <div class="maincontainer" style="background: #F4B436;">
-    
+
     <header class="main-head" [ngClass]="{'':NavRouteUpdateFlag.Index,'SearchRoom':NavRouteUpdateFlag.SearchRoom}">
         <nav>
             <div id="logo">
-                <div  [routerLink]="['/cover/index']" class="logo">
+                <div [routerLink]="['/cover/index']" class="logo">
                 </div>
                 <ul class="left-nav-links">
-                    <li >How does this work</li>
+                    <li>How does this work</li>
                     <li>Landlord Portal</li>
                     <li>About us</li>
                 </ul>
             </div>
-            <ul class="right-nav-links" *ngIf="NavRouteUpdateFlag.Index || NavRouteUpdateFlag.Register ">
-                <li (click)="gotoregister()" >Sign Up</li>
+            <ul class="right-nav-links" *ngIf="NavRouteUpdateFlag.Index || NavRouteUpdateFlag.Register || NavRouteUpdateFlag.login ">
+                <li (click)="gotoregister()">Sign Up</li>
                 |
-                <li [routerLink]="['/auth/login']" >Login</li>
+                <li [routerLink]="['/auth/login']">Login</li>
             </ul>
-            <ul class="profile" *ngIf="NavRouteUpdateFlag.SearchRoom" >
+            <ul class="profile" *ngIf="NavRouteUpdateFlag.SearchRoom">
                 <span style="margin-right:5px;">Welcome,</span>
                 <!-- <img class="profile-img" src="assets/img/prelia.jpg" alt="">
                 <span style="margin-left:5px;"> Prelisa Dahal </span> -->
-                <img class="profile-img" src="assets/img/profile.jpg" alt="">
-                <span style="margin-left:5px;"> Prajeet Shrestha </span>
+                <img class="profile-img" src="assets/Icon/profile.png" alt="">
+                <span style="margin-left:5px;">
+                    <button mat-button [matMenuTriggerFor]="menu"> {{username}} </button>
+                    <mat-menu #menu="matMenu" >
+                        <button mat-menu-item > My Profile</button>
+                        <button mat-menu-item (click)="logout()" > Logout </button>
+                    </mat-menu>
+                </span>
+
             </ul>
 
         </nav>
     </header>
-    <router-outlet></router-outlet>
-    </div>
+    <router-outlet ></router-outlet>
+</div>

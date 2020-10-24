@@ -13,12 +13,10 @@
                 <mat-tab-group mat-align-tabs="center" dynamicHeight>
                     <mat-tab label="Tenant">
                         <div class="tenantloginform">
-                            <form class="login-form">
-
-
+                            <form class="login-form" id="LoginForm" [formGroup]="LoginFromTenant" (ngSubmit)="LoginTenant()">
                                 <mat-form-field class="emailfield">
                                     <mat-label>Email</mat-label>
-                                    <input matInput placeholder="Ex. praz@example.com">
+                                    <input matInput placeholder="Ex. praz@example.com" formControlName="email">
                                     <!-- <mat-error
                                     *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                     Please enter a valid email address
@@ -30,7 +28,7 @@
 
                                 <mat-form-field class="passwordfield">
                                     <mat-label>Password</mat-label>
-                                    <input matInput type="password" placeholder="">
+                                    <input matInput type="password" placeholder="" formControlName="password">
 
                                 </mat-form-field>
 
@@ -38,7 +36,7 @@
                             </form>
 
                             <button style="background: #008037;" class="custom-register-btn"
-                                mat-raised-button>Login</button>
+                                mat-raised-button type="submit" form="LoginForm">Login</button>
                             <hr>
                             <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
                             mat-raised-button>
