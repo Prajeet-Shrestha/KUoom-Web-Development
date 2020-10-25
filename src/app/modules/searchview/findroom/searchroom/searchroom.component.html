@@ -35,17 +35,17 @@
 
                 <h4>Type of Place</h4>
                 <div class="PlaceType_checkBoxes">
-                    <mat-checkbox class="checkbox" id='PrivateRoom'> Private Room</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='SharedRoom'> Shared Room</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='EntireFlat'> Entire Flat</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='TemporaryRoom'> Temporary Stay</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='PrivateRoom' value='Private Room' (change)="UpdateSelectedFilter($event)" > Private Room</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='SharedRoom' value='Shared Room' (change)="UpdateSelectedFilter($event)"> Shared Room</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='EntireFlat' value='Entire Flat' (change)="UpdateSelectedFilter($event)"> Entire Flat</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='TemporaryRoom' value='Temporary Room' (change)="UpdateSelectedFilter($event)"> Temporary Stay</mat-checkbox>
                 </div>
 
             </div>
             <div class="priceRange">
                 <h4>Price Range</h4>
                 <div class="Slider">
-                    <mat-slider thumbLabel [displayWith]="PriceRangeformatLabel" tickInterval="1000" min="3000"
+                    <mat-slider thumbLabel (change)="UpdateSelectedFilter($event)" [displayWith]="PriceRangeformatLabel" tickInterval="1000" min="3000"
                         max="50000"></mat-slider>
                 </div>
                 <div class="priceLabel">
@@ -57,11 +57,11 @@
 
                 <h4>Services</h4>
                 <div class="PlaceType_checkBoxes">
-                    <mat-checkbox class="checkbox" id='Meals'> Meals</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='Laundry'> Laundry</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='WiFi'> WiFi</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='Balcony'> Balcon</mat-checkbox>
-                    <mat-checkbox class="checkbox" id='AirConditioning'> Air Conditioning</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='Meals' value='Meals' (change)="UpdateSelectedFilter($event)" > Meals</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='Laundry' value='Laundry' (change)="UpdateSelectedFilter($event)" > Laundry</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='WiFi' value='WiFi' (change)="UpdateSelectedFilter($event)" > WiFi</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='Balcony' value='Balcony' (change)="UpdateSelectedFilter($event)"> Balcon</mat-checkbox>
+                    <mat-checkbox class="checkbox" id='AirConditioning' value='Air Conditioning' (change)="UpdateSelectedFilter($event)"> Air Conditioning</mat-checkbox>
 
                 </div>
 
