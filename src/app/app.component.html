@@ -11,12 +11,12 @@
                     <li>About us</li>
                 </ul>
             </div>
-            <ul class="right-nav-links" *ngIf="NavRouteUpdateFlag.Index || NavRouteUpdateFlag.Register || NavRouteUpdateFlag.login ">
+            <ul class="right-nav-links" *ngIf="!isLoggedin">
                 <li (click)="gotoregister()">Sign Up</li>
                 |
                 <li [routerLink]="['/auth/login']">Login</li>
             </ul>
-            <ul class="profile" *ngIf="NavRouteUpdateFlag.SearchRoom">
+            <ul class="profile" *ngIf="isLoggedin">
                 <span style="margin-right:5px;">Welcome,</span>
                 <!-- <img class="profile-img" src="assets/img/prelia.jpg" alt="">
                 <span style="margin-left:5px;"> Prelisa Dahal </span> -->

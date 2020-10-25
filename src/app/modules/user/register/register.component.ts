@@ -5,6 +5,9 @@ import { auth } from 'firebase/app';
 import { DbfirestoreService } from "src/app/services/dbfirestore/dbfirestore.service";
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserDetails } from 'src/app/interfaces/user-details';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +17,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   RegisterFromTenant: FormGroup;
-  constructor(private fb: FormBuilder,private auth:AngularFireAuth, private dbFire:DbfirestoreService,
-              private router:Router) { }
+  constructor(private fb: FormBuilder,private auth:AuthService, private dbFire:DbfirestoreService,
+              private router:Router,private DataService:DataService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -30,12 +33,30 @@ export class RegisterComponent implements OnInit {
       userType: 'Tenant'
     }
     
+  
     console.log(userData);
-    this.auth.createUserWithEmailAndPassword(email,password).then(
+    this.auth.RegisterasTenant(email,password).then(
       (res)=>{
         console.log(res);
-        this.dbFire.registerNewUser(userData,res.user.uid.toString()).then((res)=>{
-                                                                                    console.log(res);
+        let userDetails:UserDetails = {
+          name: this.RegisterFromTenant.controls['firstName'].value +' '+ this.RegisterFromTenant.controls['lastName'].value,
+          imgUrl: "",
+          email: email,
+          userType: 'Tenant',
+          phone:'',
+          gender:"n/a",
+          uid:res.user.uid.toString()
+        }
+        this.DataService.changeIsLoggedin(true);
+        let user={
+          name: userDetails.name,
+          userType: userDetails.userType
+        }
+        this.DataService.changeMessage(userDetails.name);
+        
+        localStorage.removeItem('user');
+        localStorage.setItem('user',JSON.stringify(user));
+        this.dbFire.registerNewUser(userDetails,res.user.uid.toString()).then((res)=>{
                                                                                     this.router.navigate([Url_SuperPath['SearchRoom']]);
                                                                                   }).catch((err)=>{
                                                                                     console.log(err);

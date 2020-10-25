@@ -34,7 +34,9 @@
 
 
                             </form>
-
+                            <div *ngIf="errflag" style="font-size: small; color: red;text-align: center; padding-bottom: .3rem;">
+                                {{autherrormessage}} *
+                            </div>
                             <button style="background: #008037;" class="custom-register-btn"
                                 mat-raised-button type="submit" form="LoginForm">Login</button>
                             <hr>

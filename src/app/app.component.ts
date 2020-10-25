@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { DataService } from './services/data.service';
+import { AuthService } from "src/app/services/auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,10 @@ export class AppComponent implements OnInit {
     login:false
   }
   title = 'KUoomFrontend';
+  user;
+  isLoggedin=false;
   LocalStorageUserDetail;
-  constructor(private _router:Router, private auth:AngularFireAuth,private DataService:DataService){
-   
+  constructor(private _router:Router, private auth:AuthService,private DataService:DataService){
     this._router.events.subscribe(
       (val)=>{
         // console.log(this._router.url);
@@ -35,9 +37,14 @@ export class AppComponent implements OnInit {
   }
   username:string;
   ngOnInit(): void {
-    this.DataService.currentMessage.subscribe((data)=>{
-      this.username = data
-    })
+    this.DataService.currentUsername.subscribe((data)=>{
+      this.username = data;
+    });
+
+    this.DataService.currentisLoggedin.subscribe((data)=>{
+      console.log(data);
+      this.isLoggedin = data;
+    });
   }
 
   AUTO_NAV_ROUTER_UPDATER(page){
@@ -86,7 +93,7 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
-    this.auth.signOut().then((res)=>{
+    this.auth.logout().then((res)=>{
       this._router.navigate([Url_SuperPath['Index']]);
     }).catch((err)=>{
       console.log(err);
