@@ -28,6 +28,11 @@
     background-color: transparent;
 }
 
+.selectedFilters{
+    /* background-color: tomato; */
+    padding-top: 1rem;
+}
+
 .top{
     height: 3vh;
 }
@@ -62,7 +67,8 @@
 }
 
 .product-display{
-    padding-top: 1rem;
+    padding-top: .5rem;
+    /* background-color: tomato; */
     height: 90vh;
 }
 

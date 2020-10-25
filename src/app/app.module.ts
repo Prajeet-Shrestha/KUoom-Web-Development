@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatTabsModule } from "@angular/material/tabs";
+import {MatChipsModule} from '@angular/material/chips';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchviewComponent } from './modules/searchview/searchview.component';
 import { FindroomComponent } from './modules/searchview/findroom/findroom.component';
@@ -63,6 +65,7 @@ import {environment} from "src/environments/environment";
     MatCheckboxModule,
     MatDatepickerModule,
     AppRoutingModule,
+    MatChipsModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
