@@ -6,9 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
   private usernameSource = new BehaviorSubject<string>('')
   private isLoggedinSource = new BehaviorSubject<boolean>(false)
+  private userTypeSource = new BehaviorSubject<string>('');
 
   currentUsername = this.usernameSource.asObservable()
   currentisLoggedin = this.isLoggedinSource.asObservable();
+  currentuserType = this.userTypeSource.asObservable();
   
   LocalStorageUserDetail
   constructor() {
@@ -19,9 +21,10 @@ export class DataService {
       }
       else{
         this.isLoggedinSource.next(true);
+        // console.log(this.LocalStorageUserDetail.userType);
+        this.changeUserType(this.LocalStorageUserDetail.userType.toString());
+        this.changeMessage(this.LocalStorageUserDetail.name);
       }
-      this.changeMessage(this.LocalStorageUserDetail.name);
-      // console.log(this.username);
     }
     catch(e){ }
    }
@@ -32,5 +35,9 @@ export class DataService {
 
   changeIsLoggedin(status:boolean){
     this.isLoggedinSource.next(status);
+  }
+
+  changeUserType(type:'Tenant' | 'Landlord'){
+    this.userTypeSource.next(type);
   }
 }

@@ -39,6 +39,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import {environment} from "src/environments/environment";
+import { UserprofilesComponent } from './modules/userprofiles/userprofiles.component';
+import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
+import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import {environment} from "src/environments/environment";
     SearchviewComponent,
     FindroomComponent,
     ProductprofileComponent,
-    SearchroomComponent
+    SearchroomComponent,
+    UserprofilesComponent,
+    LandlordComponent,
+    TenantComponent
   ],
   imports: [
     MatTabsModule,

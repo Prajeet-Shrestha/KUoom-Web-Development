@@ -14,15 +14,13 @@ export class AppComponent implements OnInit {
 
 
   NavRouteUpdateFlag={
-    Index:true,
-    Register:false,
-    SearchRoom:false,
-    login:false
+    Index:true
   }
   title = 'KUoomFrontend';
   user;
   isLoggedin=false;
   LocalStorageUserDetail;
+  userType;
   constructor(private _router:Router, private auth:AuthService,private DataService:DataService){
     this._router.events.subscribe(
       (val)=>{
@@ -42,45 +40,40 @@ export class AppComponent implements OnInit {
     });
 
     this.DataService.currentisLoggedin.subscribe((data)=>{
-      console.log(data);
       this.isLoggedin = data;
     });
+
+    this.DataService.currentuserType.subscribe((data)=>{
+      // console.log(data);
+      this.userType = data;
+    })
   }
 
-  AUTO_NAV_ROUTER_UPDATER(page){
-    let i;
-    let page_type;
-    let Pages =Object.keys( this.NavRouteUpdateFlag);
+  // AUTO_NAV_ROUTER_UPDATER(page){
+  //   let i;
+  //   let page_type;
+  //   let Pages =Object.keys( this.NavRouteUpdateFlag);
     
-    for(i=0;i<Pages.length;i++){
-      if(Pages[i] == page){
-        this.NavRouteUpdateFlag[Pages[i]] = true;
-      }
-      else{
-        this.NavRouteUpdateFlag[Pages[i]] = false;
-      }
-    }
+  //   for(i=0;i<Pages.length;i++){
+  //     if(Pages[i] == page){
+  //       this.NavRouteUpdateFlag[Pages[i]] = true;
+  //     }
+  //     else{
+  //       this.NavRouteUpdateFlag[Pages[i]] = false;
+  //     }
+  //   }
     // console.log(this.NavRouteUpdateFlag);
-  }
+  // }
 
   UPDATE_NAV_ROUTER_FLAG(CurrentPage:any)
   {
-    switch(CurrentPage)
-    {
-      case Url_SuperPath['SearchRoom']:
-        // console.log("CASE SEARCH ROOM");
-        this.AUTO_NAV_ROUTER_UPDATER('SearchRoom');
-        break
-      case Url_SuperPath['Register']:
-        this.AUTO_NAV_ROUTER_UPDATER("Register");
-        break
-      case Url_SuperPath['Index']:
-        this.AUTO_NAV_ROUTER_UPDATER('Index');
-        break
-      case Url_SuperPath['login']:
-        this.AUTO_NAV_ROUTER_UPDATER('login');
-        break
-    };
+    if (CurrentPage == Url_SuperPath['Index']){
+      this.NavRouteUpdateFlag.Index = true;
+    }
+    else{
+      this.NavRouteUpdateFlag.Index = false;
+    }
+
   }
  
   gotoregister(){
@@ -98,6 +91,16 @@ export class AppComponent implements OnInit {
     }).catch((err)=>{
       console.log(err);
     })
+  }
+
+  MyProfile(){
+    if(this.userType == 'Tenant'){
+      this._router.navigate([Url_SuperPath['tenantProfile']]);
+    }
+    else{
+      this._router.navigate([Url_SuperPath['landlordProfile']]);
+
+    }
   }
   
 }

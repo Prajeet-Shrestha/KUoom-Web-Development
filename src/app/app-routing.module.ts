@@ -13,6 +13,9 @@ import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 
 
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { UserprofilesComponent } from './modules/userprofiles/userprofiles.component';
+import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
+import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([Url_SuperPath['login']]);
@@ -38,7 +41,14 @@ const routes: Routes = [
       {path:'sr',component:SearchroomComponent},
       {path:'profile',component:ProductprofileComponent}
     ]}
-  ]}
+  ]},
+
+    
+  {path:"profile",component:UserprofilesComponent,canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin },children:[
+    { path: '', redirectTo: '/profile/t', pathMatch: 'full' },
+    {path:'t',component:TenantComponent},
+    {path:'l',component:LandlordComponent}
+  ]},
 
 ];
 

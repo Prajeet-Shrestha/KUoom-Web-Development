@@ -1,9 +1,9 @@
 <div class="maincontainer" style="background: #F4B436;">
 
-    <header class="main-head" [ngClass]="{'':NavRouteUpdateFlag.Index,'SearchRoom':NavRouteUpdateFlag.SearchRoom}">
+    <header class="main-head" [ngClass]="{'Index':NavRouteUpdateFlag.Index,'':!NavRouteUpdateFlag.Index}">
         <nav>
             <div id="logo">
-                <div [routerLink]="['/cover/index']" class="logo" style="">
+                <div [routerLink]="['/cover/index']" class="logo">
                 </div>
                 <ul class="left-nav-links" >
                     <li>How does this work</li>
@@ -24,7 +24,7 @@
                 <span style="margin-left:5px;">
                     <button mat-button [matMenuTriggerFor]="menu"> {{username}} </button>
                     <mat-menu #menu="matMenu" >
-                        <button mat-menu-item > My Profile</button>
+                        <button mat-menu-item (click)="MyProfile()" > My Profile</button>
                         <button mat-menu-item (click)="logout()" > Logout </button>
                     </mat-menu>
                 </span>

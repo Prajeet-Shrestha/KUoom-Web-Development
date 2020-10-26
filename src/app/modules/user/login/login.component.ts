@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
           }
           this.authService.setUserDetails(this.userDetails);
           this.DataService.changeMessage(this.userDetails.name);
+          this.DataService.changeUserType(this.userDetails.userType);
           let user={
             name: data.data().name,
             userType: data.data().userType

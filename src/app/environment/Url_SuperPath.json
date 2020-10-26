@@ -3,5 +3,7 @@
     "Register":"/auth/register",
     "SearchRoom":"/search/fr/sr",
     "ProductProfile":"/search/fr/profile",
-    "login":"/auth/login"
+    "login":"/auth/login",
+    "tenantProfile":"/profile/t",
+    "landlordProfile":"/profile/l"
 }

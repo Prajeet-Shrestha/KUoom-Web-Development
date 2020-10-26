@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
           userType: userDetails.userType
         }
         this.DataService.changeMessage(userDetails.name);
-        
+        this.DataService.changeUserType(userDetails.userType);
         localStorage.removeItem('user');
         localStorage.setItem('user',JSON.stringify(user));
         this.dbFire.registerNewUser(userDetails,res.user.uid.toString()).then((res)=>{
