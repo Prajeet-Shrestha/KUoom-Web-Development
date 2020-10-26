@@ -54,12 +54,22 @@ export class LoginComponent implements OnInit {
             phone:data.data().phone,
             gender:data.data().gender
           }
+          let Fullname = this.userDetails.name.split(' ');
           this.authService.setUserDetails(this.userDetails);
+          this.DataService.changeUserFullDetails({
+            Fname: Fullname[0],
+            Lname: Fullname[1],
+            email: this.userDetails.email,
+            phone: this.userDetails.phone
+          });
           this.DataService.changeMessage(this.userDetails.name);
           this.DataService.changeUserType(this.userDetails.userType);
           let user={
             name: data.data().name,
-            userType: data.data().userType
+            userType: data.data().userType,
+            email: data.data().email,
+            phone:data.data().phone,
+
           }
           localStorage.removeItem('user');
           localStorage.setItem('user',JSON.stringify(user));

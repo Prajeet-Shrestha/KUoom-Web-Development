@@ -39,12 +39,17 @@ export class AppComponent implements OnInit {
       this.username = data;
     });
 
-    this.DataService.currentisLoggedin.subscribe((data)=>{
-      this.isLoggedin = data;
+    this.DataService.currentisLoggedin.subscribe((data:boolean)=>{
+      
+      if(typeof data == 'boolean'){
+        this.isLoggedin = data;
+      } 
+      console.log(this.isLoggedin);
     });
 
     this.DataService.currentuserType.subscribe((data)=>{
       // console.log(data);
+    
       this.userType = data;
     })
   }

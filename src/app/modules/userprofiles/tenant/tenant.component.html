@@ -1,1 +1,178 @@
-<p>tenant works!</p>
+<div class="main-container">
+    <div class="nav">
+        <div class="tabs">
+            <mat-tab-group id="TenantProfile" animationDuration="0ms" dynamicHeight (click)="eventCatcher($event)">
+                <mat-tab label="Your Booking">
+                    <div class="Bookings">
+
+                        <div class="YourBooking-title">
+                            <h2>Your Bookings</h2>
+                        </div>
+                        <div class="BookedProducts">
+                            <div *ngFor="let product of products" class="product-card">
+                                <div style="width: 20%;">
+                                    <img src="{{product.url}}" class="product-img" alt="">
+                                </div>
+                                <div class="product-details">
+                                    <div class="top1">
+                                        <div class="title">
+                                            {{product.title}}
+                                        </div>
+
+                                        <div class="love" [ngClass]="{'like':product.like}">
+                                        </div>
+                                    </div>
+
+                                    <div class="top2">
+                                        <div class="subtitle">
+                                            {{product.subtitle}}
+                                        </div>
+                                    </div>
+                                    <div class="top3">
+                                        <span class="location-icon material-icons">
+                                            room
+                                        </span>
+                                        <div class="location">
+                                            {{product.location}}
+                                        </div>
+                                    </div>
+                                    <div class="price">
+                                        <span class="mainprice"> {{product.price}}</span>
+                                        <span class="permonth">/month</span>
+                                    </div>
+                                    <div class="bottom1">
+                                        <div class="date"> {{product.date}} </div>
+                                        <div class="status"> {{product.status}} </div>
+                                        <!-- <div class="Landlord"> Prajeet</div> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="info">
+                            <div style="text-align: center;">
+                                <h2 style="padding: 0%; margin: 0%;">Keeping looking for the place to call your home
+                                </h2>
+                                <p style="font-weight: lighter;"> Browse your favourites or continue searching for your
+                                    future home</p>
+                            </div>
+                            <div style="margin: 0 auto; width: fit-content;">
+                                <button (click)="gotosearchRoom()"
+                                    style="margin: 0 auto; background-color: green; color: white;"
+                                    mat-flat-button>Search for an other half</button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Profile">
+                    <div class="Profiles">
+
+                        <div class="ProfilesFlex" >
+                            <div class="details">
+                                <h2>My Account Details</h2>
+                                <div class="ProfileInfo">
+                                    <div style="display: flex;">
+                                        <div>
+                                           <b> First Name: </b>
+                                            <br>
+                                            {{UserDetails.Fname}}
+                                        </div>
+                                        <div>
+                                        <b> Last Name:</b>
+                                            <br>
+                                            {{UserDetails.Lname}}
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; margin-top: 2rem;">
+                                        <div>
+                                           <b> Email: </b>
+                                            <br>
+                                            {{UserDetails.email}}
+                                        </div>
+                                        <div>
+                                        <b> Phone Number:</b>
+                                            <br>
+                                            {{UserDetails.phone}}
+                                        </div>
+                                    </div>
+                                    <div style="padding:1rem;padding-top:2rem;width: fit-content;">
+                                        <button 
+                                            style="margin: 0 auto; background-color: green; color: white;"
+                                            mat-flat-button> Edit </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <h2>Notification Communication</h2>
+                                <div class="ProfileInfo">
+                                    In Progress
+                                    <!-- <div style="display: flex;">
+                                        <div>
+                                           <b> First Name: </b>
+                                            <br>
+                                            {{UserDetails.Fname}}
+                                        </div>
+                                        <div>
+                                        <b> Last Name:</b>
+                                            <br>
+                                            {{UserDetails.Lname}}
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; margin-top: 2rem;">
+                                        <div>
+                                           <b> Email: </b>
+                                            <br>
+                                            {{UserDetails.email}}
+                                        </div>
+                                        <div>
+                                        <b> Phone Number:</b>
+                                            <br>
+                                            {{UserDetails.phone}}
+                                        </div>
+                                    </div>
+                                    <div style="padding:1rem;padding-top:2rem;width: fit-content;">
+                                        <button 
+                                            style="margin: 0 auto; background-color: green; color: white;"
+                                            mat-flat-button> Edit </button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="info">
+                            <div style="text-align: center;">
+                                <h2 style="padding: 0%; margin: 0%;">Keeping looking for the place to call your home
+                                </h2>
+                                <p style="font-weight: lighter;"> Browse your favourites or continue searching for your
+                                    future home</p>
+                            </div>
+                            <div style="margin: 0 auto; width: fit-content;">
+                                <button (click)="gotosearchRoom()"
+                                    style="margin: 0 auto; background-color: green; color: white;"
+                                    mat-flat-button>Search for an other half</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Favorites">
+                </mat-tab>
+                <mat-tab label="Invite Friends">
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+
+
+</div>
+<footer>
+    <div class="logo"></div>
+    <h1>Find your room with us</h1>
+    <ul>
+        <li><a href="#">Links</a></li>
+        <li><a href="#">Links</a></li>
+    </ul>
+
+</footer>

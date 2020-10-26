@@ -50,9 +50,18 @@ export class RegisterComponent implements OnInit {
         this.DataService.changeIsLoggedin(true);
         let user={
           name: userDetails.name,
-          userType: userDetails.userType
+          userType: userDetails.userType,
+          email: email,
+          phone:''
         }
+        let Fullname = user.name.split(' ');
         this.DataService.changeMessage(userDetails.name);
+        this.DataService.changeUserFullDetails({
+          Fname: Fullname[0],
+          Lname: Fullname[1],
+          email: email,
+          phone: user.phone
+        });
         this.DataService.changeUserType(userDetails.userType);
         localStorage.removeItem('user');
         localStorage.setItem('user',JSON.stringify(user));

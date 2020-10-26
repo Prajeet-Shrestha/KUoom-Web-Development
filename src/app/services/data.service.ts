@@ -7,11 +7,13 @@ export class DataService {
   private usernameSource = new BehaviorSubject<string>('')
   private isLoggedinSource = new BehaviorSubject<boolean>(false)
   private userTypeSource = new BehaviorSubject<string>('');
+  private UserFullDetailsSource = new BehaviorSubject<object>({ });
 
   currentUsername = this.usernameSource.asObservable()
   currentisLoggedin = this.isLoggedinSource.asObservable();
   currentuserType = this.userTypeSource.asObservable();
-  
+  currentUserFullDetails = this.UserFullDetailsSource.asObservable();
+
   LocalStorageUserDetail
   constructor() {
     try{
@@ -21,7 +23,15 @@ export class DataService {
       }
       else{
         this.isLoggedinSource.next(true);
-        // console.log(this.LocalStorageUserDetail.userType);
+        let name = this.LocalStorageUserDetail.name.split(' ');
+        const userdetails = {
+          email: this.LocalStorageUserDetail.email.toString(),
+          phone: this.LocalStorageUserDetail.phone.toString(),
+          Fname: name[0],
+          Lname: name[1]
+        }
+        this.UserFullDetailsSource.next(userdetails);
+        console.log(userdetails);
         this.changeUserType(this.LocalStorageUserDetail.userType.toString());
         this.changeMessage(this.LocalStorageUserDetail.name);
       }
@@ -39,5 +49,9 @@ export class DataService {
 
   changeUserType(type:'Tenant' | 'Landlord'){
     this.userTypeSource.next(type);
+  }
+
+  changeUserFullDetails(obj){
+    this.UserFullDetailsSource.next(obj);
   }
 }

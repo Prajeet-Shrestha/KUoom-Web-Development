@@ -30,8 +30,9 @@ export class AuthService {
       name:null, phone:null , gender:null,
       email:null,imgUrl:null,uid:null,userType:null
     };
-    this.dataservice.changeMessage('');
+    this.dataservice.changeUserFullDetails({});
     this.dataservice.changeIsLoggedin(false);
+    this.dataservice.changeMessage('');
     localStorage.removeItem('user');
     console.log(this.currentUserDetails);
     return this.auth.signOut();
