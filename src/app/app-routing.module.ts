@@ -12,14 +12,14 @@ import { ProductprofileComponent } from './modules/searchview/findroom/productpr
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 
 
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { UserprofilesComponent } from './modules/userprofiles/userprofiles.component';
 import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
 import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([Url_SuperPath['login']]);
-
+const redirectLoggedInToItems = () => redirectLoggedInTo([Url_SuperPath['Index']]);
 
 const routes: Routes = [
   { path:"",redirectTo:'/cover/index',pathMatch:"full"},
@@ -28,7 +28,7 @@ const routes: Routes = [
     {path:'index',component:IndexComponent}
   ]},
   
-  {path:"auth",component:UserComponent,children:[
+  {path:"auth",component:UserComponent,  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems },children:[
     { path: '', redirectTo: '/auth/register', pathMatch: 'full' },
     {path:'register',component:RegisterComponent},
     {path:'login',component:LoginComponent}

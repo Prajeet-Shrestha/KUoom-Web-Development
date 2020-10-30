@@ -8,6 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class ProductprofileComponent implements OnInit {
 
   constructor() { }
+  imageObject: Array<object> = [{
+    image: 'assets/Roomexample/1.png',
+    thumbImage: 'assets/Roomexample/1.png',
+    alt: 'alt of image',
+    title: 'FURNISHED PRIVATE ROOM'
+}, 
+{
+  image: 'assets/Roomexample/1.png',
+  thumbImage: 'assets/Roomexample/1.png',
+  alt: 'alt of image',
+  title: ''
+}, 
+];
+
 
   ngOnInit(): void {
   }

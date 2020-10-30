@@ -1,0 +1,19 @@
+{
+    "Navbar":{
+        "Howdoesthiswork" : "How does this work",
+        "LandlordPortal":"Landlord Portal",
+        "Aboutus":"About us",
+        "Welcome":"Welcome",
+        "MyDashboard":"My Dashboard",
+        "Register":"Register",
+        "LogIn":"Log In",
+        "FindMeaRoom":"Find Me a Room",
+        "Logout":"Logout",
+        "MyProfile":"My Profile"
+    },
+    "index":{
+        "mainTitle":"Find Your Room In KUoom",
+        "subTitle":"Especially For the Students of Kathmandu University",
+        "dataPlaceHolder":"Choose Your Arrival Date"
+    }
+}

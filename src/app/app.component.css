@@ -5,6 +5,7 @@
     padding: 0%;
     margin: 0%;
     height: 100vh;
+    background: #F4B436;
     z-index: 10000000;
   }
   
@@ -126,3 +127,125 @@
       border: none;
     }
 
+    .mobileMenu{
+      display: none;
+    }
+@media (max-width: 580px){
+  .mobileMenu{
+    display: block;
+    
+  }
+  .maincontainer{
+    padding: 0%;
+    margin: 0%;
+    height: 100vh;
+    background: transparent;
+    z-index: 10000000;
+  }
+  
+  .main-head.Index{
+    background: transparent;
+    height: fit-content;
+    width: 100%;
+  
+    z-index: 10000000;
+    padding-top: .2%;
+    position: fixed;
+  }
+
+  .main-head{
+    background:rgba(246, 177, 27);
+    height: fit-content;
+    width: 100%;
+   
+    z-index: 10000000;
+    padding-top: .2%;
+    position: fixed;
+  }
+  nav {
+    display: flex;
+    /* background-color: tomato; */
+    width: 95%;
+    margin: 0 0 0 auto;
+    z-index: 2;
+    font-weight: 600;
+  }
+  #logo {
+    display: flex;
+    border: none;
+    /* justify-content: center; */
+    align-items: center;
+    width: 30%;
+    /* background-color: rebeccapurple; */
+  }
+   #logo .logo {
+    background: url("src/assets/Logo/KUoomLOGO2.png");
+    background-size: 100% 100%;
+    height: 5.5vh;
+    width: 30%;
+    /* background-color: tomato; */
+    border: none;
+  
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  #logo .logo:focus {
+    background: url("src/assets/Logo/KUoomLOGO2.png");
+    background-size: 100% 100%;
+    height: 5.5vh;
+    width: 30%;
+    
+    border: none;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  
+  #logo img {
+    width: 10%;
+    height: auto;
+    border: none;
+    cursor: pointer;
+  }
+  .left-nav-links {
+    display: none;
+  }
+  .left-nav-links li {
+    margin: 0 2rem;
+    font-style: normal;
+    cursor: pointer;
+    color: white;
+    font-size: 1.4rem;
+  }
+  .right-nav-links {
+    display: none;
+    margin-top: 1rem;
+    color: white;
+    align-items: center;
+  }
+
+  .profile{
+  display: none;
+
+  }
+  .profile-img{
+    border-radius: 100%;
+  
+    width: 40px;
+    height: 40px;
+  }
+  .right-nav-links li {
+    margin: 0 2rem;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .right-nav-links li:hover,
+  .left-nav-links li:hover {
+    color: #1A4789;
+  }
+
+  ul li:focus{
+    border: none;
+  }
+
+}

@@ -72,6 +72,9 @@
     height: 90vh;
 }
 
+.imgcontainer{
+    width: 20%;
+}
 .product-card{
     height: fit-content;
     border-radius: 1rem;
@@ -135,8 +138,8 @@
 }
 
 .top3 .location-icon{
-    width: 3%;
-    height: 3%;
+    width: fit-content;
+    height: fit-content;
 }
 
 .price .permonth{
@@ -162,8 +165,9 @@
 .status{
     text-align: center;
     border-radius: 5px;
+    padding: .2rem;
     margin-top: -.8rem;
-    width: 10%;
+    width: fit-content;
     color: white;
     height: fit-content;
     background:#FF5757;
@@ -212,4 +216,96 @@
 .locationSelect{
     background-color: #D9D9D9;
     border-radius: .5rem;
+}
+
+@media (max-width: 580px){
+
+    .main-container{
+        padding: .5rem;
+        padding-top: 4rem;
+    }
+    .filtersidenav{
+        display: none;
+    }
+
+    .rightside{
+        /* background-color: chartreuse; */
+        padding: 0px;
+        width: 100%;
+        margin: 1rem;
+
+    }
+
+    .product-card{
+        text-align: left;
+        display: block;
+        padding: .5rem;
+    }
+
+    .imgcontainer{
+        width: 100%;
+    }
+
+    .product-details{
+        /* background-color: chartreuse; */
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .top1{
+        width: 100%;
+        /* background-color: lightsalmon; */
+    }
+    .top1 .title{
+       
+        width: 100%;
+        /* background-color: chartreuse; */
+        font-size: 1.8rem;
+    }
+
+    .top2{
+        display: none;
+    }
+   
+.love{
+
+    background-size: 20px;
+    width: 10%;
+    height: 3vh;
+    cursor: pointer;
+}
+
+.love.like{
+
+    background-size: 20px;
+    width: 10%;
+    height: 3vh;
+    cursor: pointer;
+}
+
+    .mid-notification .main-notification{
+        font-size: 1.5rem;
+    }
+
+    .mid-notification .sub-notification{
+        font-size: 1rem;
+    }
+
+    .price{
+        margin: 0%;
+    }
+
+    .bottom1{
+        width: 98%;
+        /* background-color: lightgreen; */
+    }
+    .status{
+        text-align: center;
+        border-radius: 5px;
+        margin-top: -.8rem;
+        width: fit-content;
+        color: white;
+        height: fit-content;
+        background:#FF5757;
+    }
 }

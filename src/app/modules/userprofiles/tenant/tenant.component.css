@@ -75,7 +75,7 @@ footer{
     border-radius: 2.6rem;
 }
 
-.Bookings,.Profiles{
+.Bookings,.Profiles,.Favorites{
     margin-top: 4.5rem;
     /* background-color: rebeccapurple; */
     padding: 1rem;
@@ -102,7 +102,9 @@ footer{
     display: flex;
     background: white;
 }
-
+.imgContainer{
+    width: 20%;
+}
 .product-img{
     width: 100%;
     cursor: pointer;
@@ -157,8 +159,8 @@ footer{
 }
 
 .top3 .location-icon{
-    width: 3%;
-    height: 3%;
+    width: fit-content;
+    height: fit-content;
 }
 
 .price .permonth{
@@ -187,14 +189,25 @@ footer{
     margin-top: -.8rem;
     width: 10%;
     color: white;
+    padding: .1rem;
     height: fit-content;
     background:#FF5757;
 }
 
 .info{
     padding:1.5rem;
+    width: 80%;
 }
 
+.DeleteAccount{
+    width: 45%; margin: 0 auto; background-color: white; padding: 1rem; border-radius: 1rem;
+}
+
+.DeleteAccount p{
+    font-weight: lighter; font-style: italic;}
+.DeleteAccount div{
+    margin: 0 auto; width: fit-content;
+}
 .ProfilesFlex{
     /* background-color: blue; */
     display: flex;
@@ -213,4 +226,226 @@ footer{
 }
 .ProfileInfo div div{
     width: 50%;
+}
+
+.FirstLastNameBox{
+    display: flex; margin-top: 1rem;
+}
+
+.EmailPhoneBox{
+    display: flex;
+    margin-top: 2.5rem;
+}
+
+.FavContainer,.InviteFrn{
+    display: flex;
+}
+
+.favimgContainer,.invFrnContainer{
+    width: 8%; height: 15vh;
+}
+
+
+
+@media (max-width: 580px){
+
+.nav{
+    /* margin-top: 8rem; */
+    /* height: 10vh; */
+    border-radius: 2.6rem;
+  
+
+    /* padding-left: 1.8rem; */
+    width: 100%;
+    padding-top: 0rem;
+    padding-left: .2rem;
+    /* background-color: blue; */
+    margin: 0 auto;
+}
+
+::ng-deep #TenantProfile .mat-tab-header{
+    background-color: white;
+    width: 100% !important;
+      position: fixed;
+      z-index: 1000;
+    border-radius: 2.6rem;
+}
+
+
+.BookedProducts{
+    width: 95%;
+    /* background-color: violet; */
+    height: fit-content;
+    max-height: fit-content;
+    overflow: none;
+    overflow-y: none;
+}
+.product-card{
+    text-align: left;
+    display: block;
+    padding: .5rem;
+}
+
+.imgcontainer{
+    width: 100%;
+}
+
+.product-details{
+    /* background-color: chartreuse; */
+    width: 100%;
+    padding-left: 0px;
+}
+
+.top1{
+    width: 100%;
+    /* background-color: lightsalmon; */
+}
+.top1 .title{
+   
+    width: 100%;
+    /* background-color: chartreuse; */
+    font-size: 1.8rem;
+}
+
+.top2{
+    display: none;
+}
+
+.love{
+
+background-size: 20px;
+width: 10%;
+height: 3vh;
+cursor: pointer;
+}
+
+.love.like{
+
+background-size: 20px;
+width: 10%;
+height: 3vh;
+cursor: pointer;
+}
+
+.mid-notification .main-notification{
+    font-size: 1.5rem;
+}
+
+.mid-notification .sub-notification{
+    font-size: 1rem;
+}
+
+.price{
+    margin: 0%;
+}
+
+.bottom1{
+    width: 98%;
+    /* background-color: lightgreen; */
+}
+.status{
+    text-align: center;
+    border-radius: 5px;
+    margin-top: -.8rem;
+    width: fit-content;
+    color: white;
+    height: fit-content;
+    background:#FF5757;
+}
+.imgContainer{
+    width: 100%;
+}
+footer .logo{
+    width: 40%;
+  }
+  .info div h2{
+    font-size: 1.6rem;
+}
+
+.info div p{
+    font-size: 1.4rem;
+}
+
+
+.ProfilesFlex{
+    /* background-color: blue; */
+    display: block;
+    width: 98%;
+    justify-content: space-evenly;
+}
+.ProfileInfo{
+    margin: 0%;
+}
+
+.details{
+    width: 100%;
+}
+.details h2{
+    padding-top: 1rem;
+    margin-bottom: .5rem;
+    padding-bottom: 0rem;
+}
+
+.FirstLastNameBox{
+    display: block; margin-top: 1rem;
+}
+.FirstLastNameBox div b{
+    font-size: 1.7rem;
+}
+
+.FirstLastNameBox div p{
+    font-size: 1.7rem;
+    font-weight: lighter;
+}
+
+.EmailPhoneBox{
+    display: block;
+    margin-top: 1rem;
+}
+.EmailPhoneBox div b{
+    font-size: 1.7rem;
+}
+
+.EmailPhoneBox div p{
+    font-size: 1.7rem;
+    font-weight: lighter;
+}
+
+.info{
+    padding:0rem;
+    padding-top: 2rem;
+    width: 98%;
+    justify-content: space-evenly;
+   
+}
+
+.DeleteAccount{
+    margin: 0%; padding: 1rem;
+    width: fit-content; background-color: white; border-radius: 1rem;
+}
+
+.DeleteAccount p{
+    
+    font-weight: lighter; font-style: italic;}
+.DeleteAccount div{
+    margin: 0 auto; width: fit-content;
+}
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+
+.FavContainer,.InviteFrn{
+    display: block;
+}
+
+.favimgContainer,.invFrnContainer{
+    width: 120px; height: 15vh;
+    margin: 0% auto;}
+
+    .InviteFrn div h3,.InviteFrn div p{
+        text-align: center;
+    }
+
+
 }

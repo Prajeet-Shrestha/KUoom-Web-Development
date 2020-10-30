@@ -145,3 +145,26 @@ hr{
     height: 5vh;
     margin-right: 10%;
   }
+
+     
+@media (max-width: 580px){
+  img{
+    display: none;
+  }
+  .main-container{
+    margin: 0px;
+    padding: .5rem;
+    padding-top: 6rem;
+  }
+
+  .manandloginbox{
+    /* background-color: li ghtgreen; */
+    padding: 0px;
+    margin: 0%;
+  }
+  .mid-container{
+    margin: 0 auto;
+    width: 90%;
+
+  }
+}

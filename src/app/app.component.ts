@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { DataService } from './services/data.service';
 import { AuthService } from "src/app/services/auth/auth.service";
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   isLoggedin=false;
   LocalStorageUserDetail;
   userType;
-  constructor(private _router:Router, private auth:AuthService,private DataService:DataService){
+  constructor(private _router:Router, public translate:TranslateService,private auth:AuthService,private DataService:DataService){
+  
     this._router.events.subscribe(
       (val)=>{
         // console.log(this._router.url);
@@ -51,6 +52,10 @@ export class AppComponent implements OnInit {
       // console.log(data);
     
       this.userType = data;
+    })
+
+    this.DataService.currentlang.subscribe((data)=>{
+      this.translate.setDefaultLang(data);
     })
   }
 

@@ -14,10 +14,12 @@ import { ForgotPasswordComponent } from './modules/user/forgot-password/forgot-p
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatTabsModule } from "@angular/material/tabs";
 import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchviewComponent } from './modules/searchview/searchview.component';
@@ -26,12 +28,12 @@ import { ProductprofileComponent } from './modules/searchview/findroom/productpr
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
-
+import { MatIconModule } from "@angular/material/icon";
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -42,6 +44,17 @@ import {environment} from "src/environments/environment";
 import { UserprofilesComponent } from './modules/userprofiles/userprofiles.component';
 import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
 import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
+
+
+import { NgImageSliderModule } from 'ng-image-slider';
+
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core"
+import { TranslateHttpLoader } from  "@ngx-translate/http-loader"
+import { HttpClient } from '@angular/common/http';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -63,21 +76,35 @@ import { TenantComponent } from './modules/userprofiles/tenant/tenant.component'
   imports: [
     MatTabsModule,
     BrowserModule,
+    MatSlideToggleModule,
     MatSliderModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatProgressBarModule,
     MatSelectModule,
     MatNativeDateModule,FormsModule, ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    HttpClientModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    NgImageSliderModule,
     AppRoutingModule,
+    MatMenuModule,
     MatChipsModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
-    MatMenuModule
+    MatMenuModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
  
   ],
   providers: [MatDatepickerModule,{provide: LocationStrategy, useClass: HashLocationStrategy}],

@@ -1,23 +1,27 @@
+<div class="superContainer">
 <div class="first-section">
     <header class="main-head">
        
     </header>
     <section class="mid-container ">
         <div class="mid-container-title">
-            <h2>Find Your Room In KUoom</h2>
-            <p>Especially For the Students of Kathmandu University</p>
+            <h2> {{'index.mainTitle' | translate}}</h2>
+            <p>{{'index.subTitle' | translate}}</p>
         </div>
         <div class="search-bar">
-            <input matInput [matDatepicker]="picker" type="datetime" placeholder="Choose Your Arrival Date">
+            <input matInput [matDatepicker]="picker" type="datetime" placeholder=" {{'index.dataPlaceHolder' | translate}} " >
             <mat-datepicker-toggle style="margin-left: -4.5rem; margin-top: .8rem;" matSuffix [for]="picker" ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <img src="/" alt="">
-            <!-- <input type="text" name="furnished" placeholder="Furnished">
-            <input type="text" name="price range" placeholder="Price Range"> -->
-
             <div (click)="search()" class="search">
               
             </div>
+        </div>
+        <div *ngIf="lang == 'np'" class="TranlateButton" (click)="translate('en')">
+            Translate to English
+        </div>
+        <div *ngIf="lang == 'en'" class="TranlateButton" (click)="translate('np')">
+            नेपालीमा अनुवाद गर्नुहोस्
         </div>
     </section>
 
@@ -131,3 +135,4 @@
     </ul>
 
 </footer>
+</div>

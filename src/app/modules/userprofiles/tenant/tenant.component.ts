@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { UserDetails } from 'src/app/interfaces/user-details';
@@ -24,7 +25,7 @@ export class TenantComponent implements OnInit {
   products = [
     {
       index: 0,
-      like: false,
+      like: true,
       url: "assets/Roomexample/1.png",
       title: "FURNISHED PRIVATE ROOM",
       subtitle: "Single Room in 28 Kilo Neighbour",
@@ -35,7 +36,7 @@ export class TenantComponent implements OnInit {
     },
     {
       index: 0,
-      like: false,
+      like: true,
       url: "assets/Roomexample/1.png",
       title: "FURNISHED PRIVATE ROOM",
       subtitle: "Single Room in 28 Kilo Neighbour",
@@ -57,10 +58,12 @@ export class TenantComponent implements OnInit {
     // }
   ]
 
+  ConfigForm: FormGroup;
   UserDetails:UserDetailsResposeMap;
-  constructor(private _router:Router, private DataService:DataService) { }
+  constructor(private _router:Router, private DataService:DataService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.init_ConfigForm();
     this.DataService.currentUserFullDetails.subscribe((data:UserDetailsResposeMap)=>{
       console.log(data);
       this.UserDetails ={
@@ -69,6 +72,16 @@ export class TenantComponent implements OnInit {
         Fname:data.Fname,
         Lname:data.Lname}
     });
+  }
+
+  init_ConfigForm(){
+    this.ConfigForm = this.fb.group({
+      email: '',
+      phone: ''
+    });
+  }
+  onConfigSubmit(){
+    console.log(this.ConfigForm.value);
   }
 
   eventCatcher(ev){

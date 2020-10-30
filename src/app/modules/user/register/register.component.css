@@ -113,3 +113,24 @@ cursor: pointer;
   height: 5vh;
   margin-right: 10%;
 }
+
+@media (max-width: 580px){
+  .main-container{
+    padding-bottom: 1rem;
+  }
+  .mid-container{
+    padding: 1rem;
+    margin: 3rem auto;
+    width: 95%;
+    height: fit-content;
+    background-color: #FFFFFF;
+    border-radius: 6%;
+}
+
+.main-container{
+  padding: .5rem;
+  padding-top: 3rem;
+}
+
+
+}

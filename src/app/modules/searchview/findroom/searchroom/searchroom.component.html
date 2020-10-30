@@ -111,7 +111,7 @@
         <div class="product-display">
 
             <div *ngFor="let product of products" class="product-card">
-                <div style="width: 20%;">
+                <div class="imgcontainer">
                     <img src="{{product.url}}" class="product-img" alt="" (click)="RoomProfileNavigate()">
                 </div>
                 <div class="product-details">
@@ -130,9 +130,9 @@
                         </div>
                     </div>
                     <div class="top3">
-                        <span class="location-icon material-icons">
+                        <div style="color:#1A4789 ;" class="location-icon material-icons">
                             room
-                        </span>
+                        </div>
                         <div class="location">
                             {{product.location}}
                         </div>

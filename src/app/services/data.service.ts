@@ -8,7 +8,9 @@ export class DataService {
   private isLoggedinSource = new BehaviorSubject<boolean>(false)
   private userTypeSource = new BehaviorSubject<string>('');
   private UserFullDetailsSource = new BehaviorSubject<object>({ });
+  private langSource = new BehaviorSubject<string>('en');
 
+  currentlang = this.langSource.asObservable();
   currentUsername = this.usernameSource.asObservable()
   currentisLoggedin = this.isLoggedinSource.asObservable();
   currentuserType = this.userTypeSource.asObservable();
@@ -39,6 +41,11 @@ export class DataService {
     catch(e){ }
    }
 
+
+  changeLang(lang:'en' | 'np'){
+    this.langSource.next(lang);
+  }
+  
   changeMessage(message:string){
     this.usernameSource.next(message);
   }
