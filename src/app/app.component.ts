@@ -131,4 +131,8 @@ export class AppComponent implements OnInit {
       this._router.navigate([Url_SuperPath['landlordProfile']]);
     }
   }
+
+  goToAboutPage() {
+    this._router.navigate(['/AboutUs']);
+  }
 }

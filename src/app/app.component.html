@@ -10,7 +10,7 @@
         <ul class="left-nav-links" [ngClass]="{ Index: NavRouteUpdateFlag.Index, '': !NavRouteUpdateFlag.Index }">
           <li>{{ 'Navbar.Howdoesthiswork' | translate }}</li>
           <li>{{ 'Navbar.LandlordPortal' | translate }}</li>
-          <li>{{ 'Navbar.Aboutus' | translate }}</li>
+          <li (click)="goToAboutPage()">{{ 'Navbar.Aboutus' | translate }}</li>
         </ul>
       </div>
 
