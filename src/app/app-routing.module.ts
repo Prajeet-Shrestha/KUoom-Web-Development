@@ -16,6 +16,7 @@ import { UserprofilesComponent } from './modules/userprofiles/userprofiles.compo
 import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
 import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
 import { AddRoomComponent } from './core/commonComponents/add-room/add-room.component';
+import { AboutusComponent } from './core/UIcomponents/aboutus/aboutus.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([Url_SuperPath['login']]);
 const redirectLoggedInToItems = () => redirectLoggedInTo([Url_SuperPath['Index']]);
@@ -74,6 +75,7 @@ const routes: Routes = [
     ],
   },
   { path: 'addRoom', component: AddRoomComponent },
+  { path: 'AboutUs', component: AboutusComponent },
 ];
 
 @NgModule({

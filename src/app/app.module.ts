@@ -57,6 +57,7 @@ import { FooterComponent } from './core/commonComponents/footer/footer/footer.co
 import { AdminComponent } from './admin/admin/admin.component';
 import { RoomProductCardComponent } from './core/commonComponents/room-product-card/room-product-card.component';
 import { AddRoomComponent } from './core/commonComponents/add-room/add-room.component';
+import { AboutusComponent } from './core/UIcomponents/aboutus/aboutus.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminComponent,
     RoomProductCardComponent,
     AddRoomComponent,
+    AboutusComponent,
   ],
   imports: [
     MatTabsModule,
