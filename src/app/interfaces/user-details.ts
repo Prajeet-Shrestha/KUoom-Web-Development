@@ -1,3 +1,4 @@
+// Template for the userDetail Data type
 export interface UserDetails {
     name:string | null;
     imgUrl:string | null;

@@ -1,0 +1,94 @@
+/*Global Styles*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*FOOTER*/
+footer {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+footer .logo {
+  background: url('src/assets/Logo/KUoomLOGO1.png');
+  background-size: 100% 100%;
+  height: 6vh;
+  width: 10%;
+  margin: 1rem auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+footer h1 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid black;
+  width: 30%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 0.5rem;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+footer ul li {
+  text-decoration: none;
+  margin: 2rem;
+}
+footer ul li a {
+  color: black;
+  font-size: 1rem;
+}
+
+@media (max-width: 680px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /*FOOTER*/
+  footer {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+  }
+
+  footer .logo {
+    background: url('src/assets/Logo/KUoomLOGO1.png');
+    background-size: 100% 100%;
+    height: 6vh;
+    width: 35%;
+    margin: 1rem auto;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  footer h1 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid black;
+    width: 30%;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  footer ul li {
+    text-decoration: none;
+    margin: 2rem;
+  }
+  footer ul li a {
+    color: black;
+    font-size: 1rem;
+  }
+}

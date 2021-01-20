@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Url_SuperPath from "src/app/environment/Url_SuperPath.json";
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService} from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-index',
@@ -13,6 +13,9 @@ export class IndexComponent implements OnInit {
   constructor(private _router:Router, private dataService:DataService) { }
   lang:string = 'en';
   ngOnInit(): void {
+    this.dataService.currentlang.subscribe((data)=>{
+      this.lang = data;
+    })
   }
 
   search(){

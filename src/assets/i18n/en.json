@@ -15,5 +15,32 @@
         "mainTitle":"Find Your Room In KUoom",
         "subTitle":"Especially For the Students of Kathmandu University",
         "dataPlaceHolder":"Choose Your Arrival Date"
+    },
+    "profile":{
+        "tenant":{
+            "YourBooking":"Your Booking",
+            "infoTitle":"Keeping looking for the place to call your home",
+            "infoSubtitle":"Browse your favourites or continue searching for your future home",
+            "Searchforanotherhalf":"Search for an other half",
+            "MyAccountDetails":"My Account Details",
+            "FirstName":"First Name",
+            "profile":"Profile",
+            "LastName":"Last Name",
+            "Email":"Email",
+            "PhoneNumber":"Phone Number",
+            "Edit":"Edit",
+            "NotificationCommunication":"Notification Communication",
+            "NotificationTitle":"Stay up to date with special offers and policy updates",
+            "NotificationQue":"How would you like to hear from us?",
+            "ViaEmail":"Via Email",
+            "ViaPhone":"Via Phone",
+            "Save":"Save Settings",
+            "DeleteTitle":"Up to date with If you delete your account,",
+            "DeleteTitle1":"please keep the following in mind:",
+            "DeletePoint1":"Your profile will be permanently deleted,including information about previous bookings",
+            "DeletePoint2":"There is some data that we are legally required to keep offers and policy updates",
+            "DeleteAccount":"Delete Account"
+        
+        }
     }
 }

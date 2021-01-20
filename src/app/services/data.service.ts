@@ -8,7 +8,7 @@ export class DataService {
   private isLoggedinSource = new BehaviorSubject<boolean>(false)
   private userTypeSource = new BehaviorSubject<string>('');
   private UserFullDetailsSource = new BehaviorSubject<object>({ });
-  private langSource = new BehaviorSubject<string>('en');
+  private langSource = new BehaviorSubject<string>('');
 
   currentlang = this.langSource.asObservable();
   currentUsername = this.usernameSource.asObservable()
@@ -16,13 +16,24 @@ export class DataService {
   currentuserType = this.userTypeSource.asObservable();
   currentUserFullDetails = this.UserFullDetailsSource.asObservable();
 
-  LocalStorageUserDetail
+  LocalStorageUserDetail; LocalStorageLang;
   constructor() {
+
     try{
+      console.log('Init Data Service');
       this.LocalStorageUserDetail = JSON.parse(localStorage.getItem('user'));
-      if(this.LocalStorageUserDetail == null){
-        this.isLoggedinSource.next(false);
+      this.LocalStorageLang = localStorage.getItem('lang');
+
+      if(this.LocalStorageLang == null){
+        this.langSource.next('en'); 
+        localStorage.setItem('lang','en');
+
       }
+      else{
+        this.langSource.next(this.LocalStorageLang.toString()); 
+      }
+
+      if(this.LocalStorageUserDetail == null){this.isLoggedinSource.next(false);}
       else{
         this.isLoggedinSource.next(true);
         let name = this.LocalStorageUserDetail.name.split(' ');
@@ -33,17 +44,25 @@ export class DataService {
           Lname: name[1]
         }
         this.UserFullDetailsSource.next(userdetails);
-        console.log(userdetails);
         this.changeUserType(this.LocalStorageUserDetail.userType.toString());
         this.changeMessage(this.LocalStorageUserDetail.name);
       }
     }
-    catch(e){ }
+    catch(e){
+      console.log(this.LocalStorageLang)
+      if(this.LocalStorageLang == null){
+        this.langSource.next('en'); 
+        localStorage.setItem('lang','en');
+        console.log(this.LocalStorageLang)
+      }
+     }
    }
 
 
   changeLang(lang:'en' | 'np'){
     this.langSource.next(lang);
+    localStorage.setItem('lang',lang);
+
   }
   
   changeMessage(message:string){

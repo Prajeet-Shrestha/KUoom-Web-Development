@@ -1,69 +1,68 @@
 <div class="maincontainer">
+  <header
+    class="main-head"
+    id="main-head-id"
+    [ngClass]="{ Index: NavRouteUpdateFlag.Index, '': !NavRouteUpdateFlag.Index }"
+  >
+    <nav>
+      <div id="logo">
+        <div [routerLink]="['/cover/index']" class="logo"></div>
+        <ul class="left-nav-links" [ngClass]="{ Index: NavRouteUpdateFlag.Index, '': !NavRouteUpdateFlag.Index }">
+          <li>{{ 'Navbar.Howdoesthiswork' | translate }}</li>
+          <li>{{ 'Navbar.LandlordPortal' | translate }}</li>
+          <li>{{ 'Navbar.Aboutus' | translate }}</li>
+        </ul>
+      </div>
 
-    <header class="main-head" [ngClass]="{'Index':NavRouteUpdateFlag.Index,'':!NavRouteUpdateFlag.Index}">
-        <nav>
-            <div id="logo">
-                <div [routerLink]="['/cover/index']" class="logo">
-                </div>
-                <ul class="left-nav-links" >
-                    <li> {{'Navbar.Howdoesthiswork' | translate}} </li>
-                    <li> {{'Navbar.LandlordPortal' | translate}}</li>
-                    <li> {{'Navbar.Aboutus' | translate}}</li>
-                </ul>
-            </div>
-            
-            <div class="mobileMenu">
-                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                    <mat-icon style="color: white;">more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
-                    <button (click)="MyProfile()"  *ngIf="isLoggedin" mat-menu-item>
-                     <mat-icon>account_circle</mat-icon>
-                        <span style="margin-right:0px;"> {{'Navbar.Welcome' | translate}}, {{username}}</span>
-                        
-                      </button>
-                    <button (click)="MyProfile()"  *ngIf="isLoggedin" mat-menu-item>
-                        <mat-icon>dashboard</mat-icon>
-                        <span> {{'Navbar.MyDashboard' | translate}}</span>
-                      </button>
-                    <button (click)="gotoregister()" *ngIf="!isLoggedin" mat-menu-item>
-                      <mat-icon>how_to_reg</mat-icon>
-                      <span> {{'Navbar.Register' | translate}} </span>
-                    </button>
-                    <button [routerLink]="['/auth/login']" *ngIf="!isLoggedin" mat-menu-item >
-                      <mat-icon>login</mat-icon>
-                      <span> {{'Navbar.LogIn' | translate}} </span>
-                    </button>
-                   
-                    <button mat-menu-item>
-                      <mat-icon>search</mat-icon>
-                      <span> {{'Navbar.FindMeaRoom' | translate}} </span>
-                    </button>
-                    <button *ngIf="isLoggedin" (click)="logout()" mat-menu-item>
-                        <mat-icon>exit_to_app</mat-icon>
-                        <span>{{'Navbar.Logout' | translate}} </span>
-                      </button>
-                  </mat-menu>
-            </div>
-            <ul class="right-nav-links" *ngIf="!isLoggedin">
-                <li (click)="gotoregister()">{{'Navbar.Register' | translate}}</li>
-                |
-                <li [routerLink]="['/auth/login']">{{'Navbar.LogIn' | translate}} </li>
-            </ul>
-            <ul class="profile" *ngIf="isLoggedin">
-                <span style="margin-right:5px;">{{'Navbar.Welcome' | translate}},</span>
-                <img class="profile-img" src="assets/Icon/profile.png" alt="">
-                <span style="margin-left:5px;">
-                    <button mat-button [matMenuTriggerFor]="menu"> {{username}} </button>
-                    <mat-menu #menu="matMenu" >
-                        <button mat-menu-item (click)="MyProfile()" > {{'Navbar.MyDashboard' | translate}}</button>
-                        <button mat-menu-item (click)="logout()" > {{'Navbar.Logout' | translate}}  </button>
-                    </mat-menu>
-                </span>
+      <div class="mobileMenu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon style="color: white">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="MyProfile()" *ngIf="isLoggedin" mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span style="margin-right: 0px"> {{ 'Navbar.Welcome' | translate }}, {{ username }}</span>
+          </button>
+          <button (click)="MyProfile()" *ngIf="isLoggedin" mat-menu-item>
+            <mat-icon>dashboard</mat-icon>
+            <span> {{ 'Navbar.MyDashboard' | translate }}</span>
+          </button>
+          <button (click)="gotoregister()" *ngIf="!isLoggedin" mat-menu-item>
+            <mat-icon>how_to_reg</mat-icon>
+            <span> {{ 'Navbar.Register' | translate }} </span>
+          </button>
+          <button [routerLink]="['/auth/login']" *ngIf="!isLoggedin" mat-menu-item>
+            <mat-icon>login</mat-icon>
+            <span> {{ 'Navbar.LogIn' | translate }} </span>
+          </button>
 
-            </ul>
-
-        </nav>
-    </header>
-    <router-outlet ></router-outlet>
+          <button mat-menu-item>
+            <mat-icon>search</mat-icon>
+            <span> {{ 'Navbar.FindMeaRoom' | translate }} </span>
+          </button>
+          <button *ngIf="isLoggedin" (click)="logout()" mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{ 'Navbar.Logout' | translate }} </span>
+          </button>
+        </mat-menu>
+      </div>
+      <ul class="right-nav-links" *ngIf="!isLoggedin">
+        <li (click)="gotoregister()">{{ 'Navbar.Register' | translate }}</li>
+        |
+        <li [routerLink]="['/auth/login']">{{ 'Navbar.LogIn' | translate }}</li>
+      </ul>
+      <ul class="profile" *ngIf="isLoggedin">
+        <span style="margin-right: 5px">{{ 'Navbar.Welcome' | translate }},</span>
+        <img class="profile-img" src="assets/Icon/profile.png" alt="" />
+        <span style="margin-left: 5px">
+          <button mat-button [matMenuTriggerFor]="menu">{{ username }}</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="MyProfile()">{{ 'Navbar.MyDashboard' | translate }}</button>
+            <button mat-menu-item (click)="logout()">{{ 'Navbar.Logout' | translate }}</button>
+          </mat-menu>
+        </span>
+      </ul>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
 </div>

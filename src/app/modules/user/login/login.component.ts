@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   autherrormessage:string ="";
   constructor(private DataService:DataService ,private fb: FormBuilder,private authService:AuthService, private dbFire:DbfirestoreService,
     private router:Router) {
-    
 
      }
 
@@ -77,9 +76,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate([Url_SuperPath['SearchRoom']]);
           }
         },(err)=>{
-          console.log(err);
-        
-        })
+          console.log(err)} 
+        )
        
       }
     ).catch((err)=>{
