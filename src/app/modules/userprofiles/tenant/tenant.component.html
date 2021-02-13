@@ -1,226 +1,129 @@
 <div class="main-container">
-    <div class="nav">
-        <div class="tabs">
-            <mat-tab-group id="TenantProfile" animationDuration="0ms" dynamicHeight (click)="eventCatcher($event)">
-                <mat-tab label=" {{'profile.tenant.YourBooking' | translate }} ">
-                    <div class="Bookings">
-
-                        <div class="YourBooking-title">
-                            <h2>{{'profile.tenant.YourBooking' | translate }}</h2>
-                        </div>
-                        <div class="BookedProducts">
-                            <div *ngFor="let product of products" class="product-card">
-                                <div class="imgContainer">
-                                    <img src="{{product.url}}" class="product-img" alt="">
-                                </div>
-                                <div class="product-details">
-                                    <div class="top1">
-                                        <div class="title">
-                                            {{product.title}}
-                                        </div>
-
-                                        <div class="love" [ngClass]="{'like':product.like}">
-                                        </div>
-                                    </div>
-
-                                    <div class="top2">
-                                        <div class="subtitle">
-                                            {{product.subtitle}}
-                                        </div>
-                                    </div>
-                                    <div class="top3">
-                                        <span style="color: #1A4789;" class="location-icon material-icons">
-                                            room
-                                        </span>
-                                        <div class="location">
-                                            {{product.location}}
-                                        </div>
-                                    </div>
-                                    <div class="price">
-                                        <span class="mainprice"> {{product.price}}</span>
-                                        <span class="permonth">/month</span>
-                                    </div>
-                                    <div class="bottom1">
-                                        <div class="date"> {{product.date}} </div>
-                                        <div class="status"> {{product.status}} </div>
-                                        <!-- <div class="Landlord"> Prajeet</div> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="info">
-                            <div style="text-align: center;">
-                                <h2 style="padding: 0%; margin: 0%;">{{'profile.tenant.infoTitle' | translate }}
-                                </h2>
-                                <p style="font-weight: lighter;"> {{'profile.tenant.infoSubtitle' | translate }}  </p>
-                            </div>
-                            <div style="margin: 0 auto; width: fit-content;">
-                                <button (click)="gotosearchRoom()"
-                                    style="margin: 0 auto; background-color: green; color: white;"
-                                    mat-flat-button>{{'profile.tenant.Searchforanotherhalf' | translate }}</button>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="{{'profile.tenant.profile' | translate }}">
-                    <div class="Profiles">
-
-                        <div class="ProfilesFlex" >
-                            <div class="details">
-                                <h2>{{'profile.tenant.MyAccountDetails' | translate }}</h2>
-                                <div class="ProfileInfo">
-                                    <div class="FirstLastNameBox">
-                                        <div>
-                                           <b> {{'profile.tenant.FirstName' | translate }}: </b>
-                                            <br>
-                                           <p> {{UserDetails.Fname}} </p>
-                                        </div>
-                                        <div>
-                                        <b> {{'profile.tenant.LastName' | translate }}:</b>
-                                            <br>
-                                        <p>{{UserDetails.Lname}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="EmailPhoneBox" >
-                                        <div>
-                                           <b> {{'profile.tenant.Email' | translate }}: </b>
-                                            <br>
-                                        <p>{{UserDetails.email}}</p>
-                                        </div>
-                                        <div>
-                                        <b> {{'profile.tenant.PhoneNumber' | translate }}:</b>
-                                            <br>
-                                        <p> {{UserDetails.phone}}</p>
-                                        </div>
-                                    </div>
-                                    <div style="padding:1rem;padding-top:2.5rem;width: fit-content;">
-                                        <button 
-                                            style="margin: 0 auto; background-color: green; color: white;"
-                                            mat-flat-button> {{'profile.tenant.Edit' | translate }} </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="details">
-                                <h2>{{'profile.tenant.NotificationCommunication' | translate }}</h2>
-                                <div class="ProfileInfo">
-                                    <div style="font-weight: lighter;">
-                                        {{'profile.tenant.NotificationTitle' | translate }}
-                                        <h3 style="padding-top:.8rem;">{{'profile.tenant.NotificationQue' | translate }}</h3>
-                                        <div>
-                                            <form class="config-form" [formGroup]="ConfigForm" (ngSubmit)="onConfigSubmit()">
-
-                                                <mat-slide-toggle formControlName="email">{{'profile.tenant.ViaEmail' | translate }}</mat-slide-toggle>
-                                                <br>
-                                                <mat-slide-toggle formControlName="phone" style="margin-top: 1.5rem;">{{'profile.tenant.ViaPhone' | translate }}</mat-slide-toggle>
-                                              
-                                                <button mat-raised-button type="submit" style="margin-top: 1.5rem;">{{'profile.tenant.Save' | translate }}</button>
-                                              </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="info">
-                            <div class="DeleteAccount">
-                                <p > {{'profile.tenant.DeleteTitle' | translate }} 
-                                    <br>
-                                    {{'profile.tenant.DeleteTitle1' | translate }}</p>
-                                    <ul>
-                                        <li>{{'profile.tenant.DeletePoint1' | translate }}</li>
-                                        <li>{{'profile.tenant.DeletePoint2' | translate }}</li>
-                                    </ul>
-                                    <div>
-                                        <button 
-                                            style="margin: 0 auto; background-color: crimson; color: white;"
-                                            mat-flat-button>{{'profile.tenant.DeleteAccount' | translate }}</button>
-                                    </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                </mat-tab>
-                <mat-tab label="Favorites">
-                    <div class="Favorites">
-
-                        <div class="YourBooking-title">
-                            <h2>My Favourites</h2>
-                        </div>
-                       <div class="FavContainer" >
-                           <div class="favimgContainer"  >
-                            <img src="assets/Icon/5.png" alt="" class="product-img">
-                           </div>
-                          <div style="padding:1rem;">
-                            <h3 style="padding:0px; margin-bottom: 1rem;">Why is it so hard to find my better half.</h3>
-                            <p style="font-weight: lighter;"> Whenever you find a place you really like, click on the heart
-                            icon to save it to your favourites!</p>
-                          </div>
-                       </div>
-                       <div class="info">
-                        <div style="text-align: center;">
-                            <h2 style="padding: 0%; margin: 0%;">Keeping looking for the place to call your home
-                            </h2>
-                            <p style="font-weight: lighter;"> Browse your favourites or continue searching for your
-                                future home</p>
-                        </div>
-                        <div style="margin: 0 auto; width: fit-content;">
-                            <button (click)="gotosearchRoom()"
-                                style="margin: 0 auto; background-color: green; color: white;"
-                                mat-flat-button>Search for an other half</button>
-                        </div>
-                    </div>
-                      
-                    </div>
-                </mat-tab>
-                <mat-tab label="Invite Friends">
-                    <div class="Favorites">
-
-                        <div class="YourBooking-title">
-                            <h2>Invite Friends</h2>
-                        </div>
-                       <div class="InviteFrn">
-                           <div class="invFrnContainer">
-                            <img src="assets/Icon/6.png" alt="" class="product-img">
-                           </div>
-                          <div style="padding:1rem;">
-                            <h3 style="padding:0px; margin-bottom: 1rem;">Invite Friends to get yourself that extra 5% Discount on your first rent payment.</h3>
-                            <p style="font-weight: lighter;"> This Feature is not available in your place. Sorry for the
-                                inconveinece caused!</p>
-                          </div>
-                       </div>
-                       <div class="info">
-                        <div style="text-align: center;">
-                            <h2 style="padding: 0%; margin: 0%;">Keeping looking for the place to call your home
-                            </h2>
-                            <p style="font-weight: lighter;"> Browse your favourites or continue searching for your
-                                future home</p>
-                        </div>
-                        <div style="margin: 0 auto; width: fit-content;">
-                            <button (click)="gotosearchRoom()"
-                                style="margin: 0 auto; background-color: green; color: white;"
-                                mat-flat-button>Search for an other half</button>
-                        </div>
-                    </div>
-                      
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
+  <div class="nav">
+    <div class="tabs">
+      <mat-tab-group id="TenantProfile" animationDuration="0ms" dynamicHeight (click)="eventCatcher($event)">
+        <mat-tab label=" {{ 'profile.tenant.YourBooking' | translate }} ">
+          <div class="Bookings">
+            <div class="YourBooking-title">
+              <h2>{{ 'profile.tenant.YourBooking' | translate }}</h2>
+            </div>
+            <div class="BookedProducts">
+              <div *ngFor="let product of products">
+                <app-room-product-card
+                  [productObj]="product"
+                  [imgUrl]="product.url"
+                  [Location]="product.location"
+                  [date]="product.date"
+                  [status]="product.status"
+                  [like]="product.like"
+                  [title]="product.title"
+                  [subTitle]="product.subtitle"
+                  [price]="product.price"
+                ></app-room-product-card>
+              </div>
+            </div>
+            <div class="info">
+              <div style="text-align: center">
+                <h2 style="padding: 0%; margin: 0%">{{ 'profile.tenant.infoTitle' | translate }}</h2>
+                <p style="font-weight: lighter">{{ 'profile.tenant.infoSubtitle' | translate }}</p>
+              </div>
+              <div style="margin: 0 auto; width: fit-content">
+                <button
+                  (click)="gotosearchRoom()"
+                  style="margin: 0 auto; background-color: green; color: white"
+                  mat-flat-button
+                >
+                  {{ 'profile.tenant.Searchforanotherhalf' | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="{{ 'profile.tenant.profile' | translate }}">
+          <app-userprofile
+            [FirstName]="UserDetails.Fname"
+            [LastName]="UserDetails.Lname"
+            [Email]="UserDetails.email"
+            [Phone]="UserDetails.phone"
+          ></app-userprofile>
+        </mat-tab>
+        <mat-tab label="Favorites">
+          <div class="Favorites">
+            <div class="YourBooking-title">
+              <h2>My Favourites</h2>
+            </div>
+            <div class="FavContainer">
+              <div class="favimgContainer">
+                <img src="assets/Icon/5.png" alt="" class="product-img" />
+              </div>
+              <div style="padding: 1rem">
+                <h3 style="padding: 0px; margin-bottom: 1rem">Why is it so hard to find my better half.</h3>
+                <p style="font-weight: lighter">
+                  Whenever you find a place you really like, click on the heart icon to save it to your favourites!
+                </p>
+              </div>
+            </div>
+            <div class="info">
+              <div style="text-align: center">
+                <h2 style="padding: 0%; margin: 0%">Keeping looking for the place to call your home</h2>
+                <p style="font-weight: lighter">Browse your favourites or continue searching for your future home</p>
+              </div>
+              <div style="margin: 0 auto; width: fit-content">
+                <button
+                  (click)="gotosearchRoom()"
+                  style="margin: 0 auto; background-color: green; color: white"
+                  mat-flat-button
+                >
+                  Search for an other half
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Invite Friends">
+          <div class="Favorites">
+            <div class="YourBooking-title">
+              <h2>Invite Friends</h2>
+            </div>
+            <div class="InviteFrn">
+              <div class="invFrnContainer">
+                <img src="assets/Icon/6.png" alt="" class="product-img" />
+              </div>
+              <div style="padding: 1rem">
+                <h3 style="padding: 0px; margin-bottom: 1rem">
+                  Invite Friends to get yourself that extra 5% Discount on your first rent payment.
+                </h3>
+                <p style="font-weight: lighter">
+                  This Feature is not available in your place. Sorry for the inconveinece caused!
+                </p>
+              </div>
+            </div>
+            <div class="info">
+              <div style="text-align: center">
+                <h2 style="padding: 0%; margin: 0%">Keeping looking for the place to call your home</h2>
+                <p style="font-weight: lighter">Browse your favourites or continue searching for your future home</p>
+              </div>
+              <div style="margin: 0 auto; width: fit-content">
+                <button
+                  (click)="gotosearchRoom()"
+                  style="margin: 0 auto; background-color: green; color: white"
+                  mat-flat-button
+                >
+                  Search for an other half
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-
-
+  </div>
 </div>
 <footer>
-    <div class="logo"></div>
-    <h1>Find your room with us</h1>
-    <ul>
-        <li><a href="#">Links</a></li>
-        <li><a href="#">Links</a></li>
-    </ul>
-
+  <div class="logo"></div>
+  <h1>Find your room with us</h1>
+  <ul>
+    <li><a href="#">Links</a></li>
+    <li><a href="#">Links</a></li>
+  </ul>
 </footer>

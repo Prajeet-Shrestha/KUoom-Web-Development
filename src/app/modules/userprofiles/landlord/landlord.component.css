@@ -1,510 +1,365 @@
-.main-container{
-    width: 100%;
-    /* height: 100vh; */
-    overflow: hidden;
-    /* padding-left: 6rem; */
-    padding-right: 0px;
-    /* max-height: 90vh; */
-    height: 100vh;
-    min-height: 89vh;
-    overflow-y: scroll;
-    padding-top: 4rem;
-    display: flex;
-    background-color: #EBEBEB;
+.main-container {
+  width: 100%;
+  /* height: 100vh; */
+  overflow: hidden;
+  /* padding-left: 6rem; */
+  padding-right: 0px;
+  /* max-height: 90vh; */
+  height: 100vh;
+  min-height: 89vh;
+  overflow-y: scroll;
+  padding-top: 4rem;
+  display: flex;
+  background-color: #ebebeb;
+}
+.product-img {
+  width: 100%;
+
+  background-size: cover;
+  /* background-color: red; */
+  height: 100%;
 }
 
-footer{
-    width: 90%;
-    margin:auto;
-    text-align: center;
-  }
-  
-  footer .logo{
-    background: url("src/assets/Logo/KUoomLOGO1.png");
-    background-size: 100% 100%;
-    height: 6vh;
-    width: 10%;
-    margin:1rem auto;
-    background-repeat: no-repeat;
-    cursor: pointer;
-  
-  }
-  
-  footer h1{
-    font-size: 1.8rem;
-    border-bottom: 1px solid black;
-    width: 30%;
-    text-align: center;
-    margin: auto;
-    padding-bottom: 0.5rem;
-  }
-  
-  footer ul{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-  }
-  footer ul li{
-    text-decoration: none;
-    margin: 2rem;
-  }
-  footer ul li a{
-    color:black;
-    font-size: 1rem;
-  }
-
-.nav{
-    /* margin-top: 8rem; */
-    /* height: 10vh; */
-    border-radius: 2.6rem;
-  
-
-    /* padding-left: 1.8rem; */
-    width: 100%;
-    padding-top: 1rem;
-    padding-left: 6rem;
-    /* background-color: blue; */
-    margin: 0 auto;
+footer {
+  width: 90%;
+  margin: auto;
+  text-align: center;
 }
 
-::ng-deep #TenantProfile .mat-tab-header{
-    background-color: white;
-    width: fit-content !important;
-      position: fixed;
-      z-index: 1000;
-    border-radius: 2.6rem;
+footer .logo {
+  background: url('src/assets/Logo/KUoomLOGO1.png');
+  background-size: 100% 100%;
+  height: 6vh;
+  width: 10%;
+  margin: 1rem auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
-.Bookings,.Profiles,.Favorites{
-    margin-top: 4.5rem;
-    /* background-color: rebeccapurple; */
-    padding: 1rem;
-    /* overflow: hidden;
+footer h1 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid black;
+  width: 30%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 0.5rem;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+footer ul li {
+  text-decoration: none;
+  margin: 2rem;
+}
+footer ul li a {
+  color: black;
+  font-size: 1rem;
+}
+
+.nav {
+  /* margin-top: 8rem; */
+  /* height: 10vh; */
+  border-radius: 2.6rem;
+
+  /* padding-left: 1.8rem; */
+  width: 100%;
+  padding-top: 1rem;
+  padding-left: 6rem;
+  /* background-color: blue; */
+  margin: 0 auto;
+}
+
+::ng-deep #TenantProfile .mat-tab-header {
+  background-color: white;
+  width: fit-content !important;
+  position: fixed;
+  z-index: 1000;
+  border-radius: 2.6rem;
+}
+
+.Bookings,
+.Profiles,
+.Favorites {
+  margin-top: 4.5rem;
+  /* background-color: rebeccapurple; */
+  padding: 1rem;
+  /* overflow: hidden;
 
     overflow-y: scroll; */
-    padding-left: 3rem;
+  padding-left: 3rem;
 }
 
-
-.BookedProducts{
-    width: 75%;
-    /* background-color: violet; */
-    max-height: 60vh;
-    overflow: hidden;
-    overflow-y: scroll;
+.BookedProducts {
+  width: 800px;
+  padding: 15px;
+  /* background-color: violet; */
+  max-height: 80vh;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
-.product-card{
-    height: fit-content;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    padding: 1rem;
-    display: flex;
-    background: white;
-}
-.imgContainer{
-    width: 20%;
-}
-.product-img{
-    width: 100%;
-    cursor: pointer;
-
-    /* background:url("src/assets/Roomexample/1.png"); */
-    background-size: cover;
-    height: 100%;
-}
-.product-details{
-    width: 80%;
-    /* background-color: yellow; */
-    height: 100%;
-    padding-left: 1rem;
+.info {
+  padding: 1.5rem;
+  width: 80%;
 }
 
-.top1{
-    display: flex;
-    justify-content: space-between;
-}
-.title{
-    cursor: pointer;
-    font-weight: 200px;
-}
-
-.love{
-
-    background:url("src/assets/Icon/love_outline.png") no-repeat;
-    background-size: 20px;
-    width: 3%;
-    height: 3vh;
-    cursor: pointer;
+.DeleteAccount {
+  width: 45%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-.love.like{
+.DeleteAccount p {
+  font-weight: lighter;
+  font-style: italic;
+}
+.DeleteAccount div {
+  margin: 0 auto;
+  width: fit-content;
+}
+.ProfilesFlex {
+  /* background-color: blue; */
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.ProfileInfo {
+  /* display: flex; */
+  background-color: white;
 
-    background:url("src/assets/Icon/19.png") no-repeat;
-    background-size: 20px;
-    width: 3%;
-    height: 3vh;
-    cursor: pointer;
+  padding: 1rem;
+  border-radius: 1rem;
 }
-
-.top2 .subtitle{
-    font-weight: lighter;
+.details {
+  width: 40%;
 }
-.top3{
-    display: flex;
-}
-.top3 .location{
-    font-size: 1rem;
-    font-weight: lighter;
-}
-
-.top3 .location-icon{
-    width: fit-content;
-    height: fit-content;
-}
-
-.price .permonth{
-    font-size: 1rem;
-    font-weight: lighter;
+.ProfileInfo div div {
+  width: 50%;
 }
 
-.price {
-    margin-top: 4rem;
+.FirstLastNameBox {
+  display: flex;
+  margin-top: 1rem;
 }
 
-.bottom1{
-    display: flex;
-    justify-content: space-between;
+.EmailPhoneBox {
+  display: flex;
+  margin-top: 2.5rem;
 }
 
-.bottom1 .date{
-    font-size: 1.3rem;
-    font-weight: lighter;
-    color: #1A4789;
+.FavContainer,
+.InviteFrn {
+  display: flex;
 }
 
-.status{
-    text-align: center;
-    border-radius: 5px;
-    margin-top: -.8rem;
-    width: 10%;
-    color: white;
-    padding: .1rem;
-    height: fit-content;
-    background:#FF5757;
+.favimgContainer,
+.invFrnContainer {
+  width: 8%;
+  height: 15vh;
 }
 
-.AcceptReject{
-    display: flex;
-    width: fit-content;
-
+::ng-deep #BookingStatus .mat-tab-header {
+  background-color: transparent;
+  border-radius: 0px;
+  width: fit-content !important;
+  position: initial;
+  z-index: 1000;
+  border: none;
 }
-
-.AcceptReject div{
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 1rem;
-    color: white;
-    padding: .5rem;
-    height: fit-content;
-    background:green;
-    
-}
-.AcceptReject div+div{
-    text-align: center;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 0rem;
-    color: white;
-    padding: .5rem;
-    height: fit-content;
-    background:#FF5757;
-    
-}
-
-
-.info{
-    padding:1.5rem;
-    width: 80%;
-}
-
-.DeleteAccount{
-    width: 45%; margin: 0 auto; background-color: white; padding: 1rem; border-radius: 1rem;
-}
-
-.DeleteAccount p{
-    font-weight: lighter; font-style: italic;}
-.DeleteAccount div{
-    margin: 0 auto; width: fit-content;
-}
-.ProfilesFlex{
-    /* background-color: blue; */
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-}
-.ProfileInfo{
-    /* display: flex; */
-    background-color: white;
-    
-    padding: 1rem;
-    border-radius: 1rem;
-}
-.details{
-    width: 40%;
-}
-.ProfileInfo div div{
-    width: 50%;
-}
-
-.FirstLastNameBox{
-    display: flex; margin-top: 1rem;
-}
-
-.EmailPhoneBox{
-    display: flex;
-    margin-top: 2.5rem;
-}
-
-.FavContainer,.InviteFrn{
-    display: flex;
-}
-
-.favimgContainer,.invFrnContainer{
-    width: 8%; height: 15vh;
-}
-
-
-::ng-deep #BookingStatus .mat-tab-header{
-    background-color: transparent;
-    border-radius: 0px ;
-    width: fit-content !important;
-      position: initial;
-      z-index: 1000;
-    border:none;
-}
-::ng-deep #BookingStatus .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-ripple.mat-tab-label .mat-tab-label-content
-{
-    color: black;
+::ng-deep
+  #BookingStatus
+  .mat-tab-header
+  .mat-tab-label-container
+  .mat-tab-list
+  .mat-ripple.mat-tab-label
+  .mat-tab-label-content {
+  color: black;
 }
 /* 
 ::ng-deep #BookingStatus .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-ripple.mat-tab-label{
     display: none;
 } */
 
-@media (max-width: 580px){
-
-.nav{
+@media (max-width: 580px) {
+  .nav {
     /* margin-top: 8rem; */
     /* height: 10vh; */
     border-radius: 2.6rem;
-  
 
     /* padding-left: 1.8rem; */
     width: 100%;
     padding-top: 0rem;
-    padding-left: .2rem;
+    padding-left: 0.2rem;
     /* background-color: blue; */
     margin: 0 auto;
-}
+  }
 
-::ng-deep #TenantProfile .mat-tab-header{
+  ::ng-deep #TenantProfile .mat-tab-header {
     background-color: white;
     width: 100% !important;
-      position: fixed;
-      z-index: 1000;
+    position: fixed;
+    z-index: 1000;
     border-radius: 2.6rem;
-}
+  }
 
-
-.BookedProducts{
+  .BookedProducts {
     width: 95%;
+    padding: 0%;
     /* background-color: violet; */
     height: fit-content;
     max-height: fit-content;
     overflow: none;
     overflow-y: none;
-}
-.product-card{
-    text-align: left;
-    display: block;
-    padding: .5rem;
-}
+  }
 
-.imgcontainer{
-    width: 100%;
-}
-
-.product-details{
-    /* background-color: chartreuse; */
-    width: 100%;
-    padding-left: 0px;
-}
-
-.top1{
-    width: 100%;
-    background-color: lightsalmon;
-    display: initial;
-}
-.top1 .title{
-   
-    width: 100%;
-    /* background-color: chartreuse; */
-    font-size: 1.8rem;
-}
-
-.top2{
-    display: none;
-}
-
-.love{
-
-background-size: 20px;
-width: 10%;
-height: 3vh;
-cursor: pointer;
-}
-
-.love.like{
-
-background-size: 20px;
-width: 10%;
-height: 3vh;
-cursor: pointer;
-}
-
-.mid-notification .main-notification{
+  .mid-notification .main-notification {
     font-size: 1.5rem;
-}
+  }
 
-.mid-notification .sub-notification{
+  .mid-notification .sub-notification {
     font-size: 1rem;
-}
+  }
 
-.price{
+  .price {
     margin: 0%;
-}
+  }
 
-.bottom1{
+  .bottom1 {
     width: 98%;
     /* background-color: lightgreen; */
-}
-.status{
+  }
+  .status {
     text-align: center;
     border-radius: 5px;
-    margin-top: -.8rem;
+    margin-top: -0.8rem;
     width: fit-content;
     color: white;
     height: fit-content;
-    background:#FF5757;
-}
-.imgContainer{
+    background: #ff5757;
+  }
+  .imgContainer {
     width: 100%;
-}
-footer .logo{
+  }
+  footer .logo {
     width: 40%;
   }
-  .info div h2{
+  .info div h2 {
     font-size: 1.6rem;
-}
+  }
 
-.info div p{
+  .info div p {
     font-size: 1.4rem;
-}
+  }
 
-
-.ProfilesFlex{
+  .ProfilesFlex {
     /* background-color: blue; */
     display: block;
     width: 98%;
     justify-content: space-evenly;
-}
-.ProfileInfo{
+  }
+  .ProfileInfo {
     margin: 0%;
-}
+  }
 
-.details{
+  .details {
     width: 100%;
-}
-.details h2{
+  }
+  .details h2 {
     padding-top: 1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     padding-bottom: 0rem;
-}
+  }
 
-.FirstLastNameBox{
-    display: block; margin-top: 1rem;
-}
-.FirstLastNameBox div b{
-    font-size: 1.7rem;
-}
-
-.FirstLastNameBox div p{
-    font-size: 1.7rem;
-    font-weight: lighter;
-}
-
-.EmailPhoneBox{
+  .FirstLastNameBox {
     display: block;
     margin-top: 1rem;
-}
-.EmailPhoneBox div b{
+  }
+  .FirstLastNameBox div b {
     font-size: 1.7rem;
-}
+  }
 
-.EmailPhoneBox div p{
+  .FirstLastNameBox div p {
     font-size: 1.7rem;
     font-weight: lighter;
-}
+  }
 
-.info{
-    padding:0rem;
+  .EmailPhoneBox {
+    display: block;
+    margin-top: 1rem;
+  }
+  .EmailPhoneBox div b {
+    font-size: 1.7rem;
+  }
+
+  .EmailPhoneBox div p {
+    font-size: 1.7rem;
+    font-weight: lighter;
+  }
+
+  .info {
+    padding: 0rem;
     padding-top: 2rem;
     width: 98%;
     justify-content: space-evenly;
-   
-}
+  }
 
-.DeleteAccount{
-    margin: 0%; padding: 1rem;
-    width: fit-content; background-color: white; border-radius: 1rem;
-}
+  .DeleteAccount {
+    margin: 0%;
+    padding: 1rem;
+    width: fit-content;
+    background-color: white;
+    border-radius: 1rem;
+  }
 
-.DeleteAccount p{
-    
-    font-weight: lighter; font-style: italic;}
-.DeleteAccount div{
-    margin: 0 auto; width: fit-content;
-}
-::-webkit-scrollbar {
+  .DeleteAccount p {
+    font-weight: lighter;
+    font-style: italic;
+  }
+  .DeleteAccount div {
+    margin: 0 auto;
+    width: fit-content;
+  }
+  ::-webkit-scrollbar {
     width: 1px;
-}
+  }
 
-
-.FavContainer,.InviteFrn{
+  .FavContainer,
+  .InviteFrn {
     display: block;
-}
+  }
 
-.favimgContainer,.invFrnContainer{
-    width: 120px; height: 15vh;
-    margin: 0% auto;}
+  .favimgContainer,
+  .invFrnContainer {
+    width: 120px;
+    height: 15vh;
+    margin: 0% auto;
+  }
 
-    .InviteFrn div h3,.InviteFrn div p{
-        text-align: center;
-    }
+  .InviteFrn div h3,
+  .InviteFrn div p {
+    text-align: center;
+  }
 
-    ::ng-deep #BookingStatus .mat-tab-header{
-        background-color: transparent;
-        border-radius: 0px ;
-        width: fit-content !important;
-          position: initial;
-          z-index: 1000;
-        border:none;
-    }
-    ::ng-deep #BookingStatus .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-ripple.mat-tab-label .mat-tab-label-content
-    {
-        color: black;
-    }   
-
+  ::ng-deep #BookingStatus .mat-tab-header {
+    background-color: transparent;
+    border-radius: 0px;
+    width: fit-content !important;
+    position: initial;
+    z-index: 1000;
+    border: none;
+  }
+  ::ng-deep
+    #BookingStatus
+    .mat-tab-header
+    .mat-tab-label-container
+    .mat-tab-list
+    .mat-ripple.mat-tab-label
+    .mat-tab-label-content {
+    color: black;
+  }
 }

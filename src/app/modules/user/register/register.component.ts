@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.initializeForm();
+    this.DataService.changeTitle('Register | KUoom');
   }
   // TODO: Need to make it for the Landlord as well
   RegisterTenant() {
@@ -52,6 +53,7 @@ export class RegisterComponent implements OnInit {
         };
         this.DataService.changeIsLoggedin(true);
         let user = {
+          uid: res.user.uid.toString(),
           name: userDetails.name,
           userType: userDetails.userType,
           email: email,

@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.btn {
+  cursor: pointer;
+}
 
 h1 {
   font-size: 2rem;
@@ -133,9 +136,21 @@ nav {
   display: flex;
   /* background-color: rebeccapurple; */
   width: fit-content;
+  transition: 0.7s all ease-in;
+
+  animation: searchBarAnimationtoDown 0.7s ease;
+}
+
+@keyframes searchBarAnimationtoDown {
+  0% {
+    transform: translateY(-180px);
+  }
+  100% {
+    transform: skew(0deg);
+  }
 }
 .search-bar input {
-  background: #f6b21b;
+  background: white;
   padding: 1rem;
   padding-right: 2.5rem;
   /* width: (fit-content + 100px); */
@@ -206,7 +221,11 @@ nav {
   margin: 1rem 2rem;
 }
 .city-photo img {
-  height: 20vh;
+  height: 160px;
+  width: 240px;
+  border-radius: 10px;
+  box-shadow: 13px 13px 32px #bd8915, -13px -13px 32px #ffdb21;
+  /* box-shadow: 13px 13px 23px #cc9416, -13px -13px 23px #ffd020; */
 }
 .gallery {
   position: relative;
@@ -214,9 +233,10 @@ nav {
 figcaption {
   font-size: 1.5rem;
   color: black;
+  font-size: bold;
   position: absolute;
-  top: 40%;
-  right: 25%;
+  top: 70px;
+  right: 50px;
   background: rgba(255, 255, 255, 0.63);
   border: none;
   padding: 0.5rem 4rem;
@@ -280,13 +300,20 @@ figcaption {
   z-index: 2;
 }
 .card img {
-  width: 20%;
+  width: 150px;
+  height: 150px;
+}
+
+.card h1 {
+  font-size: 24px;
+  /* font-weight: bold; */
 }
 .card h1,
 .card p {
   text-align: center;
   padding: 0.5rem;
   width: 80%;
+  margin-bottom: 2px;
 }
 .section-bookUs button {
   text-align: center;

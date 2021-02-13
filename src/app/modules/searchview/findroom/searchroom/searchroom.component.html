@@ -1,12 +1,15 @@
-<div class="main-container">
-  <div class="filtersidenav">
-    <div class="filter-main-container">
-      <div class="filter-title">
-        <h2>Book Your Room</h2>
-      </div>
-      <!-- <div class="location">
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer>
+    <div *ngIf="drawer.opened" class="filtersidenav">
+      <div class="filter-main-container">
+        <div class="filter-title">
+          <h2>Book Your Room</h2>
+          <div>
+            <mat-icon aria-hidden="false" class="filter_listIcon" (click)="drawer.toggle()">clear</mat-icon>
+          </div>
+        </div>
+        <!-- <div class="location">
                 <h4>Location</h4>
-              
                    <div class="locationSelect">
                     <mat-select>
                         <mat-option *ngFor="let location of locations" [(value)]="location.name">
@@ -14,148 +17,364 @@
                         </mat-option>
                       </mat-select>
                    
-                      
-                     
                 </div>
 
             </div> -->
-      <div class="AvailableFromDate">
-        <h4>Available From</h4>
-        <div class="datePicker">
-          <mat-form-field color="accent" appearance="fill">
-            <mat-label>Available From Date</mat-label>
-            <input matInput [matDatepicker]="AvailableFromDatePicker" />
-            <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #AvailableFromDatePicker></mat-datepicker>
-          </mat-form-field>
+        <div class="AvailableFromDate">
+          <h4>Available From</h4>
+          <div class="datePicker">
+            <mat-form-field color="accent" appearance="fill">
+              <mat-label>Available From Date</mat-label>
+              <input matInput [matDatepicker]="AvailableFromDatePicker" />
+              <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #AvailableFromDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-      <div class="placetype">
-        <h4>Type of Place</h4>
-        <div class="PlaceType_checkBoxes">
-          <mat-checkbox class="checkbox" id="PrivateRoom" value="Private Room" (change)="UpdateSelectedFilter($event)">
-            Private Room</mat-checkbox
-          >
-          <mat-checkbox class="checkbox" id="SharedRoom" value="Shared Room" (change)="UpdateSelectedFilter($event)">
-            Shared Room</mat-checkbox
-          >
-          <mat-checkbox class="checkbox" id="EntireFlat" value="Entire Flat" (change)="UpdateSelectedFilter($event)">
-            Entire Flat</mat-checkbox
-          >
-          <mat-checkbox
-            class="checkbox"
-            id="TemporaryRoom"
-            value="Temporary Room"
-            (change)="UpdateSelectedFilter($event)"
-          >
-            Temporary Stay</mat-checkbox
-          >
+        <div class="placetype">
+          <h4>Type of Place</h4>
+          <div class="PlaceType_checkBoxes">
+            <mat-checkbox
+              class="checkbox"
+              id="PrivateRoom"
+              [checked]="SELECTEDFILTERS.roomType.includes('Private Room')"
+              value="Private Room"
+              (change)="UpdateSelectedFilter($event, 'roomType')"
+            >
+              Private Room</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="SharedRoom"
+              [checked]="SELECTEDFILTERS.roomType.includes('Shared Room')"
+              value="Shared Room"
+              (change)="UpdateSelectedFilter($event, 'roomType')"
+            >
+              Shared Room</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="EntireFlat"
+              [checked]="SELECTEDFILTERS.roomType.includes('Entire Flat')"
+              value="Entire Flat"
+              (change)="UpdateSelectedFilter($event, 'roomType')"
+            >
+              Entire Flat</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="TemporaryRoom"
+              [checked]="SELECTEDFILTERS.roomType.includes('Temporary Room')"
+              value="Temporary Room"
+              (change)="UpdateSelectedFilter($event, 'roomType')"
+            >
+              Temporary Stay</mat-checkbox
+            >
+          </div>
         </div>
-      </div>
-      <div class="priceRange">
-        <h4>Price Range</h4>
-        <div class="Slider">
-          <mat-slider
-            thumbLabel
-            (change)="UpdateSelectedFilter($event)"
-            [displayWith]="PriceRangeformatLabel"
-            tickInterval="1000"
-            min="3000"
-            max="50000"
-          ></mat-slider>
+        <div class="priceRange">
+          <h4>Price Range</h4>
+          <div class="Slider">
+            <mat-slider
+              thumbLabel
+              (change)="UpdateSelectedFilter($event, '')"
+              [displayWith]="PriceRangeformatLabel"
+              tickInterval="1000"
+              min="0"
+              max="50000"
+            ></mat-slider>
+          </div>
+          <div class="priceLabel">Rs.0 - Rs.</div>
         </div>
-        <div class="priceLabel">Rs.3000 - Rs.</div>
-      </div>
-      <div class="Services">
-        <h4>Services</h4>
-        <div class="PlaceType_checkBoxes">
-          <mat-checkbox class="checkbox" id="Meals" value="Meals" (change)="UpdateSelectedFilter($event)">
-            Meals</mat-checkbox
-          >
-          <mat-checkbox class="checkbox" id="Laundry" value="Laundry" (change)="UpdateSelectedFilter($event)">
-            Laundry</mat-checkbox
-          >
-          <mat-checkbox class="checkbox" id="WiFi" value="WiFi" (change)="UpdateSelectedFilter($event)">
-            WiFi</mat-checkbox
-          >
-          <mat-checkbox class="checkbox" id="Balcony" value="Balcony" (change)="UpdateSelectedFilter($event)">
-            Balcon</mat-checkbox
-          >
-          <mat-checkbox
-            class="checkbox"
-            id="AirConditioning"
-            value="Air Conditioning"
-            (change)="UpdateSelectedFilter($event)"
-          >
-            Air Conditioning</mat-checkbox
-          >
+        <div class="Services">
+          <h4>Services</h4>
+          <div class="PlaceType_checkBoxes">
+            <mat-checkbox
+              class="checkbox"
+              id="Meals"
+              value="Meals"
+              [checked]="SELECTEDFILTERS.roomType.includes('Meals')"
+              (change)="UpdateSelectedFilter($event, 'service')"
+            >
+              Meals</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="Laundry"
+              [checked]="SELECTEDFILTERS.roomType.includes('Laundry')"
+              value="Laundry"
+              (change)="UpdateSelectedFilter($event, 'service')"
+            >
+              Laundry</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="WiFi"
+              [checked]="SELECTEDFILTERS.roomType.includes('WiFi')"
+              value="WiFi"
+              (change)="UpdateSelectedFilter($event, 'service')"
+            >
+              WiFi</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="Balcony"
+              [checked]="SELECTEDFILTERS.roomType.includes('Balcony')"
+              value="Balcony"
+              (change)="UpdateSelectedFilter($event, 'service')"
+            >
+              Balcon</mat-checkbox
+            >
+            <mat-checkbox
+              class="checkbox"
+              id="AirConditioning"
+              value="Air Conditioning"
+              [checked]="SELECTEDFILTERS.roomType.includes('Air Conditioning')"
+              (change)="UpdateSelectedFilter($event, 'service')"
+            >
+              Air Conditioning</mat-checkbox
+            >
+          </div>
         </div>
-      </div>
-      <div class="Verification">
-        <h4>Verification</h4>
-        <div class="PlaceType_checkBoxes">
-          <mat-checkbox class="checkbox" id="RoomCheckedbyKUoom"> Room Checked by KUoom</mat-checkbox>
-          <mat-checkbox class="checkbox" id="TrustedLandlord"> Trusted Landlord</mat-checkbox>
-          <mat-checkbox class="checkbox" id="SponsoredLandlord"> Sponsored Landlord</mat-checkbox>
+        <div class="Verification">
+          <h4>Verification</h4>
+          <div class="PlaceType_checkBoxes">
+            <mat-checkbox class="checkbox" id="RoomCheckedbyKUoom"> Room Checked by KUoom</mat-checkbox>
+            <mat-checkbox class="checkbox" id="TrustedLandlord"> Trusted Landlord</mat-checkbox>
+            <mat-checkbox class="checkbox" id="SponsoredLandlord"> Sponsored Landlord</mat-checkbox>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="rightside">
-    <div class="top">
-      <div class="sortby">Sort By:</div>
-      <div class="resultsfound">{{ products.length }} Results Found</div>
-    </div>
-    <div class="mid-notification">
-      <div class="main-notification">This month is very Popular for new students/ cutomers to pre-book the room.</div>
-      <div class="sub-notification">Book your place before you miss out the chance</div>
-    </div>
-    <div class="selectedFilters">
-      <div class="filterChips" style="display: flex">
-        <mat-chip-list *ngFor="let filter of SelectedFilters">
-          <!-- <mat-chip>{{filter}}</mat-chip> -->
-          <!-- <mat-chip>Two fish</mat-chip> -->
-          <!-- <mat-chip color="primary" selected>Primary fish</mat-chip> -->
-          <mat-chip color="accent" selected style="margin-left: 0.8rem">{{ filter }}</mat-chip>
-        </mat-chip-list>
-      </div>
-    </div>
-    <div class="product-display">
-      <div *ngFor="let product of products" class="product-card">
-        <div class="imgcontainer">
-          <img src="{{ product.url }}" class="product-img" alt="" (click)="RoomProfileNavigate()" />
-        </div>
-        <div class="product-details">
-          <div class="top1">
-            <div class="title" (click)="RoomProfileNavigate()">
-              {{ product.title }}
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="main-container">
+      <div class="midContainer">
+        <div class="filtersidenav main-container">
+          <div class="filter-main-container">
+            <div class="filter-title">
+              <h2>Book Your Room</h2>
             </div>
+            <!-- <div class="location">
+                <h4>Location</h4>
+                   <div class="locationSelect">
+                    <mat-select>
+                        <mat-option *ngFor="let location of locations" [(value)]="location.name">
+                          {{location.name}}
+                        </mat-option>
+                      </mat-select>
+                   
+                </div>
 
-            <div (click)="updatelike(product)" class="love" [ngClass]="{ like: product.like }"></div>
+            </div> -->
+            <div class="AvailableFromDate">
+              <h4>Available From</h4>
+              <div class="datePicker">
+                <mat-form-field color="accent" appearance="fill">
+                  <mat-label>Available From Date</mat-label>
+                  <input matInput [matDatepicker]="AvailableFromDatePickerMain" />
+                  <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePickerMain"></mat-datepicker-toggle>
+                  <mat-datepicker #AvailableFromDatePickerMain></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="placetype">
+              <h4>Type of Place</h4>
+              <div class="PlaceType_checkBoxes">
+                <mat-checkbox
+                  class="checkbox"
+                  id="PrivateRoom"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Private Room')"
+                  value="Private Room"
+                  (change)="UpdateSelectedFilter($event, 'roomType')"
+                >
+                  Private Room</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="SharedRoom"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Shared Room')"
+                  value="Shared Room"
+                  (change)="UpdateSelectedFilter($event, 'roomType')"
+                >
+                  Shared Room</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="EntireFlat"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Entire Flat')"
+                  value="Entire Flat"
+                  (change)="UpdateSelectedFilter($event, 'roomType')"
+                >
+                  Entire Flat</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="TemporaryRoom"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Temporary Room')"
+                  value="Temporary Room"
+                  (change)="UpdateSelectedFilter($event, 'roomType')"
+                >
+                  Temporary Stay</mat-checkbox
+                >
+              </div>
+            </div>
+            <div class="priceRange">
+              <h4>Price Range</h4>
+              <div class="Slider">
+                <mat-slider
+                  thumbLabel
+                  (change)="UpdateSelectedFilter($event, '')"
+                  [displayWith]="PriceRangeformatLabel"
+                  tickInterval="1000"
+                  min="0"
+                  max="50000"
+                ></mat-slider>
+              </div>
+              <div class="priceLabel">Rs.0 - Rs. {{ ShowMaxPrice }}</div>
+            </div>
+            <div class="Services">
+              <h4>Services</h4>
+              <div class="PlaceType_checkBoxes">
+                <mat-checkbox
+                  class="checkbox"
+                  id="Meals"
+                  value="Meals"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Meals')"
+                  (change)="UpdateSelectedFilter($event, 'service')"
+                >
+                  Meals</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="Laundry"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Laundry')"
+                  value="Laundry"
+                  (change)="UpdateSelectedFilter($event, 'service')"
+                >
+                  Laundry</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="WiFi"
+                  [checked]="SELECTEDFILTERS.roomType.includes('WiFi')"
+                  value="WiFi"
+                  (change)="UpdateSelectedFilter($event, 'service')"
+                >
+                  WiFi</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="Balcony"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Balcony')"
+                  value="Balcony"
+                  (change)="UpdateSelectedFilter($event, 'service')"
+                >
+                  Balcon</mat-checkbox
+                >
+                <mat-checkbox
+                  class="checkbox"
+                  id="AirConditioning"
+                  value="Air Conditioning"
+                  [checked]="SELECTEDFILTERS.roomType.includes('Air Conditioning')"
+                  (change)="UpdateSelectedFilter($event, 'service')"
+                >
+                  Air Conditioning</mat-checkbox
+                >
+              </div>
+            </div>
+            <div class="Verification">
+              <h4>Verification</h4>
+              <div class="PlaceType_checkBoxes">
+                <mat-checkbox class="checkbox" id="RoomCheckedbyKUoom"> Room Checked by KUoom</mat-checkbox>
+                <mat-checkbox class="checkbox" id="TrustedLandlord"> Trusted Landlord</mat-checkbox>
+                <mat-checkbox class="checkbox" id="SponsoredLandlord"> Sponsored Landlord</mat-checkbox>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="rightside">
+          <div class="top">
+            <mat-icon aria-hidden="false" class="filter_listIcon" (click)="drawer.toggle()">filter_list</mat-icon>
+            <div class="sortby">Sort By:</div>
+            <div class="resultsfound">{{ products.length }} Results Found</div>
+          </div>
+          <div class="mid-notification">
+            <div class="main-notification">
+              This month is very Popular for new students/ cutomers to pre-book the room.
+            </div>
+            <div class="sub-notification">Book your place before you miss out the chance</div>
+          </div>
+          <div class="selectedFilters">
+            <div class="filterChips" style="display: flex">
+              <mat-chip-list *ngFor="let filter of SelectedFilters">
+                <!-- <mat-chip>{{filter}}</mat-chip> -->
+                <!-- <mat-chip>Two fish</mat-chip> -->
+                <!-- <mat-chip color="primary" selected>Primary fish</mat-chip> -->
+                <mat-chip color="accent" selected style="margin-left: 0.8rem">{{ filter }}</mat-chip>
+              </mat-chip-list>
+            </div>
+          </div>
+          <div class="product-display">
+            <app-error-page *ngIf="noResult" [noResult]="true"></app-error-page>
+            <div *ngFor="let product of products">
+              <app-room-product-card
+                [productObj]="product"
+                [imgUrl]="product.url"
+                [Location]="product.location"
+                [date]="product.date"
+                [capacity]="product.capacity"
+                [chair]="product.objects.hasChair"
+                [bed]="product.objects.hasBed"
+                [table]="product.objects.hasDesk"
+                [cupboard]="product.objects.hasCupBoard"
+                [status]="product.status"
+                [like]="product.like"
+                [title]="product.title"
+                [subTitle]="product.subtitle"
+                [price]="product.price"
+              ></app-room-product-card>
+            </div>
+            <!-- <div *ngFor="let product of products" class="product-card">
+              <div class="imgcontainer">
+                <img src="{{ product.url }}" class="product-img" alt="" (click)="RoomProfileNavigate(product)" />
+              </div>
+              <div class="product-details">
+                <div class="top1">
+                  <div class="title" (click)="RoomProfileNavigate()">
+                    {{ product.title }}
+                    <span style="font-weight: lighter; font-size: 12px">1 Room • 2 Beds • 2 Tables</span>
+                  </div>
 
-          <div class="top2">
-            <div class="subtitle">
-              {{ product.subtitle }}
-            </div>
-          </div>
-          <div class="top3">
-            <div style="color: #1a4789" class="location-icon material-icons">room</div>
-            <div class="location">
-              {{ product.location }}
-            </div>
-          </div>
-          <div class="price">
-            <span class="mainprice"> {{ product.price }}</span>
-            <span class="permonth">/month</span>
-          </div>
-          <div class="bottom1">
-            <div class="date">{{ product.date }}</div>
-            <div class="status">{{ product.status }}</div>
-            <!-- <div class="Landlord"> Prajeet</div> -->
+                  <div (click)="updatelike(product)" class="love" [ngClass]="{ like: product.like }"></div>
+                </div>
+
+                <div class="top2">
+                  <div class="subtitle">
+                    {{ product.subtitle }}
+                  </div>
+                </div>
+                <div class="top3">
+                  <div style="color: #1a4789" class="location-icon material-icons">room</div>
+                  <div class="location">
+                    {{ product.location }}
+                  </div>
+                </div>
+                <div class="price">
+                  <span class="mainprice"> {{ product.price }}</span>
+                  <span class="permonth">/month</span>
+                </div>
+                <div class="bottom1">
+                  <div class="date">{{ product.date }}</div>
+                  <div class="status" [ngClass]="{ available: product.status == 'Available' }">
+                    {{ product.status }}
+                  </div>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

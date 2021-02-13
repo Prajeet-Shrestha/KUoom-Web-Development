@@ -5,7 +5,7 @@
         <h2>{{ 'index.mainTitle' | translate }}</h2>
         <p>{{ 'index.subTitle' | translate }}</p>
       </div>
-      <div class="search-bar">
+      <div *ngIf="!searchBarStatus" class="search-bar">
         <input
           matInput
           [matDatepicker]="picker"
@@ -79,51 +79,50 @@
       <img src="assets/Icon/frontpage2flower2.png" class="image-lower" alt="" />
     </div>
     <div class="reach-text">
-      <h3>Do you want to rent your room?</h3>
+      <h3>Why you want to rent your room?</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus incidunt voluptatem saepe explicabo facere iusto
-        architecto reiciendis, omnis tenetur. Recusandae! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Ullam laboriosam, exercitationem deserunt provident sunt fugiat deleniti natus numquam incidunt, et voluptate
-        perferendis asperiores distinctio aut quasi sapiente inventore. Ipsa, aut?
+        KUoom is a platform created to make the process of finding the room more easier. KUoom is specially for the
+        students of Kathmandu University as it acts as a bridge between students and house-owners to find the best room
+        around the university area.
       </p>
 
-      <button>Yes!</button>
+      <button class="btn">Yes!</button>
     </div>
   </section>
 
   <section class="section-bookUs">
     <img class="image-back" src="assets/Icon/frontpage2flower.png" alt="" />
-    <h3>Do book with KUoom?</h3>
+    <h3>Why book with KUoom?</h3>
     <div class="last-container">
       <div class="card">
         <img src="assets/Icon/page3symbol1.png" alt="" />
         <h1>Fast process</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipi sicing elit. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Officia illo libero, quam temporibus modi accusamus illum. Nobis earum neque, odio doloribus modi,
-          numquam, expedita maxime voluptatem eos sed dolorum. Nulla. Aliquid, iusto.
+          You don't have to take a day or two off for going on field and searching a room you would desire to call your
+          home. The process of booking a room in KUoom is fast since you can book it in few clicks and get connected to
+          house-owners in few minutes.
         </p>
       </div>
       <div class="card">
         <img src="assets/Icon/page3symbol2.png" alt="" />
         <h1>No More Hours of Walking</h1>
         <p>
-          Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor atque magni quos nobis odit, commodi eius
-          ducimus natus placeat explicabo quidem excepturi recusandae deserunt? Quod dolore architecto aut enim
-          deserunt. ipsum dolor sit amet consectetur adipi sicing elit. Aliquid, iusto.
+          Are you tired of walking and finding the room that best suits you? Don't worry , now you can take few minutes
+          to browse the perfect room for you with KUoom. You can use the filters to select the room with your
+          requirements in just a couple of minutes.
         </p>
       </div>
       <div class="card">
         <img src="assets/Icon/page3symbol3.png" alt="" />
         <h1>Guranteed Room</h1>
         <p>
-          Lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi ad atque odio totam rem dignissimos
-          aliquid voluptatibus neque fugiat voluptate dolorem sit, laborum excepturi, nemo officiis vel beatae, esse
-          ullam? ipsum dolor sit amet consectetur adipi sicing elit. Aliquid, iusto.
+          The room you would find in KUoom is guranteed as we keep only the rooms that are available from our
+          trustworthy house-owners. All the available rooms that you would see are checked and approved by the team of
+          KUoom and exactly gives the information on how it is without sugarcoating and on the fair price.
         </p>
       </div>
     </div>
-    <button>Find me a room</button>
+    <button class="btn">Find me a room</button>
   </section>
   <app-footer></app-footer>
 </div>

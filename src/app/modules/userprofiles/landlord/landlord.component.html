@@ -6,157 +6,79 @@
           <div class="Bookings">
             <div class="RequestCategories" style="width: fit-content">
               <mat-tab-group id="BookingStatus" animationDuration="0ms" dynamicHeight (click)="eventCatcher($event)">
-                <mat-tab label="Pending">
+                <mat-tab label="Pending ({{ PendingBookingRoomDetails.length }})">
                   <div class="BookedProducts">
-                    <div *ngFor="let product of products" class="product-card">
-                      <div class="imgContainer">
-                        <img src="{{ product.url }}" class="product-img" alt="" />
-                      </div>
-                      <div class="product-details">
-                        <div class="top1">
-                          <div class="title">
-                            {{ product.title }}
-                          </div>
-
-                          <div class="Requestedby" style="font-weight: lighter">
-                            Requested By
-                            <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer">
-                              Prajeet
-                            </span>
-                          </div>
-                        </div>
-
-                        <div class="top2">
-                          <div class="subtitle">
-                            {{ product.subtitle }}
-                          </div>
-                        </div>
-                        <div class="top3">
-                          <span style="color: #1a4789" class="location-icon material-icons"> room </span>
-                          <div class="location">
-                            {{ product.location }}
-                          </div>
-                        </div>
-                        <div class="price">
-                          <span class="mainprice"> {{ product.price }}</span>
-                          <span class="permonth">/month</span>
-                        </div>
-                        <div class="bottom1">
-                          <div class="date">{{ product.date }}</div>
-                          <div class="AcceptReject">
-                            <div matRipple>Accept</div>
-                            <div matRipple>Reject</div>
-                          </div>
-                          <!-- <div class="Landlord"> Prajeet</div> -->
-                        </div>
-                      </div>
+                    <div *ngFor="let product of PendingBookingRoomDetails">
+                      <app-room-product-card
+                        [productObj]="product"
+                        [imgUrl]="product.url"
+                        [Location]="product.location"
+                        [date]="product.date"
+                        [status]="product.status"
+                        [like]="product.like"
+                        [title]="product.title"
+                        [subTitle]="product.subtitle"
+                        [price]="product.price"
+                        [isPending]="true"
+                      ></app-room-product-card>
                     </div>
                   </div>
                 </mat-tab>
                 <mat-tab label="Approved">
                   <div class="BookedProducts">
-                    <div *ngFor="let product of products" class="product-card">
-                      <div class="imgContainer">
-                        <img src="{{ product.url }}" class="product-img" alt="" />
-                      </div>
-                      <div class="product-details">
-                        <div class="top1">
-                          <div class="title">
-                            {{ product.title }}
-                          </div>
-
-                          <div class="Requestedby" style="font-weight: lighter">
-                            Requested By
-                            <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer">
-                              Prajeet
-                            </span>
-                          </div>
-                        </div>
-
-                        <div class="top2">
-                          <div class="subtitle">
-                            {{ product.subtitle }}
-                          </div>
-                        </div>
-                        <div class="top3">
-                          <span style="color: #1a4789" class="location-icon material-icons"> room </span>
-                          <div class="location">
-                            {{ product.location }}
-                          </div>
-                        </div>
-                        <div class="price">
-                          <span class="mainprice"> {{ product.price }}</span>
-                          <span class="permonth">/month</span>
-                        </div>
-                        <div class="bottom1">
-                          <div class="date">{{ product.date }}</div>
-                          <div class="AcceptReject">
-                            <div>Accepted</div>
-                          </div>
-                          <!-- <div class="Landlord"> Prajeet</div> -->
-                        </div>
-                      </div>
+                    <div *ngFor="let product of products">
+                      <app-room-product-card
+                        [productObj]="product"
+                        [imgUrl]="product.url"
+                        [Location]="product.location"
+                        [date]="product.date"
+                        [status]="product.status"
+                        [like]="product.like"
+                        [title]="product.title"
+                        [subTitle]="product.subtitle"
+                        [price]="product.price"
+                      ></app-room-product-card>
                     </div>
                   </div>
                 </mat-tab>
                 <mat-tab label="History"> </mat-tab>
               </mat-tab-group>
             </div>
-            <!-- <div class="info">
-                            <div style="text-align: center;">
-                                <h2 style="padding: 0%; margin: 0%;">Keeping looking for the place to call your home
-                                </h2>
-                                <p style="font-weight: lighter;"> Browse your favourites or continue searching for your
-                                    future home</p>
-                            </div>
-                            <div style="margin: 0 auto; width: fit-content;">
-                                <button (click)="gotosearchRoom()"
-                                    style="margin: 0 auto; background-color: green; color: white;"
-                                    mat-flat-button>Search for an other half</button>
-                            </div>
-                        </div> -->
+            <div class="info">
+              <div style="text-align: center">
+                <h2 style="padding: 0%; margin: 0%">Keeping looking for the place to call your home</h2>
+                <p style="font-weight: lighter">Browse your favourites or continue searching for your future home</p>
+              </div>
+              <div style="margin: 0 auto; width: fit-content">
+                <button
+                  (click)="gotosearchRoom()"
+                  style="margin: 0 auto; background-color: green; color: white"
+                  mat-flat-button
+                >
+                  Search for an other half
+                </button>
+              </div>
+            </div>
           </div>
         </mat-tab>
-        <mat-tab label="Your Rooms List">
+        <mat-tab label="Your Rooms List ({{ AllRoomData.length }})">
           <div class="Bookings">
             <div class="YourBooking-title">
-              <h2>Your Rooms List</h2>
+              <h2 style="margin: 0%; padding: 0">Your Rooms List</h2>
             </div>
             <div class="BookedProducts">
-              <div *ngFor="let product of products" class="product-card">
-                <div class="imgContainer">
-                  <img src="{{ product.url }}" class="product-img" alt="" />
-                </div>
-                <div class="product-details">
-                  <div class="top1">
-                    <div class="title">
-                      {{ product.title }}
-                    </div>
-
-                    <div class="love" [ngClass]="{ like: product.like }"></div>
-                  </div>
-
-                  <div class="top2">
-                    <div class="subtitle">
-                      {{ product.subtitle }}
-                    </div>
-                  </div>
-                  <div class="top3">
-                    <span style="color: #1a4789" class="location-icon material-icons"> room </span>
-                    <div class="location">
-                      {{ product.location }}
-                    </div>
-                  </div>
-                  <div class="price">
-                    <span class="mainprice"> {{ product.price }}</span>
-                    <span class="permonth">/month</span>
-                  </div>
-                  <div class="bottom1">
-                    <div class="date">{{ product.date }}</div>
-                    <div class="status">{{ product.status }}</div>
-                    <!-- <div class="Landlord"> Prajeet</div> -->
-                  </div>
-                </div>
+              <div *ngFor="let product of AllRoomData">
+                <app-room-product-card
+                  [productObj]="product"
+                  [imgUrl]="product.url"
+                  [Location]="product.location"
+                  [date]="product.date"
+                  [status]="product.status"
+                  [like]="product.like"
+                  [title]="product.title"
+                  [subTitle]="product.subtitle"
+                  [price]="product.price"
+                ></app-room-product-card>
               </div>
             </div>
             <div class="info">
@@ -177,82 +99,12 @@
           </div>
         </mat-tab>
         <mat-tab label="Profile">
-          <div class="Profiles">
-            <div class="ProfilesFlex">
-              <div class="details">
-                <h2>My Account Details</h2>
-                <div class="ProfileInfo">
-                  <div class="FirstLastNameBox">
-                    <div>
-                      <b> First Name: </b>
-                      <br />
-                      <p>{{ UserDetails.Fname }}</p>
-                    </div>
-                    <div>
-                      <b> Last Name:</b>
-                      <br />
-                      <p>{{ UserDetails.Lname }}</p>
-                    </div>
-                  </div>
-                  <div class="EmailPhoneBox">
-                    <div>
-                      <b> Email: </b>
-                      <br />
-                      <p>{{ UserDetails.email }}</p>
-                    </div>
-                    <div>
-                      <b> Phone Number:</b>
-                      <br />
-                      <p>{{ UserDetails.phone }}</p>
-                    </div>
-                  </div>
-                  <div style="padding: 1rem; padding-top: 2.5rem; width: fit-content">
-                    <button style="margin: 0 auto; background-color: green; color: white" mat-flat-button>Edit</button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="details">
-                <h2>Notification Communication</h2>
-                <div class="ProfileInfo">
-                  <div style="font-weight: lighter">
-                    Stay up to date with special offers and policy updates
-                    <h3 style="padding-top: 0.8rem">How would you like to hear from us?</h3>
-                    <div>
-                      <form class="config-form" [formGroup]="ConfigForm" (ngSubmit)="onConfigSubmit()">
-                        <mat-slide-toggle formControlName="email">Via Email</mat-slide-toggle>
-                        <br />
-                        <mat-slide-toggle formControlName="phone" style="margin-top: 1.5rem"
-                          >Via Phone</mat-slide-toggle
-                        >
-
-                        <button mat-raised-button type="submit" style="margin-top: 1.5rem">Save Settings</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="info">
-              <div class="DeleteAccount">
-                <p>
-                  Up to date with If you delete your account,
-                  <br />
-                  please keep the following in mind:
-                </p>
-                <ul>
-                  <li>Your profile will be permanently deleted, including information about previous bookings</li>
-                  <li>There is some data that we are legally required to keep offers and policy updates</li>
-                </ul>
-                <div>
-                  <button style="margin: 0 auto; background-color: crimson; color: white" mat-flat-button>
-                    Delete Account
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-userprofile
+            [FirstName]="UserDetails.Fname"
+            [LastName]="UserDetails.Lname"
+            [Email]="UserDetails.email"
+            [Phone]="UserDetails.phone"
+          ></app-userprofile>
         </mat-tab>
         <mat-tab label="Favorites">
           <div class="Favorites">
