@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+.headTop {
+  /* margin-top: 7vh; */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../../assets/img/girls-1031538_1920.jpg);
+  /* url(../../../../assets/img/pexels-kat-wilcox-923657.jpg); */
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50vh;
+  background-position: 0, -20%;
+}
+.headTop .title {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.headTop .title h2 {
+  font-size: 60px;
+  color: white;
+  text-shadow: 0.5px 0.5px black;
+  text-align: center;
+  box-shadow: (0, 3, black);
+  margin-bottom: 30px;
+}
+.headTop .title p {
+  font-size: 26px;
+  text-align: center;
+}
+
+.whySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+.whySection h2 {
+  font-size: 35px;
+  /* text-shadow: 1px 1px black; */
+  color: black;
+  margin-bottom: 20px;
+}
+.whySection h5 {
+  font-size: 20px;
+  /* text-shadow: 1px 1px black; */
+  color: black;
+  font-weight: 400;
+}
+.whyCards {
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+}
+.whyCards .card {
+  width: 250px;
+  height: fit-content;
+  padding: 20px;
+  margin: auto;
+
+  border-radius: 30px;
+  background-color: white;
+  box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
+  text-align: center;
+}
+.whyCards .card .icon-image {
+  width: 80%;
+  margin: auto;
+}
+.whyCards .card .icon-image img {
+  width: 200px;
+}
+.whyCards .card .card-details h4 {
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0;
+}
+.whyCards .card .card-details p {
+  width: 90%;
+  margin: auto;
+}
+
+.whyCards .card1 {
+  background-color: white;
+  box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
+  border-right: 3px solid #ed1a2b;
+  border-left: 3px solid #ed1a2b;
+  border-top: 8px solid #ed1a2b;
+}
+.whyCards .card2 {
+  background-color: white;
+  box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
+  border-right: 3px solid green;
+  border-left: 3px solid green;
+  border-top: 8px solid green;
+}
+.whyCards .card3 {
+  background-color: white;
+  box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
+  border-right: 3px solid rgb(7, 130, 225);
+  border-left: 3px solid rgb(7, 130, 225);
+  border-top: 8px solid rgb(7, 130, 225);
+}
+
+.whySection .stepsBlock {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.stepsBlock .steps .number {
+  font-size: 32px;
+  padding: 10px;
+  padding-bottom: 2px;
+  margin: 20px auto;
+  background: rgb(197, 29, 29);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: relative;
+  color: white;
+  z-index: 1;
+  box-shadow: 0px 4px 4px rgba(43, 42, 41, 0.267);
+}
+
+.stepsBlock .steps .number h4 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.stepsBlock .details h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.stepsBlock .details p {
+  font-size: 20px;
+  width: 70%;
+  margin: auto;
+}
