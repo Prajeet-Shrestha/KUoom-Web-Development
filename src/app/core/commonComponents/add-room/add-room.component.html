@@ -1,1 +1,306 @@
-<div></div>
+<div class="mainContainer">
+  <div class="container">
+    <h3 class="mainTitle">Create A Room Card</h3>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="roomDetailsFG">
+        <form style="display: block" [formGroup]="roomDetailsFG">
+          <ng-template matStepLabel>Room Details</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">1. What type of room do you have? <span style="color: red">*</span></div>
+            <mat-form-field appearance="fill">
+              <mat-label>Type Of Room</mat-label>
+              <select matNativeControl formControlName="roomType" (change)="changePickerTest($event.target.value)">
+                <option value="" selected></option>
+                <option value="Single Private Room">Single Private Room</option>
+                <option value="Shared Private Room">Shared Private Room</option>
+                <option value="Flat">Flat</option>
+              </select>
+            </mat-form-field>
+          </div>
+
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">2. Room Description <span style="color: red">*</span> :</div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Place Description</mat-label>
+              <textarea matInput placeholder="Ex. The Room has..." formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">3. Available From: <span style="color: red">*</span> :</div>
+            <mat-form-field class="example-full-width">
+              <mat-label>Available Date</mat-label>
+              <input formControlName="date" matInput [matDatepicker]="picker" type="date" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <!-- <textarea matInput placeholder="Ex. The Room has..." formControlName="description"></textarea> -->
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">4. Room Capacity:<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label># of Roomates</mat-label>
+              <input matInput formControlName="capacity" type="number" />
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">4. Is your room furnished?<span style="color: red">*</span></div>
+            <mat-radio-group aria-label="Select an option" formControlName="isFurnished">
+              <mat-radio-button value="Furnished" style="margin-right: 1rem"> Yes</mat-radio-button>
+              <mat-radio-button value="unFurnished">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div *ngIf="this.roomDetailsFG.value.isFurnished == 'Furnished'" class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              6. What furniture does your room have? ?<span style="color: red">*</span>
+            </div>
+            <div>
+              <mat-checkbox formControlName="hasBed" class="example-margin">Bed</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="hasDesk" class="example-margin">Desk</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="hasChair" class="example-margin">Chairs</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="hasCupBoard" class="example-margin">Cupboard</mat-checkbox>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="facilitiesFG">
+        <form [formGroup]="facilitiesFG">
+          <ng-template matStepLabel>Facilities</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              1. Which facilities does your room have? ?<span style="color: red">*</span>
+            </div>
+            <div>
+              <mat-checkbox formControlName="wifi" class="example-margin">WiFi</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="laundary" class="example-margin">Washing machine</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="terrance" class="example-margin"
+                >Outdoor area (terrace, balcony)
+              </mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="AC" class="example-margin">Air conditioning</mat-checkbox>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="addressFG">
+        <form [formGroup]="addressFG">
+          <ng-template matStepLabel>Address</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">1. Pick Your Address <span style="color: red">*</span></div>
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <select matNativeControl formControlName="address" (change)="changePickerTest($event.target.value)">
+                <!-- <option value="" selected></option> -->
+                <option value="Inside Kathmandu Univeristy">Inside Kathmandu Univeristy</option>
+                <option value="28 Kilo, Near Main Road">28 Kilo, Near Main Road</option>
+                <option value="Basgari">Basgari</option>
+              </select>
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="policiesFG">
+        <form [formGroup]="policiesFG">
+          <ng-template matStepLabel>House Policies</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">1. Accomodation Policies?<span style="color: red">*</span></div>
+            <div formArrayName="policies" *ngFor="let polices of policiesFG.get('policies')['controls']; let i = index">
+              <mat-form-field class="example-full-width">
+                <!-- <mat-label>{{ policy.name }}</mat-label> -->
+                <div [formGroupName]="i">
+                  <input matInput placeholder="Policy" value="" formControlName="policies" />
+                </div>
+              </mat-form-field>
+            </div>
+            <span>
+              <mat-icon
+                (click)="addItem()"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                style="margin-left: 1rem; cursor: pointer"
+                >add</mat-icon
+              >
+            </span>
+            <span>
+              <mat-icon
+                *ngIf="AccomodationPolicies.length >= 2"
+                (click)="removeAccomodationPolicies()"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                style="margin-left: 1rem; cursor: pointer"
+                >remove</mat-icon
+              >
+            </span>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="rentFG">
+        <form [formGroup]="rentFG">
+          <ng-template matStepLabel>Rent</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">1. Room price per month?<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Room Price</mat-label>
+              <input matInput formControlName="price" placeholder="per month" type="number" />
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">2. What does the fee covers? ?<span style="color: red">*</span></div>
+            <div>
+              <mat-checkbox formControlName="wifi" class="example-margin">WiFi</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="meals" class="example-margin">2 meals</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="laundary" class="example-margin">Laundry Service </mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="electricBill" class="example-margin">Electric Bills</mat-checkbox>
+            </div>
+            <div>
+              <mat-checkbox formControlName="roomSpace" class="example-margin">Room</mat-checkbox>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="landLordFG">
+        <form [formGroup]="landLordFG">
+          <ng-template matStepLabel>LandLord Details</ng-template>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">1. Full Name:<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Full Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="John Show"
+                [(ngModel)]="LocalStorageUserDetail.name"
+              />
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">2. Phone Number:<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone" [(ngModel)]="LocalStorageUserDetail.phone" />
+            </mat-form-field>
+          </div>
+
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">2. Email Address:<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" [(ngModel)]="LocalStorageUserDetail.email" />
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">3. Do you Trust this Owner?<span style="color: red">*</span></div>
+            <mat-radio-group aria-label="Select an option" formControlName="isTrusted">
+              <mat-radio-button value="yes" style="margin-right: 1rem"> Yes</mat-radio-button>
+              <mat-radio-button value="no">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <!-- <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">2. Phone Number:<span style="color: red">*</span></div>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone" value="" />
+            </mat-form-field>
+          </div> -->
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="roomPhoto">
+        <form [formGroup]="roomPhoto">
+          <ng-template matStepLabel>Room Main Photo</ng-template>
+          <img id="MainImgoutput" />
+          <br />
+          <input
+            formControlName="mainPhoto"
+            type="file"
+            id="img"
+            name="img"
+            accept="image/*"
+            (change)="loadMainImg($event)"
+          />
+
+          <hr />
+          <div class="multipleImage">
+            <div class="small-10 small-offset-1 medium-8 medium-offset-2 cell">
+              <h1>Upload Your Rooms Pictures</h1>
+              <form action="upload_file.php" id="img-upload-form" method="post" enctype="multipart/form-data">
+                <p>
+                  <label for="upload_imgs" class="button hollow">Select Your Images +</label>
+                  <input
+                    class="show-for-sr"
+                    type="file"
+                    id="upload_imgs"
+                    name="upload_imgs[]"
+                    multiple
+                    [disabled]="mainPhotoPath.length >= 0"
+                  />
+                </p>
+                <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button style="background-color: green; color: white" (click)="SubmitRoomDetails()">Submit</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+</div>

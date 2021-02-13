@@ -1,0 +1,84 @@
+.mainContainer {
+  margin: 0%;
+  padding-top: 7rem;
+
+  padding-left: 3rem;
+  background-color: #ebebeb;
+  /* height: 100vh; */
+}
+
+/* .multipleImage {
+  background-color: red;
+} */
+
+.quote-imgs-thumbs {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin: 1.5rem 0;
+  padding: 0.75rem;
+}
+.quote-imgs-thumbs--hidden {
+  display: none;
+}
+.img-preview-thumb {
+  background: #fff;
+  border: 1px solid #777;
+  border-radius: 0.25rem;
+  box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+  margin-right: 1rem;
+  max-width: 100px;
+  height: 150px;
+  padding: 0.25rem;
+}
+
+#img_preview img {
+  width: 100px !important;
+  height: 150px !important;
+}
+.mainTitle {
+  font-size: 2rem;
+  /* background-color: red; */
+  padding: 4rem;
+  width: fit-content;
+  padding-bottom: 0rem;
+}
+
+.container {
+  background-color: white;
+  border-radius: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.QuestionCardTemplate {
+  /* background-color: red; */
+  padding: 2rem 0 0rem 0;
+}
+.QuestionCSSTemplate {
+  font-weight: 460;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#MainImgoutput {
+  width: 350px;
+  height: 150px;
+}
+
+.NextButton {
+  margin-top: 20px;
+  background-color: green;
+  color: #ebebeb;
+}
+
+@media (max-width: 780px) {
+  .container {
+    width: 98%;
+  }
+
+  #MainImgoutput {
+    width: 250px;
+    height: 350px;
+  }
+}

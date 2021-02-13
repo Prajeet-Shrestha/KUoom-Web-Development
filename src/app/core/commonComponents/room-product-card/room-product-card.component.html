@@ -1,1 +1,51 @@
-<p>room-product-card works!</p>
+<div class="product-card">
+  <div class="imgcontainer" (click)="RoomProfileNavigate(productObj)">
+    <img src="{{ imgUrl }}" class="product-img" alt="" />
+  </div>
+  <div class="product-details">
+    <div class="top1">
+      <div class="title" (click)="RoomProfileNavigate(productObj)">
+        {{ title }}
+        <span style="font-weight: lighter; font-size: 12px">
+          <span *ngIf="capacity > 0"> {{ capacity }} Person </span>
+          <span *ngIf="chair"> • Chair </span>
+          <span *ngIf="bed"> • Bed </span>
+          <span *ngIf="cupboard"> • Cupboard</span>
+          <span *ngIf="table"> • Desk </span>
+        </span>
+      </div>
+      <div *ngIf="isPending" class="Requestedby" style="font-weight: lighter">
+        Requested By
+        <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer"> Prajeet </span>
+      </div>
+      <div *ngIf="!isPending" (click)="updatelike(productObj)" class="love" [ngClass]="{ like: like }"></div>
+    </div>
+
+    <div class="top2">
+      <div class="subtitle">
+        {{ subTitle }}
+      </div>
+    </div>
+    <div class="top3">
+      <div style="color: #1a4789" class="location-icon material-icons">room</div>
+      <div class="location">
+        {{ Location }}
+      </div>
+    </div>
+    <div class="price">
+      <span class="mainprice"> {{ price }}</span>
+      <span class="permonth">/month</span>
+    </div>
+    <div class="bottom1">
+      <div class="date">{{ date }}</div>
+      <div *ngIf="!isPending" class="status" [ngClass]="{ available: status == 'Available' }">
+        {{ status }}
+      </div>
+      <div *ngIf="isPending" class="AcceptReject">
+        <div matRipple>Accept</div>
+        <div matRipple>Reject</div>
+      </div>
+      <!-- <div class="Landlord"> Prajeet</div> -->
+    </div>
+  </div>
+</div>

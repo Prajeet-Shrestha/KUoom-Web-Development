@@ -1,0 +1,146 @@
+.Profiles {
+  margin-top: 4.5rem;
+  padding: 1rem;
+  padding-left: 3rem;
+}
+
+.info {
+  padding: 1.5rem;
+  width: 80%;
+}
+
+.DeleteAccount {
+  width: 45%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.DeleteAccount p {
+  font-weight: lighter;
+  font-style: italic;
+}
+.DeleteAccount div {
+  margin: 0 auto;
+  width: fit-content;
+}
+.ProfilesFlex {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.ProfileInfo {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.details {
+  width: 40%;
+}
+.ProfileInfo div div {
+  width: 50%;
+}
+
+.FirstLastNameBox {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.EmailPhoneBox {
+  display: flex;
+  margin-top: 2.5rem;
+}
+
+.FavContainer,
+.InviteFrn {
+  display: flex;
+}
+
+.favimgContainer,
+.invFrnContainer {
+  width: 8%;
+  height: 15vh;
+}
+
+@media (max-width: 580px) {
+  .info div h2 {
+    font-size: 1.6rem;
+  }
+
+  .info div p {
+    font-size: 1.4rem;
+  }
+
+  .ProfilesFlex {
+    /* background-color: blue; */
+    display: block;
+    width: 98%;
+    justify-content: space-evenly;
+  }
+  .ProfileInfo {
+    margin: 0%;
+  }
+
+  .details {
+    width: 100%;
+  }
+  .details h2 {
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0rem;
+  }
+
+  .FirstLastNameBox {
+    display: block;
+    margin-top: 1rem;
+  }
+  .FirstLastNameBox div b {
+    font-size: 1.7rem;
+  }
+
+  .FirstLastNameBox div p {
+    font-size: 1.7rem;
+    font-weight: lighter;
+  }
+
+  .EmailPhoneBox {
+    display: block;
+    margin-top: 1rem;
+  }
+  .EmailPhoneBox div b {
+    font-size: 1.7rem;
+  }
+
+  .EmailPhoneBox div p {
+    font-size: 1.7rem;
+    font-weight: lighter;
+  }
+
+  .info {
+    padding: 0rem;
+    padding-top: 2rem;
+    width: 98%;
+    justify-content: space-evenly;
+  }
+
+  .DeleteAccount {
+    margin: 0%;
+    padding: 1rem;
+    width: fit-content;
+    background-color: white;
+    border-radius: 1rem;
+  }
+
+  .DeleteAccount p {
+    font-weight: lighter;
+    font-style: italic;
+  }
+  .DeleteAccount div {
+    margin: 0 auto;
+    width: fit-content;
+  }
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+}
