@@ -1,4 +1,9 @@
 <div class="maincontainer">
+  <mat-progress-bar
+    *ngIf="loading"
+    mode="indeterminate"
+    style="position: fixed; z-index: 999999999999999999"
+  ></mat-progress-bar>
   <header
     class="main-head"
     id="main-head-id"
@@ -8,9 +13,28 @@
       <div id="logo">
         <div [routerLink]="['/cover/index']" class="logo"></div>
         <ul class="left-nav-links" [ngClass]="{ Index: NavRouteUpdateFlag.Index, '': !NavRouteUpdateFlag.Index }">
-          <li>{{ 'Navbar.Howdoesthiswork' | translate }}</li>
-          <li>{{ 'Navbar.LandlordPortal' | translate }}</li>
-          <li (click)="goToAboutPage()">{{ 'Navbar.Aboutus' | translate }}</li>
+          <div class="left-nav-links" id="left-nav-links">
+            <li (click)="ToHowdoesthisworkPage()">{{ 'Navbar.Howdoesthiswork' | translate }}</li>
+            <li>{{ 'Navbar.LandlordPortal' | translate }}</li>
+            <li (click)="goToAboutPage()">{{ 'Navbar.Aboutus' | translate }}</li>
+          </div>
+          <div class="search-bar" id="search-bar">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              type="datetime"
+              placeholder=" {{ 'index.dataPlaceHolder' | translate }} "
+            />
+            <mat-datepicker-toggle
+              style="margin-left: -4.5rem; margin-top: 0.8rem"
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!-- <img src="/" alt="" /> -->
+            <!-- <mat-icon class="navSearchBar" aria-hidden="false" aria-label="Example home icon">search</mat-icon> -->
+            <div class="search" (click)="search()"></div>
+          </div>
         </ul>
       </div>
 
@@ -54,7 +78,7 @@
       <ul class="profile" *ngIf="isLoggedin">
         <span style="margin-right: 5px">{{ 'Navbar.Welcome' | translate }},</span>
         <img class="profile-img" src="assets/Icon/profile.png" alt="" />
-        <span style="margin-left: 5px">
+        <span style="margin-left: 0px">
           <button mat-button [matMenuTriggerFor]="menu">{{ username }}</button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="MyProfile()">{{ 'Navbar.MyDashboard' | translate }}</button>
@@ -64,5 +88,6 @@
       </ul>
     </nav>
   </header>
+
   <router-outlet></router-outlet>
 </div>

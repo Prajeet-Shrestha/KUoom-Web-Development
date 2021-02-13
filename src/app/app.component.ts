@@ -5,6 +5,8 @@ import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
 import { DataService } from './services/data.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
+declare const Buffer;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,6 +18,7 @@ export class AppComponent implements OnInit {
     Admin: false,
   };
   title = 'KUoomFrontend';
+  loading: boolean = false;
   user;
   isLoggedin = false;
   LocalStorageUserDetail;
@@ -25,6 +28,7 @@ export class AppComponent implements OnInit {
     private _router: Router,
     public translate: TranslateService,
     private auth: AuthService,
+    private titleService: Title,
     private DataService: DataService
   ) {
     this._router.events.subscribe(
@@ -38,28 +42,80 @@ export class AppComponent implements OnInit {
     );
   }
 
-  handleScroll() {
-    let offset = window.pageYOffset;
-    if (offset === 0) {
-      if (this.white) {
-        let elem = document.getElementById('main-head-id');
-        elem.classList.remove('white');
-        this.white = false;
-      }
-    } else if (offset > 80) {
-      if (!this.white) {
-        let elem = document.getElementById('main-head-id');
-        (this.white = true), console.log(this.white, 'whiteeee');
-        elem.classList.add('white');
-      }
-    }
-  }
+  // handleScroll() {
+  //   let offset = window.pageYOffset;
+  //   let elem = document.getElementById('main-head-id');
+  //   let leftnavlink = document.getElementById('left-nav-links');
+  //   let searchElem = document.getElementById('search-bar');
+  //   let self = this;
+  //   if (offset === 0) {
+  //     if (this.white) {
+  //       // this.DataService.changeremoveIndexSearchBar(false);
+  //       // self.changeSearchStatus(false);
+  //       leftnavlink.classList.remove('hide');
+  //       elem.classList.remove('white');
+  //       searchElem.classList.remove('scrollNav');
+  //       this.white = false;
+  //     }
+  //   } else if (offset > 180) {
+  //     if (!this.white) {
+  //       // this.DataService.changeremoveIndexSearchBar(true);
+  //       // self.changeSearchStatus(true);
+
+  //       this.white = true;
+  //       elem.classList.add('white');
+  //       leftnavlink.classList.add('hide');
+  //       searchElem.classList.add('scrollNav');
+  //     }
+  //   }
+  // }
 
   username: string;
+  isSuperUser: boolean = false;
   ngOnInit(): void {
-    window.addEventListener('scroll', this.handleScroll);
+    let self = this;
+
+    window.addEventListener('scroll', () => {
+      let offset = window.pageYOffset;
+      let elem = document.getElementById('main-head-id');
+      let leftnavlink = document.getElementById('left-nav-links');
+      let searchElem = document.getElementById('search-bar');
+
+      if (offset === 0) {
+        if (this.white) {
+          self.DataService.changeremoveIndexSearchBar(false);
+          // self.changeSearchStatus(false);
+          leftnavlink.classList.remove('hide');
+          elem.classList.remove('white');
+          searchElem.classList.remove('scrollNav');
+          this.white = false;
+        }
+      } else if (offset > 180) {
+        if (!this.white) {
+          self.DataService.changeremoveIndexSearchBar(true);
+          // self.changeSearchStatus(true);
+
+          this.white = true;
+          elem.classList.add('white');
+          leftnavlink.classList.add('hide');
+          searchElem.classList.add('scrollNav');
+        }
+      }
+    });
     this.DataService.currentUsername.subscribe((data) => {
       this.username = data;
+    });
+
+    this.DataService.loadingStatus.subscribe((data) => {
+      this.loading = data;
+    });
+
+    this.DataService.isSuperUser?.subscribe((data) => {
+      this.isSuperUser = data;
+    });
+
+    this.DataService.currentTitleName.subscribe((data) => {
+      this.titleService.setTitle(data);
     });
 
     this.DataService.currentisLoggedin.subscribe((data: boolean) => {
@@ -126,13 +182,26 @@ export class AppComponent implements OnInit {
 
   MyProfile() {
     if (this.userType == 'Tenant') {
-      this._router.navigate([Url_SuperPath['landlordProfile']]);
+      this._router.navigate([Url_SuperPath['tenantProfile']]);
     } else {
       this._router.navigate([Url_SuperPath['landlordProfile']]);
     }
   }
-
+  toTenant() {
+    this._router.navigate([Url_SuperPath['tenantProfile']]);
+  }
+  toLandlord() {
+    this._router.navigate([Url_SuperPath['landlordProfile']]);
+  }
   goToAboutPage() {
     this._router.navigate(['/AboutUs']);
+  }
+
+  search() {
+    this._router.navigate([Url_SuperPath['SearchRoom']]);
+  }
+
+  ToHowdoesthisworkPage() {
+    this._router.navigate([Url_SuperPath['howdoesthiswork']]);
   }
 }

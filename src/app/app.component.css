@@ -28,9 +28,82 @@ ul {
   position: fixed;
 }
 
+.main-head.Index .left-nav-links.hide {
+  display: none;
+}
+
+.search-bar {
+  display: none;
+}
+.main-head.Index .search-bar.scrollNav {
+  display: flex;
+  /* background-color: rebeccapurple; */
+  width: fit-content;
+  transition: 0.7s all ease-in;
+  animation: searchBarAnimationtoDown 0.7s ease;
+}
+
+.search-bar.scrollNav input {
+  background: white;
+  font-weight: normal;
+  padding: 1rem;
+  padding-right: 2.5rem;
+  /* width: (fit-content + 100px); */
+  margin: 1rem;
+  border: none;
+  border-radius: 1rem;
+  color: black;
+}
+.TranlateButton {
+  color: white;
+  cursor: pointer;
+}
+.TranlateButton:hover {
+  font-weight: bold;
+}
+
+.navSearchBar {
+  margin-top: 1.3rem;
+  color: #f6b21b;
+  /* padding: 1rem; */
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+}
+.search {
+  background: #f6b21b;
+  /* display: none; */
+  width: 3rem;
+  height: 3rem;
+  margin-top: 1.3rem;
+  background: url('src/assets/Icon/search-white-18dp.svg') no-repeat #f6b21b;
+  background-size: cover;
+
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  box-shadow: 5px 5px 10px #e2a419, -5px -5px 10px #ffc01d;
+}
+.search-icon {
+  width: 2rem;
+  margin: 1.2rem;
+}
+
+@keyframes searchBarAnimationtoDown {
+  0% {
+    transform: translateY(-150px);
+  }
+  100% {
+    transform: skew(0deg);
+  }
+}
+
 .main-head.white {
   /* background: rgba(246, 177, 27, 0.5); */
   background-color: rgba(246, 177, 27);
+  /* box-shadow: 5px 5px 0px #e8ab33, -5px -5px 0px #ffbd39; */
   height: fit-content;
   width: 100%;
   z-index: 10000000;
@@ -52,7 +125,7 @@ nav {
   width: 95%;
   margin: 0 0 0 auto;
   z-index: 2;
-  font-weight: 600;
+  font-weight: 480;
 }
 #logo {
   /* background-color: red; */
@@ -65,8 +138,8 @@ nav {
 #logo .logo {
   background: url('src/assets/Logo/KUoomLOGO2.png');
   background-size: 100% 100%;
-  height: 5vh;
-  width: 10%;
+  height: 40px;
+  width: 110px;
   /* background-color: tomato; */
   border: none;
 
@@ -76,8 +149,7 @@ nav {
 #logo .logo:focus {
   background: url('src/assets/Logo/KUoomLOGO2.png');
   background-size: 100% 100%;
-  height: 5vh;
-  width: 10%;
+
   outline: none;
   border: none;
   background-repeat: no-repeat;
@@ -134,8 +206,8 @@ nav {
 .profile-img {
   border-radius: 100%;
 
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
 .right-nav-links li {
   margin: 0 2rem;
@@ -145,7 +217,8 @@ nav {
 }
 .right-nav-links li:hover,
 .left-nav-links li:hover {
-  color: #1a4789;
+  color: #cfe2ff;
+  text-decoration: underline;
 }
 
 ul li:focus {
@@ -230,7 +303,8 @@ ul li:focus {
     border: none;
     cursor: pointer;
   }
-  .left-nav-links {
+  .left-nav-links,
+  .left-nav-links.Index {
     display: none;
   }
   .left-nav-links li {

@@ -11,15 +11,20 @@ import { UserComponent } from './modules/user/user.component';
 import { LoginComponent } from './modules/user/login/login.component';
 import { RegisterComponent } from './modules/user/register/register.component';
 import { ForgotPasswordComponent } from './modules/user/forgot-password/forgot-password.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRippleModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +40,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -58,11 +64,15 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { RoomProductCardComponent } from './core/commonComponents/room-product-card/room-product-card.component';
 import { AddRoomComponent } from './core/commonComponents/add-room/add-room.component';
 import { AboutusComponent } from './core/UIcomponents/aboutus/aboutus.component';
+import { LoadingComponent } from './core/commonComponents/loading/loading.component';
+import { NotifierComponent } from './core/commonComponents/notifier/notifier/notifier.component';
+import { UserprofileComponent } from './core/commonComponents/userprofile/userprofile.component';
+import { HowdoesthisworkComponent } from './core/UIcomponents/howdoesthiswork/howdoesthiswork.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+declare const Buffer;
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,18 +95,27 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoomProductCardComponent,
     AddRoomComponent,
     AboutusComponent,
+    LoadingComponent,
+    NotifierComponent,
+    UserprofileComponent,
+    HowdoesthisworkComponent,
   ],
   imports: [
     MatTabsModule,
     BrowserModule,
     MatSlideToggleModule,
+    MatSidenavModule,
     MatSliderModule,
+    MatStepperModule,
     MatIconModule,
     MatButtonToggleModule,
+    MatRadioModule,
     MatProgressBarModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     FormsModule,
+
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
@@ -122,7 +141,15 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [MatDatepickerModule, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [
+    RoomProductCardComponent,
+    UserprofileComponent,
+    ErrorPageComponent,
+    MatDatepickerModule,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  declare Buffer;
+}

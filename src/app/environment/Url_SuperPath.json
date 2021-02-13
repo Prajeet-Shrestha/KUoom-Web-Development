@@ -1,9 +1,10 @@
 {
-    "Index":"/cover/index",
-    "Register":"/auth/register",
-    "SearchRoom":"/search/fr/sr",
-    "ProductProfile":"/search/fr/profile",
-    "login":"/auth/login",
-    "tenantProfile":"/profile/t",
-    "landlordProfile":"/profile/l"
+  "Index": "/cover/index",
+  "Register": "/auth/register",
+  "SearchRoom": "/search/fr/sr",
+  "ProductProfile": "/search/fr",
+  "login": "/auth/login",
+  "tenantProfile": "/profile/t",
+  "landlordProfile": "/profile/l",
+  "howdoesthiswork": "/How"
 }

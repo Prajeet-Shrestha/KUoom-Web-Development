@@ -17,6 +17,7 @@ import { TenantComponent } from './modules/userprofiles/tenant/tenant.component'
 import { LandlordComponent } from './modules/userprofiles/landlord/landlord.component';
 import { AddRoomComponent } from './core/commonComponents/add-room/add-room.component';
 import { AboutusComponent } from './core/UIcomponents/aboutus/aboutus.component';
+import { HowdoesthisworkComponent } from './core/UIcomponents/howdoesthiswork/howdoesthiswork.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([Url_SuperPath['login']]);
 const redirectLoggedInToItems = () => redirectLoggedInTo([Url_SuperPath['Index']]);
@@ -57,7 +58,7 @@ const routes: Routes = [
         children: [
           { path: '', redirectTo: '/search/fr/sr', pathMatch: 'full' },
           { path: 'sr', component: SearchroomComponent },
-          { path: 'profile', component: ProductprofileComponent },
+          { path: ':id', component: ProductprofileComponent },
         ],
       },
     ],
@@ -74,8 +75,14 @@ const routes: Routes = [
       { path: 'l', component: LandlordComponent },
     ],
   },
-  { path: 'addRoom', component: AddRoomComponent },
+  {
+    path: 'addRoom',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    component: AddRoomComponent,
+  },
   { path: 'AboutUs', component: AboutusComponent },
+  { path: 'How', component: HowdoesthisworkComponent },
 ];
 
 @NgModule({
