@@ -6,5 +6,6 @@
   "login": "/auth/login",
   "tenantProfile": "/profile/t",
   "landlordProfile": "/profile/l",
-  "howdoesthiswork": "/How"
+  "howdoesthiswork": "/How",
+  "editRoom": "editRoom/"
 }

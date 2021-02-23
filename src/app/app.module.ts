@@ -60,7 +60,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ErrorPageComponent } from './core/errorPages/error-page/error-page.component';
 import { FooterComponent } from './core/commonComponents/footer/footer/footer.component';
-import { AdminComponent } from './admin/admin/admin.component';
 import { RoomProductCardComponent } from './core/commonComponents/room-product-card/room-product-card.component';
 import { AddRoomComponent } from './core/commonComponents/add-room/add-room.component';
 import { AboutusComponent } from './core/UIcomponents/aboutus/aboutus.component';
@@ -91,7 +90,6 @@ declare const Buffer;
     TenantComponent,
     ErrorPageComponent,
     FooterComponent,
-    AdminComponent,
     RoomProductCardComponent,
     AddRoomComponent,
     AboutusComponent,

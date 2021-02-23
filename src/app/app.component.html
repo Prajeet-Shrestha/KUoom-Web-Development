@@ -76,10 +76,16 @@
         <li [routerLink]="['/auth/login']">{{ 'Navbar.LogIn' | translate }}</li>
       </ul>
       <ul class="profile" *ngIf="isLoggedin">
-        <span style="margin-right: 5px">{{ 'Navbar.Welcome' | translate }},</span>
-        <img class="profile-img" src="assets/Icon/profile.png" alt="" />
+        <span style="margin-right: -6px">{{ 'Navbar.Welcome' | translate }},</span>
+        <!-- <img *ngIf="!imgUrlCheck" class="profile-img" src="assets/Icon/roomprofile/user.png" alt="" /> -->
+        <!-- <img *ngIf="imgUrlCheck" class="profile-img" src="{{ imgURL }}" alt="" /> -->
+
         <span style="margin-left: 0px">
-          <button mat-button [matMenuTriggerFor]="menu">{{ username }}</button>
+          <button mat-button [matMenuTriggerFor]="menu" style="border-radius: 30px">
+            <img class="profile-img" src="{{ imgUrlCheck ? imgURL : 'assets/Icon/profile.png' }}" alt="" />
+
+            {{ username }}
+          </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="MyProfile()">{{ 'Navbar.MyDashboard' | translate }}</button>
             <button mat-menu-item (click)="logout()">{{ 'Navbar.Logout' | translate }}</button>

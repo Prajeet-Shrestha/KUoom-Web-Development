@@ -72,6 +72,9 @@ export class AppComponent implements OnInit {
 
   username: string;
   isSuperUser: boolean = false;
+
+  imgURL: string = '';
+  imgUrlCheck: boolean = false;
   ngOnInit(): void {
     let self = this;
 
@@ -109,7 +112,13 @@ export class AppComponent implements OnInit {
     this.DataService.loadingStatus.subscribe((data) => {
       this.loading = data;
     });
-
+    this.DataService.currentUserImg.subscribe((data) => {
+      this.imgURL = data;
+      if (this.imgURL.length >= 2) {
+        this.imgUrlCheck = true;
+      }
+      console.log(this.imgURL);
+    });
     this.DataService.isSuperUser?.subscribe((data) => {
       this.isSuperUser = data;
     });
@@ -173,6 +182,7 @@ export class AppComponent implements OnInit {
     this.auth
       .logout()
       .then((res) => {
+        this.imgURL = '';
         this._router.navigate([Url_SuperPath['Index']]);
       })
       .catch((err) => {
@@ -181,9 +191,10 @@ export class AppComponent implements OnInit {
   }
 
   MyProfile() {
+    console.log(this.userType);
     if (this.userType == 'Tenant') {
       this._router.navigate([Url_SuperPath['tenantProfile']]);
-    } else {
+    } else if (this.userType == 'Landlord') {
       this._router.navigate([Url_SuperPath['landlordProfile']]);
     }
   }

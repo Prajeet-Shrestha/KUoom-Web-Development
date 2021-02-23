@@ -10,7 +10,7 @@ import { FindroomComponent } from './modules/searchview/findroom/findroom.compon
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
-
+import { AuthGuard } from 'src/app/core/guard/auth.guard';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { UserprofilesComponent } from './modules/userprofiles/userprofiles.component';
 import { TenantComponent } from './modules/userprofiles/tenant/tenant.component';
@@ -71,14 +71,25 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
       { path: '', redirectTo: '/profile/t', pathMatch: 'full' },
-      { path: 't', component: TenantComponent },
-      { path: 'l', component: LandlordComponent },
+      {
+        path: 't',
+        component: TenantComponent,
+        canActivate: [AuthGuard],
+        data: { userType: 'Tenant' },
+      },
+      { path: 'l', component: LandlordComponent, canActivate: [AuthGuard], data: { userType: 'Landlord' } },
     ],
   },
   {
     path: 'addRoom',
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    canActivate: [AngularFireAuthGuard, AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin, userType: 'Landlord' },
+    component: AddRoomComponent,
+  },
+  {
+    path: 'editRoom/:id',
+    canActivate: [AngularFireAuthGuard, AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin, userType: 'Landlord' },
     component: AddRoomComponent,
   },
   { path: 'AboutUs', component: AboutusComponent },
