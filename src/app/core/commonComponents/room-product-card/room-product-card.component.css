@@ -17,7 +17,6 @@
 
 .product-img {
   width: 100%;
-  cursor: pointer;
   /* background:url("src/assets/Roomexample/1.png"); */
   background-size: cover;
   /* background-color: red; */
@@ -27,6 +26,8 @@
   width: 80%;
   /* background-color: yellow; */
   height: 100%;
+  cursor: pointer;
+
   padding-left: 1rem;
 }
 
@@ -38,7 +39,16 @@
   cursor: pointer;
   font-weight: 600px;
 }
+.CanDeleteeditClass {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
+.CanDeleteeditClass:hover {
+  outline: 1px solid rgb(218, 216, 216);
+  border-radius: 5px;
+}
 .love {
   background: url('src/assets/Icon/love_outline.png') no-repeat;
   background-size: 20px;
@@ -88,7 +98,7 @@
 .bottom1 .date {
   font-size: 1.3rem;
   font-weight: lighter;
-  color: #1a4789;
+  color: #037ef3;
 }
 
 .status {
@@ -106,7 +116,31 @@
 }
 
 .status.available {
-  background: green;
+  background: #00c16e;
+}
+
+.tentantBookingList {
+  display: none;
+  text-align: center;
+  border-radius: 2px;
+  padding: 0.2rem;
+  margin-top: -0.8rem;
+  width: fit-content;
+  color: white;
+  height: fit-content;
+  color: white;
+  padding: 2px 7px;
+}
+
+.status.pending {
+  display: initial;
+  background-color: #f48924;
+}
+
+.status.booked {
+  display: initial;
+
+  background: #ff5757;
 }
 
 .AcceptReject {
@@ -136,6 +170,11 @@
 }
 
 @media (max-width: 990px) {
+  .candeleteicons {
+    width: 100px;
+    justify-content: space-between;
+  }
+
   .product-card {
     text-align: left;
     display: block;

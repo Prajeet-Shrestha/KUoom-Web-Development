@@ -1,6 +1,56 @@
 <div class="mainContainer">
   <div class="container">
-    <h3 class="mainTitle">Create A Room Card</h3>
+    <h3 class="mainTitle">{{ isEditModeOBJ.isEditMode ? 'Edit A Room' : 'Create A Room Card' }}</h3>
+    <a
+      class="hover"
+      (click)="toggleLocationForm()"
+      style="margin: 0 auto; margin-left: 20px; color: rgb(0, 119, 128); cursor: pointer"
+    >
+      Add Location
+    </a>
+    <div *ngIf="showLocationForm" style="padding-left: 20px">
+      <form [formGroup]="NewLocationForm">
+        <div class="QuestionCardTemplate">
+          <div class="QuestionCSSTemplate">1. Location Name:<span style="color: red">*</span></div>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="LocationName" type="text" />
+          </mat-form-field>
+        </div>
+        <div class="QuestionCardTemplate">
+          <div class="QuestionCSSTemplate">
+            2. Embbed Code <span style="color: red">*</span>:
+            <span class="hover" style="color: navy; font-size: 13px; cursor: pointer" (click)="ShowMap()"
+              >Show Map</span
+            >
+          </div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Code</mat-label>
+            <textarea matInput formControlName="embbedCode"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="map card" *ngIf="ShownewMap">
+          <iframe
+            [src]="UsableEmbbedCode"
+            width="50%%"
+            height="400"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen=""
+            aria-hidden="false"
+            tabindex="0"
+          ></iframe>
+        </div>
+        <button
+          (click)="SaveLocation()"
+          style="margin: 0 auto; margin-left: 20px; background-color: rgb(0, 119, 128); color: white"
+          mat-flat-button
+        >
+          Save
+        </button>
+      </form>
+    </div>
     <mat-vertical-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="roomDetailsFG">
         <form style="display: block" [formGroup]="roomDetailsFG">
@@ -11,8 +61,8 @@
               <mat-label>Type Of Room</mat-label>
               <select matNativeControl formControlName="roomType" (change)="changePickerTest($event.target.value)">
                 <option value="" selected></option>
-                <option value="Single Private Room">Single Private Room</option>
-                <option value="Shared Private Room">Shared Private Room</option>
+                <option value="Private Room">Private Room</option>
+                <option value="Shared Room">Shared Room</option>
                 <option value="Flat">Flat</option>
               </select>
             </mat-form-field>
@@ -28,9 +78,10 @@
 
           <div class="QuestionCardTemplate">
             <div class="QuestionCSSTemplate">3. Available From: <span style="color: red">*</span> :</div>
+            <div *ngIf="isEditModeOBJ.isEditMode" style="font-size: 12px">Old Date: {{ OldAvailableDate }}</div>
             <mat-form-field class="example-full-width">
               <mat-label>Available Date</mat-label>
-              <input formControlName="date" matInput [matDatepicker]="picker" type="date" />
+              <input id="AvailableDate" formControlName="date" matInput [matDatepicker]="picker" type="date" />
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <!-- <textarea matInput placeholder="Ex. The Room has..." formControlName="description"></textarea> -->
@@ -45,7 +96,14 @@
             </mat-form-field>
           </div>
           <div class="QuestionCardTemplate">
-            <div class="QuestionCSSTemplate">4. Is your room furnished?<span style="color: red">*</span></div>
+            <div class="QuestionCSSTemplate">5. Is your room Checked?<span style="color: red">*</span></div>
+            <mat-radio-group aria-label="Select an option" formControlName="isChecked">
+              <mat-radio-button value="checked" style="margin-right: 1rem"> Yes</mat-radio-button>
+              <mat-radio-button value="notChecked">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">6. Is your room furnished?<span style="color: red">*</span></div>
             <mat-radio-group aria-label="Select an option" formControlName="isFurnished">
               <mat-radio-button value="Furnished" style="margin-right: 1rem"> Yes</mat-radio-button>
               <mat-radio-button value="unFurnished">No</mat-radio-button>
@@ -110,9 +168,11 @@
               <mat-label>Address</mat-label>
               <select matNativeControl formControlName="address" (change)="changePickerTest($event.target.value)">
                 <!-- <option value="" selected></option> -->
-                <option value="Inside Kathmandu Univeristy">Inside Kathmandu Univeristy</option>
-                <option value="28 Kilo, Near Main Road">28 Kilo, Near Main Road</option>
-                <option value="Basgari">Basgari</option>
+                <option *ngFor="let locationName of AddRoomLocationDropDownList" value="{{ locationName.embbedCode }}">
+                  {{ locationName.name }}
+                </option>
+                <!-- <option value="28 Kilo, Near Main Road">28 Kilo, Near Main Road</option>
+                <option value="Basgari">Basgari</option> -->
               </select>
             </mat-form-field>
           </div>

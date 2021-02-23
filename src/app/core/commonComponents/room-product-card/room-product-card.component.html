@@ -1,6 +1,13 @@
 <div class="product-card">
-  <div class="imgcontainer" (click)="RoomProfileNavigate(productObj)">
-    <img src="{{ imgUrl }}" class="product-img" alt="" />
+  <div class="imgcontainer">
+    <img *ngIf="imgObj.length <= 1" src="{{ imgUrl }}" class="product-img" alt="" />
+    <ng-image-slider
+      *ngIf="imgObj.length >= 2"
+      [images]="imgObj"
+      [imagePopup]="false"
+      [imageSize]="{ width: '100%', height: '150px' }"
+      #nav
+    ></ng-image-slider>
   </div>
   <div class="product-details">
     <div class="top1">
@@ -14,34 +21,72 @@
           <span *ngIf="table"> • Desk </span>
         </span>
       </div>
-      <div *ngIf="isPending" class="Requestedby" style="font-weight: lighter">
+      <div *ngIf="isPending_LANDLORD" class="Requestedby" style="font-weight: lighter">
         Requested By
-        <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer"> Prajeet </span>
+        <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer"> {{ applicantName }} </span>
       </div>
-      <div *ngIf="!isPending" (click)="updatelike(productObj)" class="love" [ngClass]="{ like: like }"></div>
+      <div
+        *ngIf="!isPending_LANDLORD && !CanDeleteorEdit"
+        (click)="updatelike(productObj)"
+        class="love"
+        [ngClass]="{ like: like }"
+      ></div>
+      <div class="candeleteicons" *ngIf="CanDeleteorEdit">
+        <img
+          class="CanDeleteeditClass"
+          (click)="editRoom(productObj.id)"
+          src="assets/Icon/edit.svg"
+          alt=""
+          style="margin-right: 20px"
+        />
+
+        <img class="CanDeleteeditClass" (click)="DeleteRoom(productObj.id)" src="assets/Icon/delete.svg" alt="" />
+      </div>
     </div>
 
-    <div class="top2">
+    <div class="top2" (click)="RoomProfileNavigate(productObj)">
       <div class="subtitle">
         {{ subTitle }}
       </div>
     </div>
-    <div class="top3">
+    <div class="top3" (click)="RoomProfileNavigate(productObj)">
       <div style="color: #1a4789" class="location-icon material-icons">room</div>
       <div class="location">
         {{ Location }}
       </div>
     </div>
-    <div class="price">
+    <div (click)="RoomProfileNavigate(productObj)" class="price">
       <span class="mainprice"> {{ price }}</span>
       <span class="permonth">/month</span>
     </div>
-    <div class="bottom1">
+    <div (click)="RoomProfileNavigate(productObj)" class="bottom1">
       <div class="date">{{ date }}</div>
-      <div *ngIf="!isPending" class="status" [ngClass]="{ available: status == 'Available' }">
-        {{ status }}
+      <div style="display: flex">
+        <div
+          *ngIf="!isPending_LANDLORD"
+          class="status"
+          [ngClass]="{ available: status == 'Available', pending: status == 'Pending', booked: status == 'Booked' }"
+        >
+          {{ status }}
+        </div>
+        <div
+          *ngIf="!isPending_LANDLORD && isChecked"
+          class="status"
+          style="background-color: #0cb9c1; margin-left: 10px"
+          [ngClass]="{ available: status == 'Available', pending: status == 'Pending', booked: status == 'Booked' }"
+        >
+          Checked
+        </div>
       </div>
-      <div *ngIf="isPending" class="AcceptReject">
+      <!-- <div
+        *ngIf="!isPending_LANDLORD"
+        class="status"
+        [ngClass]="{ available: status == 'Available', pending: status == 'Pending', booked: status == 'Booked' }"
+      >
+        {{ status }}
+      </div> -->
+
+      <div *ngIf="isPending_LANDLORD" class="AcceptReject">
         <div matRipple>Accept</div>
         <div matRipple>Reject</div>
       </div>

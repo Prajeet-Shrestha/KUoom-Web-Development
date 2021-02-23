@@ -3,32 +3,73 @@
     <div class="details">
       <h2>My Account Details</h2>
       <div class="ProfileInfo">
-        <div class="FirstLastNameBox">
-          <div>
-            <b> First Name: </b>
-            <br />
-            <p>{{ FirstName }}</p>
+        <form [formGroup]="userDetailsForm">
+          <div class="FirstLastNameBox">
+            <div>
+              <b> First Name: </b>
+              <br />
+              <p *ngIf="!EditMode">{{ FirstName }}</p>
+              <mat-form-field *ngIf="EditMode">
+                <!-- <mat-label>First Name</mat-label> -->
+                <input matInput formControlName="Fname" [(ngModel)]="FirstName" type="text" />
+              </mat-form-field>
+            </div>
+            <div>
+              <b> Last Name:</b>
+              <br />
+              <p *ngIf="!EditMode">{{ LastName }}</p>
+              <mat-form-field *ngIf="EditMode">
+                <!-- <mat-label>Last Name</mat-label> -->
+                <input matInput formControlName="Lname" [ngModel]="LastName" type="text" />
+              </mat-form-field>
+            </div>
           </div>
-          <div>
-            <b> Last Name:</b>
-            <br />
-            <p>{{ LastName }}</p>
+          <div class="EmailPhoneBox">
+            <div>
+              <b> Email <span *ngIf="!isVerifed" style="font-size: 10px; color: red">(Not verified)</span> : </b>
+              <br />
+              <p *ngIf="!EditMode">{{ Email }}</p>
+              <mat-form-field *ngIf="EditMode">
+                <!-- <mat-label>Email</mat-label> -->
+                <input matInput readonly formControlName="Email" [(ngModel)]="Email" type="email" />
+              </mat-form-field>
+            </div>
+            <div>
+              <b> Phone Number:</b>
+              <br />
+              <p *ngIf="!EditMode">{{ Phone }}</p>
+              <mat-form-field *ngIf="EditMode">
+                <!-- <mat-label>Phone</mat-label> -->
+                <input matInput formControlName="Phone" [(ngModel)]="Phone" type="text" />
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-        <div class="EmailPhoneBox">
-          <div>
-            <b> Email: </b>
-            <br />
-            <p>{{ Email }}</p>
-          </div>
-          <div>
-            <b> Phone Number:</b>
-            <br />
-            <p>{{ Phone }}</p>
-          </div>
-        </div>
+        </form>
         <div style="padding: 1rem; padding-top: 2.5rem; width: fit-content">
-          <button style="margin: 0 auto; background-color: green; color: white" mat-flat-button>Edit</button>
+          <button
+            (click)="SaveUserData()"
+            *ngIf="EditMode"
+            style="margin: 0 auto; margin-right: 10px; background-color: green; color: white"
+            mat-flat-button
+          >
+            Save
+          </button>
+          <button
+            (click)="ToggleEditMode()"
+            style="margin: 0 auto; background-color: orange; color: white"
+            mat-raised-button
+          >
+            {{ EditMode ? 'Cancle' : 'Edit' }}
+          </button>
+
+          <button
+            *ngIf="!isVerifed && !EditMode"
+            (click)="sendVerficationMail()"
+            style="margin: 0 auto; background-color: green; color: white; margin-left: 10px"
+            mat-raised-button
+          >
+            Send Verification mail
+          </button>
         </div>
       </div>
     </div>

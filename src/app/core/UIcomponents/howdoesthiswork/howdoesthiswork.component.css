@@ -86,23 +86,23 @@
 .whyCards .card1 {
   background-color: white;
   box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
-  border-right: 3px solid #ed1a2b;
-  border-left: 3px solid #ed1a2b;
-  border-top: 8px solid #ed1a2b;
+  border-right: 3px solid #f85a40;
+  border-left: 3px solid #f85a40;
+  border-top: 8px solid #f85a40;
 }
 .whyCards .card2 {
   background-color: white;
   box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
-  border-right: 3px solid green;
-  border-left: 3px solid green;
-  border-top: 8px solid green;
+  border-right: 3px solid #00c16e;
+  border-left: 3px solid #00c16e;
+  border-top: 8px solid #00c16e;
 }
 .whyCards .card3 {
   background-color: white;
   box-shadow: 16px 16px 25px #a9a9a9, -16px -16px 25px #ffffff;
-  border-right: 3px solid rgb(7, 130, 225);
-  border-left: 3px solid rgb(7, 130, 225);
-  border-top: 8px solid rgb(7, 130, 225);
+  border-right: 3px solid #0cb9c1;
+  border-left: 3px solid #0cb9c1;
+  border-top: 8px solid #0cb9c1;
 }
 
 .whySection .stepsBlock {

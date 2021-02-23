@@ -50,7 +50,9 @@
   width: 80%;
   margin: 0 auto;
 }
-
+.hover:hover {
+  text-decoration: underline;
+}
 .QuestionCardTemplate {
   /* background-color: red; */
   padding: 2rem 0 0rem 0;
