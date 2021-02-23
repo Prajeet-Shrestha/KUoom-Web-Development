@@ -8,6 +8,7 @@ export interface BookingRequestDataTempalte {
   TenantId: {
     email: string;
     id: string;
+    name: string;
   };
   dateofBooking: Date | string;
   status: 'Approved' | 'Pending' | 'Rejected' | 'Withdrawn';

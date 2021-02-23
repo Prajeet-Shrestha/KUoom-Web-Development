@@ -1,10 +1,20 @@
 export interface roomDetailsTemplate {
   id: string | any;
-  policies: [] | null;
+  policies:
+    | [
+        {
+          policies: string;
+        }
+      ]
+    | null;
   basicQA: [] | null;
   capacity: number | string;
   description: string | null;
-  location: string;
+  isChecked: boolean;
+  location: {
+    name: string;
+    url: string;
+  };
   isAvailable: boolean;
   roomType: string;
   availableDate: {
@@ -18,18 +28,35 @@ export interface roomDetailsTemplate {
     isTrusted: boolean;
     img: string | null;
   } | null;
-  isBooked: boolean;
-  facilities: [] | {};
+  // isBooked: boolean;
+  facilities: {
+    AC: boolean | false;
+    laundary: boolean | false;
+    terrance: boolean | false;
+    wifi: boolean | false;
+  };
 
-  feeDetails: { price: number | string };
+  feeDetails: {
+    price: number | string;
+    electricBill: boolean | false;
+    laundary: boolean | false;
+    meals: boolean | false;
+    roomSpace: boolean | false;
+    wifi: boolean | false;
+  };
 
   images: {
     mainPhoto: string | object;
-    extras: [] | null;
+    extras: [] | null | any;
   };
 
   furnishedDetails: {
     isFurnished: boolean;
-    objects: [] | null | {};
+    objects: {
+      hasBed: boolean;
+      hasDesk: boolean;
+      hasChair: boolean;
+      hasCupBoard: boolean;
+    };
   } | null;
 }

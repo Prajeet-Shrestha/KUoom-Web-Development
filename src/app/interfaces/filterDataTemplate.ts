@@ -1,5 +1,5 @@
 export interface FilterDataTemplate {
-  availableDate: string;
+  availableDate: any;
   maxPrice: number;
   roomType: [] | any | Array<any>;
   service: [] | any | Array<any>;
