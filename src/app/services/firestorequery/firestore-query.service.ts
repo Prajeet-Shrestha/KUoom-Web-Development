@@ -22,29 +22,22 @@ export class FirestoreQueryService {
   roomCollection = this.fireservice.collection('products');
   bookingsCollection = this.fireservice.collection('bookings');
 
-  filter() {
-    console.log('filtering');
-    // this.roomCollection.ref
-    //   .where('feeDetails.price', '==', '20000')
-    //   .get()
-    //   .then(function (querySnapshot) {
-    //     querySnapshot.forEach(function (doc) {
-    //       // doc.data() is never undefined for query doc snapshots
-    //       console.log(doc.id, ' => ', doc.data());
-    //     });
-    //   });
-  }
-
   ApplyFilter(filterObj: FilterDataTemplate) {
     console.log(filterObj);
-    var query = this.roomCollection.ref.limit(10);
+    var query = this.roomCollection.ref.where('isAvailable', '==', true);
+
+    if (filterObj.availableDate) {
+      query = query.where('availableDate.dateObject', '>=', filterObj.availableDate);
+    }
     if (
       filterObj.maxPrice == 0 &&
       filterObj.availableDate == '' &&
       filterObj.roomType.length <= 0 &&
-      filterObj.service.length <= 0
+      filterObj.service.length <= 0 &&
+      filterObj.availableDate
     ) {
-      return this.roomCollection.get().toPromise();
+      console.log('NO FILTER ');
+      return query.get();
     }
     if (filterObj.maxPrice != 0) {
       query = query.where('feeDetails.price', '<=', filterObj.maxPrice);
@@ -52,7 +45,10 @@ export class FirestoreQueryService {
 
     if (filterObj.roomType.length >= 0) {
       if (filterObj.roomType.includes('Private Room')) {
-        query = query.where('roomType', '==', 'Shared Private Room');
+        query = query.where('roomType', '==', 'Private Room');
+      }
+      if (filterObj.roomType.includes('Shared Room')) {
+        query = query.where('roomType', '==', 'Shared Room');
       }
       if (filterObj.roomType.includes('Entire Flat')) {
         query = query.where('roomType', '==', 'Flat');
@@ -65,6 +61,15 @@ export class FirestoreQueryService {
       }
       if (filterObj.service.includes('Laundry')) {
         query = query.where('facilities.laundary', '==', true);
+      }
+      if (filterObj.service.includes('WiFi')) {
+        query = query.where('feeDetails.wifi', '==', true);
+      }
+      if (filterObj.service.includes('Balcony')) {
+        query = query.where('facilities.terrance', '==', true);
+      }
+      if (filterObj.service.includes('Air Conditioning')) {
+        query = query.where('facilities.AC', '==', true);
       }
     }
 
@@ -82,5 +87,13 @@ export class FirestoreQueryService {
       .where('RoomId', '==', roomId)
       .where('TenantId.id', '==', TenantId)
       .get();
+  }
+
+  UpdateUserInfo(id, userObj) {
+    return this.userCollection.doc(id).update(userObj);
+  }
+
+  getLandLordImg(email) {
+    return this.userCollection.ref.where('email', '==', email).get();
   }
 }

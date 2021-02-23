@@ -1,5 +1,9 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { DbfirestoreService } from './dbfirestore/dbfirestore.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +19,10 @@ export class DataService {
   private roomIdSource = new BehaviorSubject<string>('');
   private MaxPriceSource = new BehaviorSubject<number>(0);
   private isSuperUserAccountSource = new BehaviorSubject<boolean>(false);
+  private userImgSource = new BehaviorSubject<string>('');
+  private isEditRoomSource = new BehaviorSubject<boolean>(false);
+  private isEmailVerifiedSource = new BehaviorSubject<boolean>(false);
+  private indexDateFilterSouce = new BehaviorSubject<any>(false);
   currentMaxPrice = this.MaxPriceSource.asObservable();
   currentlang = this.langSource.asObservable();
   currentUsername = this.usernameSource.asObservable();
@@ -26,9 +34,27 @@ export class DataService {
   currentTitleName = this.titleNameSourve.asObservable();
   currentroomIdSource = this.roomIdSource.asObservable();
   isSuperUser? = this.isSuperUserAccountSource.asObservable();
+  isEmailVerified = this.isEmailVerifiedSource.asObservable();
+  currentUserImg = this.userImgSource.asObservable();
+  isEditRoom = this.isEditRoomSource.asObservable();
+  indexDateFilter = this.indexDateFilterSouce.asObservable();
+
   LocalStorageUserDetail;
   LocalStorageLang;
-  constructor() {
+  code = {
+    T: 'QJA+',
+    e: '++4=',
+    n: 'oeKR',
+    o: 'Pz/0',
+    a: 'ePz/',
+    t: '++uH',
+    L: 'eKR6',
+    l: 'XIak',
+    r: 'gQJA',
+    d: 'aE2w',
+  };
+
+  constructor(private fireservice: AngularFirestore) {
     try {
       console.log('Init Data Service');
       this.LocalStorageUserDetail = JSON.parse(localStorage.getItem('user'));
@@ -45,6 +71,18 @@ export class DataService {
         this.isLoggedinSource.next(false);
       } else {
         this.isLoggedinSource.next(true);
+        this.userCollection.ref
+          .where('uid', '==', this.LocalStorageUserDetail.uid)
+          .get()
+          .then((res) => {
+            let list = [];
+            res.forEach((data) => {
+              list.push(data.data());
+            });
+            if (list.length == 1) {
+              this.userImgSource.next(list[0].imgUrl);
+            }
+          });
         let name = this.LocalStorageUserDetail.name.split(' ');
         const userdetails = {
           email: this.LocalStorageUserDetail.email.toString(),
@@ -56,7 +94,8 @@ export class DataService {
           this.isSuperUserAccountSource.next(true);
         }
         this.UserFullDetailsSource.next(userdetails);
-        this.changeUserType(this.LocalStorageUserDetail.userType.toString());
+        let userType_Decrypted = this.deCode(this.LocalStorageUserDetail.userType.toString());
+        this.changeUserType(userType_Decrypted);
         this.changeMessage(this.LocalStorageUserDetail.name);
       }
     } catch (e) {
@@ -68,7 +107,7 @@ export class DataService {
       }
     }
   }
-
+  userCollection = this.fireservice.collection('users');
   changeLang(lang: 'en' | 'np') {
     this.langSource.next(lang);
     localStorage.setItem('lang', lang);
@@ -80,12 +119,23 @@ export class DataService {
   changeMessage(message: string) {
     this.usernameSource.next(message);
   }
+  changeIndexDateFilter(date: any) {
+    this.indexDateFilterSouce.next(date);
+  }
+  changeIsSupperAccount(status) {
+    this.isSuperUserAccountSource.next(status);
+  }
 
   changeMaxPriceInSearch(price: number) {
     this.MaxPriceSource.next(price);
   }
   changeRoomId(id: string) {
     this.roomIdSource.next(id);
+  }
+
+  isEmailVerifiedStatus(status: boolean) {
+    console.log('In DS Email Ver:', status);
+    this.isEmailVerifiedSource.next(status);
   }
 
   changeTitle(message: string) {
@@ -95,7 +145,7 @@ export class DataService {
     this.isLoggedinSource.next(status);
   }
 
-  changeUserType(type: 'Tenant' | 'Landlord') {
+  changeUserType(type) {
     this.userTypeSource.next(type);
   }
 
@@ -105,5 +155,31 @@ export class DataService {
 
   changeLoadingStatus(bool) {
     this._loadingStatus.next(bool);
+  }
+
+  changeisEditRoomValue(bool: boolean) {
+    this.isEditRoomSource.next(bool);
+  }
+
+  enCode(string: string) {
+    let encrypt = '';
+    for (let i = 0; i < string.length; i++) {
+      encrypt += this.code[string[i]];
+    }
+    return encrypt;
+  }
+
+  private _getKeyByValue(value) {
+    return Object.keys(this.code)
+      .find((key) => this.code[key] === value)
+      .toString();
+  }
+
+  deCode(string: string) {
+    let decrypt = '';
+    for (let i = 0; i < string.length; i += 4) {
+      decrypt += this._getKeyByValue(string.slice(i, i + 4));
+    }
+    return decrypt;
   }
 }
