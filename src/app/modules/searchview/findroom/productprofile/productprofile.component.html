@@ -5,9 +5,9 @@
         <ng-image-slider [images]="imageObject" [imageSize]="{ width: '100%', height: '50%' }" #nav></ng-image-slider>
       </div>
       <div style="padding-top: 1.5rem">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem">Basic Q/A about the place</div>
-        <div class="QA">
-          1) Do you have an attached Bathroom?
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">Basic Q/A about the place</div>
+        <div class="QA card">
+          1. Do you have an attached Bathroom?
 
           <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
 
@@ -34,17 +34,46 @@
         </div>
       </div>
       <div style="padding-top: 1.5rem">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem">Accommodation Policies</div>
-        <div style="padding: 1rem; background-color: white; border-radius: 1rem">
-          <ul>
-            <li>First month rent should be paid in advance.</li>
-            <li>
-              After book, the room will be in reserved for 10 Days. If the student is unable to pay or occupy the room
-              the booking shall be deemed void.
-            </li>
-            <li>The Contract shall be signed once the students come to live in the accomodation</li>
-            <li>Student can cancel the booking within 15 days after booking.</li>
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">Accommodation Policies</div>
+        <div class="card" style="padding: 1rem; background-color: white; border-radius: 1rem">
+          <ul *ngFor="let policy of accomodatioPoliciesList">
+            <li>{{ policy.policies }}</li>
           </ul>
+        </div>
+      </div>
+      <div style="padding-top: 1.5rem">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem">Fee Covers</div>
+        <div class="featuresBox-Items card" style="padding: 1rem; background-color: white; border-radius: 1rem">
+          <span *ngIf="selectedRoomData.feeDetails.wifi" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/wifi.svg" alt="" />
+            </div>
+            <div class="featureText">Wi-Fi</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.meals" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/meal.svg" alt="" />
+            </div>
+            <div class="featureText">Meals</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.laundary" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/laundry.svg" alt="" />
+            </div>
+            <div class="featureText">Laundry</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.electricBill" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/electricity.svg" alt="" />
+            </div>
+            <div class="featureText">Electric Bills</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.roomSpace" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/roomspace.svg" alt="" />
+            </div>
+            <div class="featureText">Room Space</div>
+          </span>
         </div>
       </div>
     </div>
@@ -54,7 +83,9 @@
       </div>
       <div class="place-details">
         <div class="title-left">
-          <div style="width: fit-content; height: fit-content; font-size: 2.5rem">Place Details</div>
+          <div style="width: fit-content; height: fit-content; font-size: 2.5rem; font-weight: lighter">
+            Place Details
+          </div>
         </div>
         <div class="title-right">
           <div style="margin-right: 1rem; display: flex; justify-content: center; align-items: center">
@@ -62,14 +93,17 @@
               Rs. {{ selectedRoomData.feeDetails.price }} <span style="font-weight: lighter">/month</span>
             </div>
           </div>
-          <div>
+          <div *ngIf="UserType != 'Landlord'">
             <button
-              *ngIf="!isBookedbyuser"
+              *ngIf="!isBookedbyuser && !isStatusBooked"
               (click)="REQUESTBOOKING()"
               style="margin: 0 auto; background-color: green; color: white"
               mat-flat-button
             >
               Request to book
+            </button>
+            <button *ngIf="isStatusBooked" style="margin: 0 auto; background-color: red; color: white" mat-flat-button>
+              Booked
             </button>
             <button
               *ngIf="isBookedbyuser"
@@ -80,12 +114,9 @@
               In Process
             </button>
           </div>
-          <!-- <div>
-                    <img src="assets/Icon/19.png" alt="">
-                </div> -->
         </div>
       </div>
-      <div class="description">
+      <div class="description card" style="padding-bottom: 10px">
         <div *ngIf="selectedRoomData.description.length == 0" class="maindisc">
           The description for this room is not currently avialable, please see its features and other facilities to
           assess the product.
@@ -95,65 +126,148 @@
         </div>
         <div class="isCheckedStatus">
           <div class="Ischeckedimg">
-            <img style="width: 100%; height: 100%; background: no-repeat" src="assets/Icon/17.png" alt="" />
+            <img
+              class="checkNotCheckClass"
+              style="width: 100px; height: 100px; background: no-repeat"
+              src="{{ selectedRoomData.isChecked ? 'assets/Icon/17.png' : 'assets/Icon/18.png' }}"
+              alt=""
+            />
           </div>
           <div style="font-weight: lighter">
-            <div style="font-weight: bold; color: green">Checked</div>
-            We have personally visited the place and checked every services and detailed presented in the page.
-            <br />
-            If you would like to know how we did, then feel free to contact us.
+            <div [ngStyle]="{ color: selectedRoomData.isChecked ? 'green' : 'red' }" style="font-weight: bold">
+              {{ selectedRoomData.isChecked ? 'Checked' : 'Not Checked' }}
+            </div>
+            {{
+              selectedRoomData.isChecked
+                ? 'We have personally visited the place and checked every services and detailed presented in the page. If you
+            would like to know how we did, then feel free to contact us.'
+                : 'The Following room has not been checked by KUoom Officials and therefore is not liable for any misInformation caused by the inforamtion displayed. If you
+                would like to know how we did, then feel free to contact us.'
+            }}
           </div>
         </div>
       </div>
       <div style="padding-top: 1.5rem">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem">Features</div>
-        <div style="display: flex; padding: 1rem; background-color: white; border-radius: 1rem">
-          <div class="featurebox">
-            <div class="feature1">
-              <img src="assets/Icon/15.png" alt="" />
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">Facilities</div>
+        <div class="featuresBox-Items card">
+          <span *ngIf="selectedRoomData.capacity != 'Unavailable'" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/people.svg" alt="" />
             </div>
-            Furnished
-          </div>
-          <div class="feature2">
-            <div style="height: 10vh; width: 100%">
-              <img src="assets/Icon/14.png" alt="" />
+            <div class="featureText" style="width: 55px">{{ selectedRoomData.capacity }} People</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.wifi" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/wifi.svg" alt="" />
             </div>
-            2 Windows
-          </div>
-          <div class="feature3">
-            <div style="height: 10vh; width: 100%">
-              <img src="assets/Icon/13.png" alt="" />
+            <div class="featureText">Wi-Fi</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.meals" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/meal.svg" alt="" />
             </div>
-            2 Bulbs
-          </div>
+            <div class="featureText">Meals</div>
+          </span>
+          <span *ngIf="selectedRoomData.feeDetails.laundary" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/laundry.svg" alt="" />
+            </div>
+            <div class="featureText">Laundry</div>
+          </span>
+
+          <span *ngIf="selectedRoomData.furnishedDetails.objects.hasBed" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/bed.svg" alt="" />
+            </div>
+            <div class="featureText">Bed</div>
+          </span>
+
+          <span *ngIf="selectedRoomData.furnishedDetails.objects.hasBed" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/window.svg" alt="" />
+            </div>
+            <div class="featureText">Window</div>
+          </span>
+
+          <span *ngIf="selectedRoomData.furnishedDetails.objects.hasDesk" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/desk.svg" alt="" />
+            </div>
+            <div class="featureText">Desk</div>
+          </span>
+
+          <span *ngIf="selectedRoomData.furnishedDetails.objects.hasChair" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/chair.svg" alt="" />
+            </div>
+            <div class="featureText">Chair</div>
+          </span>
+          <span *ngIf="selectedRoomData.furnishedDetails.objects.hasCupBoard" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/cupboard.svg" alt="" />
+            </div>
+            <div class="featureText">Cupboard</div>
+          </span>
+          <span *ngIf="selectedRoomData.facilities.terrance" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/terrace.svg" alt="" />
+            </div>
+            <div class="featureText">Terrace</div>
+          </span>
+
+          <span *ngIf="selectedRoomData.facilities.AC" class="featurebox">
+            <div>
+              <img class="featureIMG" src="assets/Icon/roomprofile/airconditioner.svg" alt="" />
+            </div>
+            <div class="featureText">AC</div>
+          </span>
         </div>
       </div>
       <div style="padding-top: 1.5rem">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem">About the LandLord</div>
-        <div style="display: flex; padding: 1rem; background-color: white; border-radius: 1rem">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">About the LandLord</div>
+        <div
+          class="landlordCard card"
+          style="display: flex; padding: 1rem; background-color: white; border-radius: 1rem"
+        >
           <div class="landlordprofilepic">
-            <img src="assets/Icon/profile.png" alt="" />
+            <img *ngIf="!LandlordImgtrue" src="assets/Icon/roomprofile/user.png" alt="" />
+            <img *ngIf="LandlordImgtrue" src="{{ LandlordDetails[0].imgUrl }}" alt="" />
           </div>
           <div class="landlorddetails">
             <div class="name" style="display: flex; font-size: 2rem">
               <div>{{ selectedRoomData.landLordDetails.fullName }}</div>
               <div *ngIf="selectedRoomData.landLordDetails.isTrusted">
-                <span class="material-icons" style="color: green !important"> beenhere </span>
+                <span class="material-icons" style="color: green !important; font-size: 14px"> beenhere </span>
               </div>
               <div *ngIf="selectedRoomData.landLordDetails.isTrusted" style="font-size: 1rem; font-weight: lighter">
                 Trusted LandLord
               </div>
             </div>
-            <div style="font-weight: lighter">{{ selectedRoomData.landLordDetails.email }}</div>
-            <div style="font-weight: lighter">{{ selectedRoomData.landLordDetails.phone }}</div>
+            <div *ngIf="!isBookedbyuser" style="padding: 10px 0px; color: red">
+              Book the room to get access to landlord's Contact.
+            </div>
+            <div *ngIf="isBookedbyuser" style="font-weight: lighter">
+              {{ selectedRoomData.landLordDetails.email }}
+            </div>
+            <div *ngIf="isBookedbyuser" style="font-weight: lighter">
+              {{ selectedRoomData.landLordDetails.phone }}
+            </div>
+            <div *ngIf="isSuperUser">
+              <div style="font-weight: lighter">
+                {{ selectedRoomData.landLordDetails.email }}
+              </div>
+              <div style="font-weight: lighter">
+                {{ selectedRoomData.landLordDetails.phone }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div style="padding-top: 1.5rem">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem">Location</div>
-        <div class="map">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">Location</div>
+        <div class="map card" *ngIf="!mapError">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1767.4880513197816!2d85.53935492603244!3d27.625256772121645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb08ddf9285c83%3A0x8d8fea7e5dbf887d!2s28%20Kilo%2C%20Dhulikhel%2045200!5e0!3m2!1sen!2snp!4v1602685559445!5m2!1sen!2snp"
+            [src]="UsableEmbbedCode"
             width="95%"
             height="700"
             frameborder="0"
@@ -163,6 +277,7 @@
             tabindex="0"
           ></iframe>
         </div>
+        <div class="map card" style="color: red" *ngIf="mapError">The Location of this Room is Unavailable</div>
       </div>
     </div>
   </div>
@@ -174,19 +289,22 @@
       </h2>
       <p style="padding: 0%; margin: 0px; font-weight: lighter; font-size: 1.5rem">Can unbook within 15days.</p>
     </div>
-    <div style="margin-right: 0.5rem; padding-right: 1rem">
+    <div *ngIf="UserType != 'Landlord'" style="margin-right: 0.5rem; padding-right: 1rem">
       <button
-        *ngIf="!isBookedbyuser"
+        *ngIf="!isBookedbyuser && !isStatusBooked"
         (click)="REQUESTBOOKING()"
-        style="background-color: green; color: white"
+        style="margin: 0 auto; background-color: green; color: white"
         mat-flat-button
       >
         Request to book
       </button>
+      <button *ngIf="isStatusBooked" style="margin: 0 auto; background-color: red; color: white" mat-flat-button>
+        Booked
+      </button>
       <button
         *ngIf="isBookedbyuser"
-        (click)="REQUESTBOOKING()"
-        style="background-color: rgb(0, 157, 255); color: white"
+        disabled
+        style="margin: 0 auto; background-color: rgb(0, 157, 255); color: white"
         mat-flat-button
       >
         In Process

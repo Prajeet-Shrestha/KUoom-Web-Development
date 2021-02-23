@@ -6,16 +6,34 @@ import { DbfirestoreService } from '../../../../services/dbfirestore/dbfirestore
 import { Router } from '@angular/router';
 import { BookingRequestDataTempalte } from '../../../../interfaces/bookingRequest';
 import { roomDetailsTemplate } from '../../../../interfaces/roomDetails';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirestoreQueryService } from 'src/app/services/firestorequery/firestore-query.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-productprofile',
   templateUrl: './productprofile.component.html',
   styleUrls: ['./productprofile.component.css'],
 })
 export class ProductprofileComponent implements OnInit, AfterViewInit {
+  accomodatioPoliciesList = [
+    {
+      policies:
+        'After book, the room will be in reserved for 10 Days. If the student is unable to pay or occupy the room the booking shall be deemed void.',
+    },
+    {
+      policies: 'Student can cancel the booking within 15 days after booking.',
+    },
+  ];
+  LandlordDetails = [];
+  LandlordImgtrue = false;
+  UsableEmbbedCode: SafeResourceUrl;
   constructor(
     private _notify: NotifierService,
     private _router: Router,
     private _DS: DataService,
+    public sanitizeURL: DomSanitizer,
+    private fireauth: AngularFireAuth,
+    private _fireQuery: FirestoreQueryService,
     private _fireService: DbfirestoreService
   ) {
     this.userdetails = JSON.parse(localStorage.getItem('user'));
@@ -32,10 +50,10 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
           id: remodeledData.id,
           availableDate: remodeledData.availableDate,
           isAvailable: remodeledData.isAvailable,
+          isChecked: remodeledData.isChecked ? remodeledData.isChecked : false,
           capacity: remodeledData.capacity ? remodeledData.capacity : 'Unavailable',
           policies: remodeledData.policies,
           basicQA: remodeledData.basicQA,
-          isBooked: remodeledData.isBooked ? true : false,
           location: remodeledData.location,
           roomType: remodeledData.roomType,
           description: remodeledData.description ? remodeledData.description : '',
@@ -61,28 +79,68 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
             objects: remodeledData.furnishedDetails.objects,
           },
         };
-        this._fireService
-          .checkBookingStatus(this.selectedRoomData.id, this.userdetails.uid)
-          .then(function (querySnapshot) {
-            let list;
-            list = [];
-            querySnapshot.forEach(function (doc) {
-              list.push(doc.data());
+
+        if (this.selectedRoomData.isAvailable) {
+          this._fireService
+            .checkBookingStatus(this.selectedRoomData.id, this.userdetails.uid)
+            .then(function (querySnapshot) {
+              let list;
+              list = [];
+              querySnapshot.forEach(function (doc) {
+                list.push(doc.data());
+              });
+              console.log(list);
+              if (list.length >= 1) {
+                self.isBookedbyuser = true;
+              } else if (list.length == 0) {
+                self.isBookedbyuser = false;
+              }
+              console.log('ISBOOKED?::', self.isBookedbyuser);
+            })
+            .catch((err) => {
+              console.log(err);
             });
-            console.log(list);
-            if (list.length >= 1) {
-              self.isBookedbyuser = true;
-            } else if (list.length == 0) {
-              self.isBookedbyuser = false;
-            }
-            console.log('ISBOOKED?::', self.isBookedbyuser);
-          })
-          .catch((err) => {
-            console.log(err);
+        } else {
+          this.isStatusBooked = true;
+        }
+        try {
+          if (this.selectedRoomData.location.url.includes('www.google.com')) {
+            this.UsableEmbbedCode = this.sanitizeURLFunction(this.selectedRoomData.location.url);
+            console.log(this.UsableEmbbedCode);
+            this.mapError = false;
+          } else {
+            console.error(':::INVALID GOOGLE MAP CODE:::::');
+            this.mapError = true;
+          }
+        } catch (e) {
+          console.error(':::INVALID GOOGLE MAP CODE:::::');
+          this.mapError = true;
+        }
+        this._fireQuery.getLandLordImg(this.selectedRoomData.landLordDetails.email).then((res) => {
+          res.forEach(function (doc) {
+            self.LandlordDetails.push(doc.data());
           });
+          // console.log(self.LandlordDetails);
+          if (self.LandlordDetails[0].imgUrl.length >= 2) {
+            self.LandlordImgtrue = true;
+          }
+        });
         self._DS.changeLoadingStatus(false);
         console.log(remodeledData);
         console.log(self.selectedRoomData);
+        if (this.selectedRoomData.policies) {
+          this.accomodatioPoliciesList = this.selectedRoomData.policies;
+        }
+        if (this.selectedRoomData.images.extras) {
+          for (const url of this.selectedRoomData.images.extras) {
+            self.imageObject.push({
+              image: url,
+              thumbImage: url,
+              alt: 'alt of image',
+              title: 'FURNISHED PRIVATE ROOM',
+            });
+          }
+        }
         self.imageObject.push({
           image: self.selectedRoomData.images.mainPhoto,
           thumbImage: self.selectedRoomData.images.mainPhoto,
@@ -92,20 +150,30 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
       });
     });
   }
+  isStatusBooked: boolean = false;
   imageObject: Array<object> = [];
   selectedRoomId: string = '';
+  isSuperUser: boolean = false;
   isBookedbyuser: boolean = false;
   userdetails;
   selectedRoomData: roomDetailsTemplate = {
     id: '',
-    policies: [],
+    policies: [
+      {
+        policies: '',
+      },
+    ],
+    isChecked: false,
     basicQA: [],
     capacity: 0,
     isAvailable: true,
-    location: '',
+    location: {
+      name: '',
+      url: '',
+    },
     availableDate: null,
     roomType: '',
-    isBooked: false,
+    // isBooked: false,
     description: '',
     landLordDetails: {
       fullName: '',
@@ -115,10 +183,20 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
       img: '',
     },
 
-    facilities: [],
+    facilities: {
+      AC: false,
+      laundary: false,
+      terrance: false,
+      wifi: false,
+    },
 
     feeDetails: {
       price: '',
+      electricBill: false,
+      laundary: false,
+      meals: false,
+      roomSpace: false,
+      wifi: false,
     },
 
     images: {
@@ -128,29 +206,66 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
 
     furnishedDetails: {
       isFurnished: false,
-      objects: {},
+      objects: {
+        hasChair: false,
+        hasDesk: false,
+        hasBed: false,
+        hasCupBoard: false,
+      },
     },
   };
+  UserType = '';
+  isVerified: boolean = false;
 
   ngAfterViewInit() {}
   ngOnInit(): void {
+    this.fireauth.onAuthStateChanged((res) => {
+      console.log(res);
+
+      if (res) {
+        if (res.emailVerified) {
+          this._DS.isEmailVerifiedStatus(true);
+        }
+        // console.log(res.emailVerified);
+      }
+    });
+    this._DS.isSuperUser.subscribe((res) => {
+      console.warn(':::IS SUPER USER:::::', res);
+      this.isSuperUser = res;
+    });
     this._DS.changeTitle('Product | KUoom');
+    this._DS.currentuserType.subscribe((type) => {
+      this.UserType = type;
+    });
+    this._DS.isEmailVerified.subscribe((stat) => {
+      this.isVerified = stat;
+      console.log('ISVERIFIED:::', this.isVerified);
+    });
   }
   REQUESTBOOKING() {
-    let bookingData: BookingRequestDataTempalte = {
-      reqId: '',
-      RoomId: this.selectedRoomData.id,
-      landLord: {
-        email: this.selectedRoomData.landLordDetails.email,
-        phone: this.selectedRoomData.landLordDetails.phone,
-      },
-      TenantId: {
-        email: this.userdetails.email,
-        id: this.userdetails.uid,
-      },
-      dateofBooking: new Date(),
-      status: 'Pending',
-    };
-    this._fireService.requestABooking(bookingData);
+    if (this.isVerified) {
+      let bookingData: BookingRequestDataTempalte = {
+        reqId: '',
+        RoomId: this.selectedRoomData.id,
+        landLord: {
+          email: this.selectedRoomData.landLordDetails.email,
+          phone: this.selectedRoomData.landLordDetails.phone,
+        },
+        TenantId: {
+          email: this.userdetails.email,
+          name: this.userdetails.name,
+          id: this.userdetails.uid,
+        },
+        dateofBooking: new Date(),
+        status: 'Pending',
+      };
+      this._fireService.requestABooking(bookingData);
+    } else {
+      this._notify.showNotification('Please Verify Your Email Before Booking.', '', 'error');
+    }
+  }
+  mapError = false;
+  sanitizeURLFunction(url): SafeResourceUrl {
+    return this.sanitizeURL.bypassSecurityTrustResourceUrl(url);
   }
 }

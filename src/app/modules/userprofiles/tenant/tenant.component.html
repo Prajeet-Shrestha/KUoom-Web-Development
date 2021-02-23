@@ -8,7 +8,7 @@
               <h2>{{ 'profile.tenant.YourBooking' | translate }}</h2>
             </div>
             <div class="BookedProducts">
-              <div *ngFor="let product of products">
+              <div *ngFor="let product of BOOKINGLIST_USABLE_DATA">
                 <app-room-product-card
                   [productObj]="product"
                   [imgUrl]="product.url"
@@ -45,6 +45,8 @@
             [LastName]="UserDetails.Lname"
             [Email]="UserDetails.email"
             [Phone]="UserDetails.phone"
+            [uid]="LocalStorageUserDetails.uid"
+            [isVerifed]="isVerifiedEmail"
           ></app-userprofile>
         </mat-tab>
         <mat-tab label="Favorites">
@@ -119,11 +121,3 @@
     </div>
   </div>
 </div>
-<footer>
-  <div class="logo"></div>
-  <h1>Find your room with us</h1>
-  <ul>
-    <li><a href="#">Links</a></li>
-    <li><a href="#">Links</a></li>
-  </ul>
-</footer>

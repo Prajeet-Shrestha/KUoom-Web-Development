@@ -8,28 +8,24 @@
             <mat-icon aria-hidden="false" class="filter_listIcon" (click)="drawer.toggle()">clear</mat-icon>
           </div>
         </div>
-        <!-- <div class="location">
-                <h4>Location</h4>
-                   <div class="locationSelect">
-                    <mat-select>
-                        <mat-option *ngFor="let location of locations" [(value)]="location.name">
-                          {{location.name}}
-                        </mat-option>
-                      </mat-select>
-                   
-                </div>
 
-            </div> -->
         <div class="AvailableFromDate">
           <h4>Available From</h4>
-          <div class="datePicker">
-            <mat-form-field color="accent" appearance="fill">
-              <mat-label>Available From Date</mat-label>
-              <input matInput [matDatepicker]="AvailableFromDatePicker" />
-              <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePicker"></mat-datepicker-toggle>
-              <mat-datepicker #AvailableFromDatePicker></mat-datepicker>
-            </mat-form-field>
-          </div>
+          <form [formGroup]="FilterAvailableDateFormMobile">
+            <div class="datePicker">
+              <mat-form-field color="accent" appearance="fill">
+                <mat-label>Available From Date</mat-label>
+                <input
+                  matInput
+                  formControlName="date"
+                  [matDatepicker]="AvailableFromDatePicker"
+                  (dateChange)="datechange()"
+                />
+                <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #AvailableFromDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </form>
         </div>
         <div class="placetype">
           <h4>Type of Place</h4>
@@ -155,28 +151,23 @@
             <div class="filter-title">
               <h2>Book Your Room</h2>
             </div>
-            <!-- <div class="location">
-                <h4>Location</h4>
-                   <div class="locationSelect">
-                    <mat-select>
-                        <mat-option *ngFor="let location of locations" [(value)]="location.name">
-                          {{location.name}}
-                        </mat-option>
-                      </mat-select>
-                   
-                </div>
-
-            </div> -->
             <div class="AvailableFromDate">
               <h4>Available From</h4>
-              <div class="datePicker">
-                <mat-form-field color="accent" appearance="fill">
-                  <mat-label>Available From Date</mat-label>
-                  <input matInput [matDatepicker]="AvailableFromDatePickerMain" />
-                  <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePickerMain"></mat-datepicker-toggle>
-                  <mat-datepicker #AvailableFromDatePickerMain></mat-datepicker>
-                </mat-form-field>
-              </div>
+              <form [formGroup]="FilterAvailableDateForm">
+                <div class="datePicker">
+                  <mat-form-field color="accent" appearance="fill">
+                    <mat-label>Available From Date</mat-label>
+                    <input
+                      matInput
+                      formControlName="date"
+                      [matDatepicker]="AvailableFromDatePickerMain"
+                      (dateChange)="datechange()"
+                    />
+                    <mat-datepicker-toggle matSuffix [for]="AvailableFromDatePickerMain"></mat-datepicker-toggle>
+                    <mat-datepicker #AvailableFromDatePickerMain></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </form>
             </div>
             <div class="placetype">
               <h4>Type of Place</h4>
@@ -299,7 +290,7 @@
             <div class="sortby">Sort By:</div>
             <div class="resultsfound">{{ products.length }} Results Found</div>
           </div>
-          <div class="mid-notification">
+          <div class="mid-notification" id="midNotification">
             <div class="main-notification">
               This month is very Popular for new students/ cutomers to pre-book the room.
             </div>
@@ -308,9 +299,6 @@
           <div class="selectedFilters">
             <div class="filterChips" style="display: flex">
               <mat-chip-list *ngFor="let filter of SelectedFilters">
-                <!-- <mat-chip>{{filter}}</mat-chip> -->
-                <!-- <mat-chip>Two fish</mat-chip> -->
-                <!-- <mat-chip color="primary" selected>Primary fish</mat-chip> -->
                 <mat-chip color="accent" selected style="margin-left: 0.8rem">{{ filter }}</mat-chip>
               </mat-chip-list>
             </div>
@@ -326,7 +314,9 @@
                 [capacity]="product.capacity"
                 [chair]="product.objects.hasChair"
                 [bed]="product.objects.hasBed"
+                [isChecked]="product.isChecked"
                 [table]="product.objects.hasDesk"
+                [imgObj]="product.imgObjects"
                 [cupboard]="product.objects.hasCupBoard"
                 [status]="product.status"
                 [like]="product.like"
@@ -335,43 +325,6 @@
                 [price]="product.price"
               ></app-room-product-card>
             </div>
-            <!-- <div *ngFor="let product of products" class="product-card">
-              <div class="imgcontainer">
-                <img src="{{ product.url }}" class="product-img" alt="" (click)="RoomProfileNavigate(product)" />
-              </div>
-              <div class="product-details">
-                <div class="top1">
-                  <div class="title" (click)="RoomProfileNavigate()">
-                    {{ product.title }}
-                    <span style="font-weight: lighter; font-size: 12px">1 Room • 2 Beds • 2 Tables</span>
-                  </div>
-
-                  <div (click)="updatelike(product)" class="love" [ngClass]="{ like: product.like }"></div>
-                </div>
-
-                <div class="top2">
-                  <div class="subtitle">
-                    {{ product.subtitle }}
-                  </div>
-                </div>
-                <div class="top3">
-                  <div style="color: #1a4789" class="location-icon material-icons">room</div>
-                  <div class="location">
-                    {{ product.location }}
-                  </div>
-                </div>
-                <div class="price">
-                  <span class="mainprice"> {{ product.price }}</span>
-                  <span class="permonth">/month</span>
-                </div>
-                <div class="bottom1">
-                  <div class="date">{{ product.date }}</div>
-                  <div class="status" [ngClass]="{ available: product.status == 'Available' }">
-                    {{ product.status }}
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>

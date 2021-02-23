@@ -53,6 +53,7 @@
                 style="background: #f3f0f0; margin-top: 1rem; color: black"
                 class="custom-google-btn"
                 mat-raised-button
+                (click)="GoogleSignIn('Tenant')"
               >
                 <img class="fb-logo" src="assets/Icon/9.png" alt="" />Connect With Google
               </button>
@@ -81,7 +82,12 @@
 
               <button style="background: #008037" class="custom-register-btn" mat-raised-button>Login</button>
               <hr />
-              <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
+              <button
+                style="background: #1a4789; margin-top: 1rem"
+                class="custom-fb-btn"
+                mat-raised-button
+                (click)="FacebookSigIn('Landlord')"
+              >
                 <img class="fb-logo" src="assets/Icon/8.png" alt="" />
                 Connect With Facebook
               </button>
@@ -89,6 +95,7 @@
                 style="background: #f3f0f0; margin-top: 1rem; color: black"
                 class="custom-google-btn"
                 mat-raised-button
+                (click)="GoogleSignIn('Landlord')"
               >
                 <img class="fb-logo" src="assets/Icon/9.png" alt="" />Connect With Google
               </button>

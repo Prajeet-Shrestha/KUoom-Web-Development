@@ -6,20 +6,24 @@
         <p>{{ 'index.subTitle' | translate }}</p>
       </div>
       <div *ngIf="!searchBarStatus" class="search-bar">
-        <input
-          matInput
-          [matDatepicker]="picker"
-          type="datetime"
-          placeholder=" {{ 'index.dataPlaceHolder' | translate }} "
-        />
-        <mat-datepicker-toggle
-          style="margin-left: -4.5rem; margin-top: 0.8rem"
-          matSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <img src="/" alt="" />
-        <div (click)="search()" class="search"></div>
+        <form [formGroup]="FilterAvailableDateForm" style="display: flex">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            type="datetime"
+            formControlName="date"
+            (dateChange)="datechange($event)"
+            placeholder=" {{ 'index.dataPlaceHolder' | translate }} "
+          />
+          <mat-datepicker-toggle
+            style="margin-left: -4.5rem; margin-top: 0.8rem"
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <img src="/" alt="" />
+          <div (click)="search()" class="search"></div>
+        </form>
       </div>
       <div *ngIf="lang == 'np'" class="TranlateButton" (click)="translate('en')">Translate to English</div>
       <div *ngIf="lang == 'en'" class="TranlateButton" (click)="translate('np')">नेपालीमा अनुवाद गर्नुहोस्</div>
@@ -36,19 +40,19 @@
         <ul>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image1Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image1Page2.png" alt="" />
               <figcaption>Banepa</figcaption>
             </figure>
           </li>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image2Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image2Page2.png" alt="" />
               <figcaption>Banepa</figcaption>
             </figure>
           </li>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image3Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image3Page2.png" alt="" />
               <figcaption>Kathmandu</figcaption>
             </figure>
           </li>
@@ -58,25 +62,25 @@
         <ul>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image4Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image4Page2.png" alt="" />
               <figcaption>Banepa</figcaption>
             </figure>
           </li>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image1Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image1Page2.png" alt="" />
               <figcaption>Banepa</figcaption>
             </figure>
           </li>
           <li class="gallery">
             <figure class="city-photo city-photo-1">
-              <img src="assets/img/Image1Page2.png" alt="" />
+              <img loading="lazy" src="assets/img/Image1Page2.png" alt="" />
               <figcaption>Banepa</figcaption>
             </figure>
           </li>
         </ul>
       </div>
-      <img src="assets/Icon/frontpage2flower2.png" class="image-lower" alt="" />
+      <img loading="lazy" src="assets/Icon/frontpage2flower2.png" class="image-lower" alt="" />
     </div>
     <div class="reach-text">
       <h3>Why you want to rent your room?</h3>
@@ -91,11 +95,11 @@
   </section>
 
   <section class="section-bookUs">
-    <img class="image-back" src="assets/Icon/frontpage2flower.png" alt="" />
+    <img loading="lazy" class="image-back" src="assets/Icon/frontpage2flower.png" alt="" />
     <h3>Why book with KUoom?</h3>
     <div class="last-container">
       <div class="card">
-        <img src="assets/Icon/page3symbol1.png" alt="" />
+        <img loading="lazy" src="assets/Icon/page3symbol1.png" alt="" />
         <h1>Fast process</h1>
         <p>
           You don't have to take a day or two off for going on field and searching a room you would desire to call your
@@ -104,7 +108,7 @@
         </p>
       </div>
       <div class="card">
-        <img src="assets/Icon/page3symbol2.png" alt="" />
+        <img loading="lazy" src="assets/Icon/page3symbol2.png" alt="" />
         <h1>No More Hours of Walking</h1>
         <p>
           Are you tired of walking and finding the room that best suits you? Don't worry , now you can take few minutes
@@ -113,7 +117,7 @@
         </p>
       </div>
       <div class="card">
-        <img src="assets/Icon/page3symbol3.png" alt="" />
+        <img loading="lazy" src="assets/Icon/page3symbol3.png" alt="" />
         <h1>Guranteed Room</h1>
         <p>
           The room you would find in KUoom is guranteed as we keep only the rooms that are available from our

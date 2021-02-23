@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { UserDetailsResposeMap } from '../tenant/tenant.component';
 import { DbfirestoreService } from 'src/app/services/dbfirestore/dbfirestore.service';
+
 import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
 
 @Component({
@@ -12,44 +13,10 @@ import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
   styleUrls: ['./landlord.component.css'],
 })
 export class LandlordComponent implements OnInit {
-  products = [
-    {
-      index: 0,
-      like: true,
-      url: 'assets/Roomexample/1.png',
-      title: 'FURNISHED PRIVATE ROOM',
-      subtitle: 'Single Room in 28 Kilo Neighbour',
-      location: '28 Kilo, Dhulikhel',
-      price: 'Rs. 3000',
-      date: 'Available from 20th Oct, 2020',
-      status: 'Booked',
-    },
-    {
-      index: 0,
-      like: true,
-      url: 'assets/Roomexample/1.png',
-      title: 'FURNISHED PRIVATE ROOM',
-      subtitle: 'Single Room in 28 Kilo Neighbour',
-      location: '28 Kilo, Dhulikhel',
-      price: 'Rs. 3000',
-      date: 'Available from 20th Oct, 2020',
-      status: 'Booked',
-    },
-    // {
-    //   index: 0,
-    //   like: false,
-    //   url: "assets/Roomexample/1.png",
-    //   title: "FURNISHED PRIVATE ROOM",
-    //   subtitle: "Single Room in 28 Kilo Neighbour",
-    //   location: "28 Kilo, Dhulikhel",
-    //   price: "Rs. 3000",
-    //   date: "Available from 20th Oct, 2020",
-    //   status: "Booked"
-    // }
-  ];
   isSuperUser: boolean = false;
   ConfigForm: FormGroup;
   UserDetails: UserDetailsResposeMap;
+  isVerifiedEmail = false;
   constructor(
     private _fireService: DbfirestoreService,
     private _router: Router,
@@ -64,26 +31,13 @@ export class LandlordComponent implements OnInit {
   PendingBookingRoomDetails = [];
   AllRoomData = [];
   selectedRoomData = {};
+  LocalStorageUserDetails;
   ngOnInit(): void {
+    this.LocalStorageUserDetails = JSON.parse(localStorage.getItem('user'));
     this.init_ConfigForm();
     let self = this;
-    this.DataService.isSuperUser.subscribe((data: boolean) => {
-      this.isSuperUser = data;
-      if (this.isSuperUser) {
-        this._fireService.getALLROOMLIST().then((data) => {
-          data.forEach((doc) => {
-            self.AllRoomListRaw.push(doc.data());
-          });
-          this.CompileRoomData();
-        });
-      } else {
-        this._fireService.getCertainLandLordRoomList(this.UserDetails.phone.toString()).then((data) => {
-          data.forEach((doc) => {
-            self.AllRoomListRaw.push(doc.data());
-          });
-          this.CompileRoomData();
-        });
-      }
+    this.DataService.isEmailVerified.subscribe((data) => {
+      this.isVerifiedEmail = data;
     });
 
     this.DataService.currentUserFullDetails.subscribe((data: UserDetailsResposeMap) => {
@@ -94,34 +48,61 @@ export class LandlordComponent implements OnInit {
         Fname: data.Fname,
         Lname: data.Lname,
       };
-      let opt = data.phone;
-      if (data.phone == '9810442111') {
+      let opt = data.email;
+      if (data.email == 'prazzeettstha@gmail.com') {
         opt = 'ALL';
       }
-
+      this.DataService.isSuperUser.subscribe((data: boolean) => {
+        this.isSuperUser = data;
+        if (this.isSuperUser) {
+          this._fireService.getALLROOMLIST().then((data) => {
+            data.forEach((doc) => {
+              self.AllRoomListRaw.push(doc.data());
+            });
+            this.CompileRoomData();
+          });
+        } else {
+          console.log(':::::NORMAL LANDLORD::::::');
+          this._fireService.getCertainLandLordRoomList(this.UserDetails.email.toString()).then((data) => {
+            console.log(data);
+            data.forEach((doc) => {
+              self.AllRoomListRaw.push(doc.data());
+            });
+            this.CompileRoomData();
+          });
+        }
+      });
       this._fireService.getPendingBookingList(opt).then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
           self.PendingBookingList.push(doc.data());
         });
+        // console.clear();
+        console.log(self.PendingBookingList);
         for (let i = 0; i < self.PendingBookingList.length; i++) {
           this._fireService.getSelectedRoom(self.PendingBookingList[i].RoomId).then((data) => {
+            console.log(data.data());
             let remodeledData = data.data();
-            const DataSet = {
-              id: remodeledData.id,
-              index: i,
-              like: false,
-              url: remodeledData.images.mainPhoto,
-              title: (
-                (remodeledData.furnishedDetails.isFurnished ? 'Furnished ' : 'Unfurnished ') + remodeledData.roomType
-              ).toUpperCase(),
-              subtitle: 'Single Room in ' + remodeledData.location,
-              location: remodeledData.location,
-              price: 'Rs. ' + remodeledData.feeDetails.price.toString(),
-              date: 'Available from 20th Oct, 2020',
-              status: remodeledData.isBooked ? 'Booked' : 'Available',
-            };
+            if (remodeledData) {
+              const DataSet = {
+                id: remodeledData.id,
+                index: i,
+                applicantName: self.PendingBookingList[i].TenantId.name
+                  ? self.PendingBookingList[i].TenantId.name
+                  : 'Unknown',
+                like: false,
+                url: remodeledData.images.mainPhoto,
+                title: (
+                  (remodeledData.furnishedDetails.isFurnished ? 'Furnished ' : 'Unfurnished ') + remodeledData.roomType
+                ).toUpperCase(),
+                subtitle: 'Single Room in ' + remodeledData.location.name,
+                location: remodeledData.location.name,
+                price: 'Rs. ' + remodeledData.feeDetails.price.toString(),
+                date: 'Available from 20th Oct, 2020',
+                status: remodeledData.isBooked ? 'Booked' : 'Available',
+              };
 
-            self.PendingBookingRoomDetails.push(DataSet);
+              self.PendingBookingRoomDetails.push(DataSet);
+            }
           });
         }
         self.DataService.changeLoadingStatus(false);
@@ -149,9 +130,10 @@ export class LandlordComponent implements OnInit {
   }
 
   addRoom() {
+    this.DataService.changeisEditRoomValue(false);
     this._router.navigate(['/addRoom']);
   }
-
+  products = [];
   CompileRoomData() {
     this.products = [];
     this.AllRoomListRaw.forEach((data, index) => {
@@ -161,8 +143,8 @@ export class LandlordComponent implements OnInit {
         like: false,
         url: data.images.mainPhoto,
         title: ((data.furnishedDetails.isFurnished ? 'Furnished ' : 'Unfurnished ') + data.roomType).toUpperCase(),
-        subtitle: 'Single Room in ' + data.location,
-        location: data.location,
+        subtitle: 'Single Room in ' + data.location.name,
+        location: data.location.name,
         price: 'Rs. ' + data.feeDetails.price.toString(),
         date: 'Available from 20th Oct, 2020',
         status: data.isBooked ? 'Booked' : 'Available',
@@ -176,4 +158,6 @@ export class LandlordComponent implements OnInit {
     // }
     console.log(this.products);
   }
+
+  addLocation() {}
 }

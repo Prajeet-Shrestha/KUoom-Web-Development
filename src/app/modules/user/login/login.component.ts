@@ -35,6 +35,13 @@ export class LoginComponent implements OnInit {
     this.DataService.changeTitle('Login | KUoom');
   }
 
+  GoogleSignIn(type) {
+    this.authService.signInwithGoogle(type);
+  }
+
+  FacebookSigIn(type) {
+    this.authService.signInwithFaceBook(type);
+  }
   userDetails: UserDetails;
   LoginTenant() {
     const { email, password } = this.LoginFromTenant.value;
@@ -70,19 +77,25 @@ export class LoginComponent implements OnInit {
             });
             this.DataService.changeMessage(this.userDetails.name);
             this.DataService.changeUserType(this.userDetails.userType);
+            //For Local storage
             let user = {
               uid: res.user.uid,
               name: data.data().name,
-              userType: data.data().userType,
+              userType: this.authService.enCode(data.data().userType),
               email: data.data().email,
               phone: data.data().phone,
             };
+            if (user.uid.toString() == 'gRgumEJMzWYxdeXFNgC20lSi2pd2') {
+              this.DataService.changeIsSupperAccount(true);
+            }
             localStorage.removeItem('user');
             localStorage.setItem('user', JSON.stringify(user));
+            this.DataService.changeLoadingStatus(false);
             if (this.userDetails.userType == 'Tenant') {
               this.router.navigate([Url_SuperPath['SearchRoom']]);
+            } else if (this.userDetails.userType == 'Landlord') {
+              this.router.navigate([Url_SuperPath['SearchRoom']]);
             }
-            this.DataService.changeLoadingStatus(false);
           },
           (err) => {
             console.log(err);

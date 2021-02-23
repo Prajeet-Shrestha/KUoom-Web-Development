@@ -11,6 +11,7 @@
                     <div *ngFor="let product of PendingBookingRoomDetails">
                       <app-room-product-card
                         [productObj]="product"
+                        [applicantName]="product.applicantName"
                         [imgUrl]="product.url"
                         [Location]="product.location"
                         [date]="product.date"
@@ -19,7 +20,7 @@
                         [title]="product.title"
                         [subTitle]="product.subtitle"
                         [price]="product.price"
-                        [isPending]="true"
+                        [isPending_LANDLORD]="true"
                       ></app-room-product-card>
                     </div>
                   </div>
@@ -71,6 +72,7 @@
                 <app-room-product-card
                   [productObj]="product"
                   [imgUrl]="product.url"
+                  [CanDeleteorEdit]="true"
                   [Location]="product.location"
                   [date]="product.date"
                   [status]="product.status"
@@ -86,7 +88,7 @@
                 <h2 style="padding: 0%; margin: 0%">Have More Rooms?</h2>
                 <p style="font-weight: lighter">You can add more rooms/flat!</p>
               </div>
-              <div style="margin: 0 auto; width: fit-content">
+              <div style="margin: 0 auto; width: fit-content; display: flex">
                 <button
                   (click)="addRoom()"
                   style="margin: 0 auto; background-color: green; color: white"
@@ -103,7 +105,9 @@
             [FirstName]="UserDetails.Fname"
             [LastName]="UserDetails.Lname"
             [Email]="UserDetails.email"
+            [uid]="LocalStorageUserDetails.uid"
             [Phone]="UserDetails.phone"
+            [isVerifed]="isVerifiedEmail"
           ></app-userprofile>
         </mat-tab>
         <mat-tab label="Favorites">
@@ -178,11 +182,4 @@
     </div>
   </div>
 </div>
-<footer>
-  <div class="logo"></div>
-  <h1>Find your room with us</h1>
-  <ul>
-    <li><a href="#">Links</a></li>
-    <li><a href="#">Links</a></li>
-  </ul>
-</footer>
+<!-- <app-footer></app-footer> -->

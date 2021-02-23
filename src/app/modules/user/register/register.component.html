@@ -1,127 +1,135 @@
 <div class="main-container">
-    <div></div>
-    <!-- <img src="../../../../src/assets/LoginPageicon/1.png" alt="">
+  <div></div>
+  <!-- <img src="../../../../src/assets/LoginPageicon/1.png" alt="">
     <img src="../../../../src/assets/LoginPageicon/2.png" alt="">
     <img src="../../../../src/assets/LoginPageicon/3.png"> -->
-    
-    <div class="mid-container">
-        <div class="title">
-            <h1>Sign Up</h1>
-        </div>
-        <div>
-            <mat-tab-group mat-align-tabs="center" dynamicHeight>
-                <mat-tab label="Tenant">
-                    <div class="tenantloginform">
-                        <form class="login-form" id="RegisterForm" [formGroup]="RegisterFromTenant" (ngSubmit)="RegisterTenant()">
-                            <div style="display: flex;">
-                                <mat-form-field class="firstnamefield">
-                                    <mat-label>First name</mat-label>
-                                    <input matInput id="firstName" formControlName="firstName" >
-                                </mat-form-field>
 
-                                <mat-form-field class="lastnamefield">
-                                    <mat-label> Last Name </mat-label>
-                                    <input matInput formControlName="lastName" >
-                                </mat-form-field>
+  <div class="mid-container">
+    <div class="title">
+      <h1>Sign Up</h1>
+    </div>
+    <div>
+      <mat-tab-group mat-align-tabs="center" dynamicHeight>
+        <mat-tab label="Tenant">
+          <div class="tenantloginform">
+            <form class="login-form" id="RegisterForm" [formGroup]="RegisterFromTenant" (ngSubmit)="RegisterTenant()">
+              <div style="display: flex">
+                <mat-form-field class="firstnamefield">
+                  <mat-label>First name</mat-label>
+                  <input matInput id="firstName" formControlName="firstName" />
+                </mat-form-field>
 
-                            </div>
+                <mat-form-field class="lastnamefield">
+                  <mat-label> Last Name </mat-label>
+                  <input matInput formControlName="lastName" />
+                </mat-form-field>
+              </div>
 
-                            <mat-form-field class="emailfield">
-                                <mat-label>Email</mat-label>
-                                <input matInput placeholder="Ex. praz@example.com" formControlName="email">
-                            </mat-form-field>
+              <mat-form-field class="emailfield">
+                <mat-label>Email </mat-label>
+                <input matInput placeholder="Ex. praz@example.com" formControlName="email" />
+              </mat-form-field>
 
-                            <mat-form-field class="passwordfield">
-                                <mat-label>Password</mat-label>
-                                <input matInput type="password" placeholder="" formControlName="password">
+              <mat-form-field class="passwordfield">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="" formControlName="password" />
+              </mat-form-field>
 
-                            </mat-form-field>
+              <mat-form-field class="passwordfield">
+                <mat-label>Re-Password</mat-label>
+                <input matInput type="password" placeholder="" />
+              </mat-form-field>
+            </form>
 
-                            <mat-form-field class="passwordfield">
-                                <mat-label>Re-Password</mat-label>
-                                <input matInput type="password" placeholder="">
-                            </mat-form-field>
-                        </form>
+            <div style="font-size: 10px; color: red; text-align: center">
+              ** Your email cannot be changed once you Register, so used your original gmail/mail**
+            </div>
+            <button
+              style="background: #008037"
+              class="custom-register-btn"
+              mat-raised-button
+              type="submit"
+              form="RegisterForm"
+            >
+              Register
+            </button>
+            <hr />
+            <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
+              <img class="fb-logo" src="assets/Icon/8.png" alt="" />
+              Connect With Facebook
+            </button>
+            <button
+              style="background: #f3f0f0; margin-top: 1rem; color: black"
+              class="custom-google-btn"
+              mat-raised-button
+              (click)="GoogleSignIn('Tenant')"
+            >
+              <img class="fb-logo" src="assets/Icon/9.png" alt="" />Connect With Google
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab label="Landlord">
+          <div class="divform">
+            <form class="login-form">
+              <div style="display: flex">
+                <mat-form-field class="firstnamefield">
+                  <mat-label>First name</mat-label>
+                  <input matInput />
+                </mat-form-field>
 
-                        <button style="background: #008037;" class="custom-register-btn"
-                            mat-raised-button  type="submit" form="RegisterForm">Register</button>
-                        <hr>
-                        <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
-                            mat-raised-button>
-                            <img class="fb-logo" src="assets/Icon/8.png" alt="">
-                            Connect With Facebook</button>
-                        <button style="background: #f3f0f0; margin-top:1rem; color: black;" class="custom-google-btn"
-                            mat-raised-button>
-                            <img class="fb-logo" src="assets/Icon/9.png" alt="">Connect With Google</button>
+                <mat-form-field class="lastnamefield">
+                  <mat-label> Last Name </mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </div>
 
-                    </div>
-                </mat-tab>
-                <mat-tab label="Landlord">
-                    <div class="divform">
-                        <form class="login-form">
-
-
-                            <div style="display: flex;">
-                                <mat-form-field class="firstnamefield">
-                                    <mat-label>First name</mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-
-                                <mat-form-field class="lastnamefield">
-                                    <mat-label> Last Name </mat-label>
-                                    <input matInput>
-                                </mat-form-field>
-
-                            </div>
-
-
-                            <mat-form-field class="emailfield">
-                                <mat-label>Email</mat-label>
-                                <input matInput placeholder="Ex. praz@example.com">
-                                <!-- <mat-error
+              <mat-form-field class="emailfield">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Ex. praz@example.com" />
+                <!-- <mat-error
                                     *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                     Please enter a valid email address
                                 </mat-error>
                                 <mat-error *ngIf="emailFormControl.hasError('required')">
                                     Email is <strong>required</strong>
                                 </mat-error> -->
-                            </mat-form-field>
+              </mat-form-field>
 
-                            <mat-form-field class="phonenofield">
-                                <mat-label>Phone Number</mat-label>
-                                <input matInput type="number" placeholder="">
+              <mat-form-field class="phonenofield">
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="number" placeholder="" />
+              </mat-form-field>
 
-                            </mat-form-field>
+              <mat-form-field class="passwordfield">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="" />
+              </mat-form-field>
 
-                            <mat-form-field class="passwordfield">
-                                <mat-label>Password</mat-label>
-                                <input matInput type="password" placeholder="">
-
-                            </mat-form-field>
-
-                            <mat-form-field class="passwordfield">
-                                <mat-label>Re-Password</mat-label>
-                                <input matInput type="password" placeholder="">
-                            </mat-form-field>
-                        </form>
-
-                        <button style="background: #008037;" class="custom-register-btn"
-                            mat-raised-button>Register</button>
-                        <hr>
-                        <button style="background: #1A4789; margin-top:1rem;" class="custom-fb-btn"
-                        mat-raised-button>
-                        <img class="fb-logo" src="assets/Icon/8.png" alt="">
-                        Connect With Facebook</button>
-                    <button style="background: #f3f0f0; margin-top:1rem; color: black;" class="custom-google-btn"
-                        mat-raised-button>
-                        <img class="fb-logo" src="assets/Icon/9.png" alt="">Connect With Google</button>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-            <div class="footer">
-                Aready have an account?<span [routerLink]="['/auth/login']"> Log in </span>
-              </div>  
-        </div>
-       
+              <mat-form-field class="passwordfield">
+                <mat-label>Re-Password</mat-label>
+                <input matInput type="password" placeholder="" />
+              </mat-form-field>
+            </form>
+            <div style="font-size: 10px; color: red; text-align: center">
+              ** Your email cannot be changed once you Register, so used your original gmail/mail**
+            </div>
+            <button style="background: #008037" class="custom-register-btn" mat-raised-button>Register</button>
+            <hr />
+            <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
+              <img class="fb-logo" src="assets/Icon/8.png" alt="" />
+              Connect With Facebook
+            </button>
+            <button
+              style="background: #f3f0f0; margin-top: 1rem; color: black"
+              class="custom-google-btn"
+              mat-raised-button
+            >
+              <img class="fb-logo" src="assets/Icon/9.png" alt="" />Connect With Google
+            </button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+      <div class="footer">Aready have an account?<span [routerLink]="['/auth/login']"> Log in </span></div>
     </div>
+  </div>
 </div>

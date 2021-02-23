@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         let user = {
           uid: res.user.uid.toString(),
           name: userDetails.name,
-          userType: userDetails.userType,
+          userType: this.auth.enCode(userDetails.userType),
           email: email,
           phone: '',
         };
@@ -83,6 +83,11 @@ export class RegisterComponent implements OnInit {
         console.log(err);
       });
   }
+
+  GoogleSignIn(type) {
+    this.auth.signInwithGoogle(type);
+  }
+
   initializeForm(): void {
     this.RegisterFromTenant = this.fb.group({
       email: ['', Validators.required],
