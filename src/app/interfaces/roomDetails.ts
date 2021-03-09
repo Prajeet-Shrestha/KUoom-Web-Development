@@ -7,7 +7,7 @@ export interface roomDetailsTemplate {
         }
       ]
     | null;
-  basicQA: [] | null;
+  basicQA: [] | null | Array<object>;
   capacity: number | string;
   description: string | null;
   isChecked: boolean;

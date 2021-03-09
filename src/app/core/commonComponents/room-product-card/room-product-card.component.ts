@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { DbfirestoreService } from 'src/app/services/dbfirestore/dbfirestore.service';
@@ -11,7 +11,7 @@ import { NotifierService } from '../notifier/notifier.service';
   templateUrl: './room-product-card.component.html',
   styleUrls: ['./room-product-card.component.css'],
 })
-export class RoomProductCardComponent implements OnInit {
+export class RoomProductCardComponent implements OnInit, AfterViewInit {
   constructor(
     private _fireQuery: FirestoreQueryService,
     private _router: Router,
@@ -43,7 +43,12 @@ export class RoomProductCardComponent implements OnInit {
   @Input() TENANTBOOKLIST: boolean = false;
   @Input() isPending_LANDLORD: boolean = false;
   ngOnInit(): void {}
-
+  sliderSizeOption = { width: '100%', height: '150px' };
+  ngAfterViewInit() {
+    // var eme = <HTMLElement>document.getElementById('imgContainer');
+    // this.sliderSizeOption.height = eme.offsetHeight.toString();
+    // console.log(eme.offsetHeight);
+  }
   updatelike(product) {
     console.log(this.imgObj);
     if (product.like) {

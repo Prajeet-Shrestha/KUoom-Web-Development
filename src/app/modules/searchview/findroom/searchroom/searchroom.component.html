@@ -288,7 +288,7 @@
           <div class="top">
             <mat-icon aria-hidden="false" class="filter_listIcon" (click)="drawer.toggle()">filter_list</mat-icon>
             <div class="sortby">Sort By:</div>
-            <div class="resultsfound">{{ products.length }} Results Found</div>
+            <div class="resultsfound">{{ paginationState.totalSize }} Results Found</div>
           </div>
           <div class="mid-notification" id="midNotification">
             <div class="main-notification">
@@ -305,6 +305,7 @@
           </div>
           <div class="product-display">
             <app-error-page *ngIf="noResult" [noResult]="true"></app-error-page>
+
             <div *ngFor="let product of products">
               <app-room-product-card
                 [productObj]="product"
@@ -324,6 +325,13 @@
                 [subTitle]="product.subtitle"
                 [price]="product.price"
               ></app-room-product-card>
+            </div>
+            <div *ngIf="paginationState.totalSize > paginationState.displaySize" class="paginationBlock">
+              <div>
+                <button *ngIf="paginationState.page != 1" (click)="prevPage()"><</button>
+                <button *ngIf="paginationState.page != paginationState.totalPage" (click)="nextPage()">></button>
+              </div>
+              <!-- <button>2</button> -->
             </div>
           </div>
         </div>

@@ -6,31 +6,15 @@
       </div>
       <div style="padding-top: 1.5rem">
         <div style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: lighter">Basic Q/A about the place</div>
-        <div class="QA card">
-          1. Do you have an attached Bathroom?
+        <div *ngIf="selectedRoomData.basicQA !== null" class="QA card">
+          <div *ngFor="let question of selectedRoomData.basicQA; let i = index" class="BasicQuestionSet">
+            {{ i + 1 }}. {{ question.Q }}
 
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
-
-          <br />
-          1) Do you have an attached Bathroom?
-          <br />
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
-
-          <br />
-          1) Do you have an attached Bathroom? <br />
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
-
-          <br />
-          1) Do you have an attached Bathroom? <br />
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
-          <br />
-
-          1) Do you have an attached Bathroom? <br />
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
-
-          <br />
-          1) Do you have an attached Bathroom? <br />
-          <p>Ans: No, We don't have an attached bathroom, we common shared 3 Bathroom and 2 toilets in the building</p>
+            <p>Ans: {{ question.A == '' ? 'Not Answered' : question.A }}</p>
+          </div>
+        </div>
+        <div *ngIf="selectedRoomData.basicQA === null" class="QA card">
+          <div style="color: red">**The Basic Questions/Answers are not avialable for this room**</div>
         </div>
       </div>
       <div style="padding-top: 1.5rem">
@@ -46,31 +30,31 @@
         <div class="featuresBox-Items card" style="padding: 1rem; background-color: white; border-radius: 1rem">
           <span *ngIf="selectedRoomData.feeDetails.wifi" class="featurebox">
             <div>
-              <img class="featureIMG" src="assets/Icon/roomprofile/wifi.svg" alt="" />
+              <img class="featureIMG" loading="lazy" data-src="assets/Icon/roomprofile/wifi.svg" alt="" />
             </div>
             <div class="featureText">Wi-Fi</div>
           </span>
           <span *ngIf="selectedRoomData.feeDetails.meals" class="featurebox">
             <div>
-              <img class="featureIMG" src="assets/Icon/roomprofile/meal.svg" alt="" />
+              <img class="featureIMG" loading="lazy" data-src="assets/Icon/roomprofile/meal.svg" alt="" />
             </div>
             <div class="featureText">Meals</div>
           </span>
           <span *ngIf="selectedRoomData.feeDetails.laundary" class="featurebox">
             <div>
-              <img class="featureIMG" src="assets/Icon/roomprofile/laundry.svg" alt="" />
+              <img class="featureIMG" loading="lazy" data-src="assets/Icon/roomprofile/laundry.svg" alt="" />
             </div>
             <div class="featureText">Laundry</div>
           </span>
           <span *ngIf="selectedRoomData.feeDetails.electricBill" class="featurebox">
             <div>
-              <img class="featureIMG" src="assets/Icon/roomprofile/electricity.svg" alt="" />
+              <img class="featureIMG" loading="lazy" data-src="assets/Icon/roomprofile/electricity.svg" alt="" />
             </div>
             <div class="featureText">Electric Bills</div>
           </span>
           <span *ngIf="selectedRoomData.feeDetails.roomSpace" class="featurebox">
             <div>
-              <img class="featureIMG" src="assets/Icon/roomprofile/roomspace.svg" alt="" />
+              <img class="featureIMG" loading="lazy" data-src="assets/Icon/roomprofile/roomspace.svg" alt="" />
             </div>
             <div class="featureText">Room Space</div>
           </span>

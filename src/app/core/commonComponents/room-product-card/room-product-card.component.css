@@ -37,6 +37,7 @@
 }
 .title {
   cursor: pointer;
+  display: flex;
   font-weight: 600px;
 }
 .CanDeleteeditClass {
@@ -183,12 +184,13 @@
 
   .imgcontainer {
     width: 100%;
-    height: 100%;
+    height: 160px;
   }
 
   .product-details {
     /* background-color: chartreuse; */
     width: 100%;
+    padding-top: 5px;
     padding-left: 0px;
   }
 
@@ -198,6 +200,7 @@
   }
   .top1 .title {
     width: 100%;
+    display: block;
     /* background-color: chartreuse; */
     font-size: 1.6rem;
   }

@@ -37,7 +37,7 @@
 
               <mat-form-field class="passwordfield">
                 <mat-label>Re-Password</mat-label>
-                <input matInput type="password" placeholder="" />
+                <input matInput type="password" placeholder="" formControlName="repassword" />
               </mat-form-field>
             </form>
 
@@ -54,10 +54,10 @@
               Register
             </button>
             <hr />
-            <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
+            <!-- <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
               <img class="fb-logo" src="assets/Icon/8.png" alt="" />
-              Connect With Facebook
-            </button>
+              Connect With Facebook <span style="font-size: 10px"> (Currently Not Avialable)</span>
+            </button> -->
             <button
               style="background: #f3f0f0; margin-top: 1rem; color: black"
               class="custom-google-btn"
@@ -70,22 +70,22 @@
         </mat-tab>
         <mat-tab label="Landlord">
           <div class="divform">
-            <form class="login-form">
+            <form class="login-form" [formGroup]="RegisterFromLandlord">
               <div style="display: flex">
                 <mat-form-field class="firstnamefield">
                   <mat-label>First name</mat-label>
-                  <input matInput />
+                  <input formControlName="firstName" matInput />
                 </mat-form-field>
 
                 <mat-form-field class="lastnamefield">
                   <mat-label> Last Name </mat-label>
-                  <input matInput />
+                  <input formControlName="lastName" matInput />
                 </mat-form-field>
               </div>
 
               <mat-form-field class="emailfield">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Ex. praz@example.com" />
+                <input formControlName="email" matInput placeholder="Ex. praz@example.com" />
                 <!-- <mat-error
                                     *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                     Please enter a valid email address
@@ -97,28 +97,35 @@
 
               <mat-form-field class="phonenofield">
                 <mat-label>Phone Number</mat-label>
-                <input matInput type="number" placeholder="" />
+                <input matInput type="number" formControlName="phone" placeholder="" />
               </mat-form-field>
 
               <mat-form-field class="passwordfield">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" placeholder="" />
+                <input matInput type="password" formControlName="password" placeholder="" />
               </mat-form-field>
 
               <mat-form-field class="passwordfield">
                 <mat-label>Re-Password</mat-label>
-                <input matInput type="password" placeholder="" />
+                <input matInput type="password" placeholder="" formControlName="repassword" />
               </mat-form-field>
             </form>
             <div style="font-size: 10px; color: red; text-align: center">
               ** Your email cannot be changed once you Register, so used your original gmail/mail**
             </div>
-            <button style="background: #008037" class="custom-register-btn" mat-raised-button>Register</button>
+            <button
+              style="background: #008037"
+              class="custom-register-btn"
+              (click)="RegisterLandlord()"
+              mat-raised-button
+            >
+              Register
+            </button>
             <hr />
-            <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
+            <!-- <button style="background: #1a4789; margin-top: 1rem" class="custom-fb-btn" mat-raised-button>
               <img class="fb-logo" src="assets/Icon/8.png" alt="" />
               Connect With Facebook
-            </button>
+            </button> -->
             <button
               style="background: #f3f0f0; margin-top: 1rem; color: black"
               class="custom-google-btn"

@@ -1,25 +1,27 @@
 <div class="product-card">
-  <div class="imgcontainer">
+  <div class="imgcontainer" id="imgContainer">
     <img *ngIf="imgObj.length <= 1" src="{{ imgUrl }}" class="product-img" alt="" />
     <ng-image-slider
       *ngIf="imgObj.length >= 2"
       [images]="imgObj"
       [imagePopup]="false"
-      [imageSize]="{ width: '100%', height: '150px' }"
+      [imageSize]="sliderSizeOption"
       #nav
     ></ng-image-slider>
   </div>
   <div class="product-details">
     <div class="top1">
       <div class="title" (click)="RoomProfileNavigate(productObj)">
-        {{ title }}
-        <span style="font-weight: lighter; font-size: 12px">
+        <div style="margin-right: 4px">
+          {{ title }}
+        </div>
+        <div style="font-weight: lighter; font-size: 12px">
           <span *ngIf="capacity > 0"> {{ capacity }} Person </span>
           <span *ngIf="chair"> • Chair </span>
           <span *ngIf="bed"> • Bed </span>
           <span *ngIf="cupboard"> • Cupboard</span>
           <span *ngIf="table"> • Desk </span>
-        </span>
+        </div>
       </div>
       <div *ngIf="isPending_LANDLORD" class="Requestedby" style="font-weight: lighter">
         Requested By

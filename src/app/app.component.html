@@ -15,8 +15,8 @@
         <ul class="left-nav-links" [ngClass]="{ Index: NavRouteUpdateFlag.Index, '': !NavRouteUpdateFlag.Index }">
           <div class="left-nav-links" id="left-nav-links">
             <li (click)="ToHowdoesthisworkPage()">{{ 'Navbar.Howdoesthiswork' | translate }}</li>
-            <li>{{ 'Navbar.LandlordPortal' | translate }}</li>
-            <li (click)="goToAboutPage()">{{ 'Navbar.Aboutus' | translate }}</li>
+            <!-- <li>{{ 'Navbar.LandlordPortal' | translate }}</li> -->
+            <!-- <li (click)="goToAboutPage()">{{ 'Navbar.Aboutus' | translate }}</li> -->
           </div>
           <div class="search-bar" id="search-bar">
             <input
@@ -87,8 +87,16 @@
             {{ username }}
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="MyProfile()">{{ 'Navbar.MyDashboard' | translate }}</button>
-            <button mat-menu-item (click)="logout()">{{ 'Navbar.Logout' | translate }}</button>
+            <button mat-menu-item (click)="MyProfile()">
+              <mat-icon>dashboard</mat-icon> <span class="btnMenuProfile">{{ 'Navbar.MyDashboard' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="search()">
+              <mat-icon>search</mat-icon>
+              <span class="btnMenuProfile"> {{ 'Navbar.FindMeaRoom' | translate }} </span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>logout</mat-icon> <span class="btnMenuProfile"> {{ 'Navbar.Logout' | translate }}</span>
+            </button>
           </mat-menu>
         </span>
       </ul>

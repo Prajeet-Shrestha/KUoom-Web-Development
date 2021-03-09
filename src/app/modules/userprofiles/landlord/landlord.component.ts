@@ -63,7 +63,7 @@ export class LandlordComponent implements OnInit {
           });
         } else {
           console.log(':::::NORMAL LANDLORD::::::');
-          this._fireService.getCertainLandLordRoomList(this.UserDetails.email.toString()).then((data) => {
+          this._fireService.getCertainLandLordRoomList(this.UserDetails.email).then((data) => {
             console.log(data);
             data.forEach((doc) => {
               self.AllRoomListRaw.push(doc.data());
@@ -94,7 +94,7 @@ export class LandlordComponent implements OnInit {
                 title: (
                   (remodeledData.furnishedDetails.isFurnished ? 'Furnished ' : 'Unfurnished ') + remodeledData.roomType
                 ).toUpperCase(),
-                subtitle: 'Single Room in ' + remodeledData.location.name,
+                subtitle: remodeledData.roomType + ' in ' + remodeledData.location.name,
                 location: remodeledData.location.name,
                 price: 'Rs. ' + remodeledData.feeDetails.price.toString(),
                 date: 'Available from 20th Oct, 2020',
@@ -128,10 +128,15 @@ export class LandlordComponent implements OnInit {
   gotosearchRoom() {
     this._router.navigate([Url_SuperPath['SearchRoom']]);
   }
-
+  pleaseVerifyText = '';
   addRoom() {
-    this.DataService.changeisEditRoomValue(false);
-    this._router.navigate(['/addRoom']);
+    if (this.isVerifiedEmail) {
+      this.DataService.changeisEditRoomValue(false);
+      this._router.navigate(['/addRoom']);
+      this.pleaseVerifyText = '';
+    } else {
+      this.pleaseVerifyText = 'Please Verify your account before adding any product. Thank you';
+    }
   }
   products = [];
   CompileRoomData() {
@@ -143,7 +148,7 @@ export class LandlordComponent implements OnInit {
         like: false,
         url: data.images.mainPhoto,
         title: ((data.furnishedDetails.isFurnished ? 'Furnished ' : 'Unfurnished ') + data.roomType).toUpperCase(),
-        subtitle: 'Single Room in ' + data.location.name,
+        subtitle: data.roomType + ' in ' + data.location.name,
         location: data.location.name,
         price: 'Rs. ' + data.feeDetails.price.toString(),
         date: 'Available from 20th Oct, 2020',

@@ -72,7 +72,7 @@
             <div class="QuestionCSSTemplate">2. Room Description <span style="color: red">*</span> :</div>
             <mat-form-field class="example-full-width">
               <mat-label>Place Description</mat-label>
-              <textarea matInput placeholder="Ex. The Room has..." formControlName="description"></textarea>
+              <textarea matInput formControlName="description"></textarea>
             </mat-form-field>
           </div>
 
@@ -82,9 +82,9 @@
             <mat-form-field class="example-full-width">
               <mat-label>Available Date</mat-label>
               <input id="AvailableDate" formControlName="date" matInput [matDatepicker]="picker" type="date" />
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
               <mat-datepicker #picker></mat-datepicker>
-              <!-- <textarea matInput placeholder="Ex. The Room has..." formControlName="description"></textarea> -->
+              <!-- <textarea matInput  formControlName="description"></textarea> -->
             </mat-form-field>
           </div>
           <div class="QuestionCardTemplate">
@@ -347,6 +347,76 @@
               </form>
             </div>
           </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext class="NextButton">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="QuestionFG" style="background-color: red">
+        <form [formGroup]="QuestionFG">
+          <ng-template matStepLabel>Basic Q/A</ng-template>
+          <div *ngFor="let question of QuestionSets" class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              {{ question.FG }}. {{ question.Q }} <span style="color: red">*</span> :
+            </div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput style="width: 100%" [formControlName]="question.FG"></textarea>
+            </mat-form-field>
+          </div>
+          <!-- <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              2.  {{ QuestionSets[1].Q }} <span style="color: red">*</span> :
+            </div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q2"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">3. Is there access to hot water ? <span style="color: red">*</span> :</div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q3"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              4. Can we cook by ourselves in the room? <span style="color: red">*</span> :
+            </div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q4"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              5. Do we have to pay any fees besides monthly rent? <span style="color: red">*</span> :
+            </div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q5"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">6. In which floor is this room? <span style="color: red">*</span> :</div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q6"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="QuestionCardTemplate">
+            <div class="QuestionCSSTemplate">
+              7. Does the sunlight get in the room? <span style="color: red">*</span> :
+            </div>
+            <mat-form-field class="example-full-width" style="width: 100%">
+              <mat-label>Answer</mat-label>
+              <textarea matInput formControlName="Q7"></textarea>
+            </mat-form-field>
+          </div> -->
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext class="NextButton">Next</button>

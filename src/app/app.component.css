@@ -11,7 +11,9 @@
 ul {
   list-style: none;
 }
-
+.btnMenuProfile {
+  margin-left: -12px;
+}
 .profile-img {
   border-radius: 100%;
   width: 45px;

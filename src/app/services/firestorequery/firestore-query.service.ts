@@ -24,10 +24,11 @@ export class FirestoreQueryService {
 
   ApplyFilter(filterObj: FilterDataTemplate) {
     console.log(filterObj);
-    var query = this.roomCollection.ref.where('isAvailable', '==', true);
-
+    var query = this.roomCollection.ref.where('isAvailable', '==', true).orderBy('feeDetails.price');
+    this._DataService.changeLoadingStatus(true);
     if (filterObj.availableDate) {
-      query = query.where('availableDate.dateObject', '>=', filterObj.availableDate);
+      console.log(':::::', filterObj.availableDate, ':::::::');
+      query = query.where('availableDate.dateObject', '<=', filterObj.availableDate);
     }
     if (
       filterObj.maxPrice == 0 &&
@@ -37,7 +38,7 @@ export class FirestoreQueryService {
       filterObj.availableDate
     ) {
       console.log('NO FILTER ');
-      return query.get();
+      return query.limit(3).get();
     }
     if (filterObj.maxPrice != 0) {
       query = query.where('feeDetails.price', '<=', filterObj.maxPrice);
@@ -72,6 +73,7 @@ export class FirestoreQueryService {
         query = query.where('facilities.AC', '==', true);
       }
     }
+    this._DataService.changeLoadingStatus(false);
 
     return query.get();
   }

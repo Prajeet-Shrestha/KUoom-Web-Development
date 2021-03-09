@@ -104,6 +104,8 @@ export class LoginComponent implements OnInit {
         );
       })
       .catch((err) => {
+        this.DataService.changeLoadingStatus(false);
+
         console.log(err);
         this.autherrormessage = err.message;
         console.log(this.autherrormessage);

@@ -67,7 +67,8 @@ import { LoadingComponent } from './core/commonComponents/loading/loading.compon
 import { NotifierComponent } from './core/commonComponents/notifier/notifier/notifier.component';
 import { UserprofileComponent } from './core/commonComponents/userprofile/userprofile.component';
 import { HowdoesthisworkComponent } from './core/UIcomponents/howdoesthiswork/howdoesthiswork.component';
-
+// import { ImageLazyloadModule } from 'src/app/core/imagelazyload/image-lazyload/image-lazyload.module';
+import { ImagesLazyloadModule } from 'src/app/core/lazyLoadImg/images-lazyload.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -113,7 +114,7 @@ declare const Buffer;
     MatNativeDateModule,
     MatSnackBarModule,
     FormsModule,
-
+    ImagesLazyloadModule,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,

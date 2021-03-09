@@ -38,6 +38,7 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
   ) {
     this.userdetails = JSON.parse(localStorage.getItem('user'));
     this._DS.changeLoadingStatus(true);
+    // console.log();
     let self = this;
     this._DS.currentroomIdSource.subscribe((data) => {
       self.selectedRoomId = data;
@@ -131,6 +132,12 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
         if (this.selectedRoomData.policies) {
           this.accomodatioPoliciesList = this.selectedRoomData.policies;
         }
+        self.imageObject.push({
+          image: self.selectedRoomData.images.mainPhoto,
+          thumbImage: self.selectedRoomData.images.mainPhoto,
+          alt: 'alt of image',
+          title: 'FURNISHED PRIVATE ROOM',
+        });
         if (this.selectedRoomData.images.extras) {
           for (const url of this.selectedRoomData.images.extras) {
             self.imageObject.push({
@@ -141,12 +148,6 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
             });
           }
         }
-        self.imageObject.push({
-          image: self.selectedRoomData.images.mainPhoto,
-          thumbImage: self.selectedRoomData.images.mainPhoto,
-          alt: 'alt of image',
-          title: 'FURNISHED PRIVATE ROOM',
-        });
       });
     });
   }

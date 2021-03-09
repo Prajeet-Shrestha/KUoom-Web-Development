@@ -18,6 +18,7 @@ interface HTMLInputEvent extends Event {
 })
 export class AddRoomComponent implements OnInit, AfterViewInit {
   isLinear = false;
+  QuestionSets = [];
   AddRoomLocationDropDownList: Array<object> = [];
   roomDetailsFG: FormGroup;
   facilitiesFG: FormGroup;
@@ -27,7 +28,7 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
   landLordFG: FormGroup;
   NewLocationForm: FormGroup;
   roomPhoto: FormGroup;
-
+  QuestionFG: FormGroup;
   roomDetails: roomDetailsTemplate;
   LocalStorageUserDetail;
   constructor(
@@ -254,6 +255,7 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
               console.log(e);
             }
             console.log(this.selectedRoomData);
+
             if (this.selectedRoomData.policies.length >= 1) {
               for (let pI = 0; pI < this.selectedRoomData.policies.length; pI++) {
                 PoliciesList.push(this.createItem(this.selectedRoomData.policies[pI]['policies']));
@@ -306,7 +308,38 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
               isTrusted: [this.selectedRoomData.landLordDetails.isTrusted ? 'yes' : 'no', Validators.required],
               img: [''],
             });
-            console.log(this.selectedRoomData);
+
+            if (this.selectedRoomData.basicQA !== null) {
+              let PreBasicQAFormSet = {
+                Q1: ['', Validators.required],
+                Q2: ['', Validators.required],
+                Q3: ['', Validators.required],
+                Q4: ['', Validators.required],
+                Q5: ['', Validators.required],
+                Q6: ['', Validators.required],
+                Q7: ['', Validators.required],
+              };
+              this.QuestionSets = [
+                { Q: '', A: '', FG: 'Q1' },
+                { Q: '', A: '', FG: 'Q2' },
+                { Q: '', A: '', FG: 'Q3' },
+                { Q: '', A: '', FG: 'Q4' },
+                { Q: '', A: '', FG: 'Q5' },
+                { Q: '', A: '', FG: 'Q6' },
+                { Q: '', A: '', FG: 'Q7' },
+              ];
+              let count = 1;
+              for (let i = 0; i < this.selectedRoomData.basicQA.length; i++) {
+                const Que = this.selectedRoomData.basicQA[i];
+                console.log(Que);
+                this.QuestionSets[i].Q = Que['Q'];
+                this.QuestionSets[i].A = Que['A'];
+                PreBasicQAFormSet['Q' + count.toString()] = Que['A'];
+                count += 1;
+              }
+              this.QuestionFG = this._formBuilder.group(PreBasicQAFormSet);
+              console.log(PreBasicQAFormSet);
+            }
           }
         });
       } else {
@@ -330,6 +363,25 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
       LocationName: ['', Validators.required],
       embbedCode: ['', Validators.required],
     });
+
+    this.QuestionFG = this._formBuilder.group({
+      Q1: ['', Validators.required],
+      Q2: ['', Validators.required],
+      Q3: ['', Validators.required],
+      Q4: ['', Validators.required],
+      Q5: ['', Validators.required],
+      Q6: ['', Validators.required],
+      Q7: ['', Validators.required],
+    });
+    this.QuestionSets = [
+      { Q: 'Is there access to water 24*7?', A: this.QuestionFG.value.Q1, FG: 'Q1' },
+      { Q: 'Is the electricity bill and water bill added to the room price?', A: this.QuestionFG.value.Q2, FG: 'Q2' },
+      { Q: 'Is there access to hot water ?', A: this.QuestionFG.value.Q3, FG: 'Q3' },
+      { Q: 'Can we cook by ourselves in the room? ', A: this.QuestionFG.value.Q4, FG: 'Q4' },
+      { Q: 'Do we have to pay any fees besides monthly rent?', A: this.QuestionFG.value.Q5, FG: 'Q5' },
+      { Q: 'In which floor is this room?', A: this.QuestionFG.value.Q6, FG: 'Q6' },
+      { Q: 'Does the sunlight get in the room?', A: this.QuestionFG.value.Q7, FG: 'Q7' },
+    ];
     this.roomDetailsFG = this._formBuilder.group({
       roomType: ['', Validators.required],
       description: ['', Validators.required],
@@ -443,8 +495,10 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
 
   changePickerTest(event) {
     console.log(event);
-    console.log(this.addressFG.value.address);
+    console.log(this.QuestionFG.value);
     console.log(this.getLocationName(this.addressFG.value.address));
+
+    // console.log(BasicQA);
     // const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
     // console.log(
@@ -465,7 +519,7 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
   getLocationName(url: string): string {
     let name = '';
     this.AddRoomLocationDropDownList.forEach((data) => {
-      console.log(data['embbedCode']);
+      // console.log(data['embbedCode']);
       if (data['embbedCode'] == url) {
         name = data['name'];
       }
@@ -481,6 +535,16 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
       '-' +
       this.roomDetailsFG.value.date.getDate().toString();
     // YYYY-MM-DD
+    let BasicQA = [];
+    for (const QA of this.QuestionSets) {
+      if (this.QuestionFG.value[QA.FG].length >= 2) {
+        let set = {
+          Q: QA.Q,
+          A: this.QuestionFG.value[QA.FG],
+        };
+        BasicQA.push(set);
+      }
+    }
     this.roomDetails = {
       id: '',
       policies: this.policiesFG.value.policies,
@@ -488,7 +552,7 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
         dateObject: this.roomDetailsFG.value.date,
         YYYYMMDD: StringDate,
       },
-      basicQA: null,
+      basicQA: BasicQA.length >= 1 ? BasicQA : null,
       isAvailable: true,
       isChecked: this.roomDetailsFG.value.isChecked == 'checked' ? true : false,
       // isBooked: false,
@@ -547,10 +611,10 @@ export class AddRoomComponent implements OnInit, AfterViewInit {
         this.landLordFG.reset();
         var output = document.getElementById('MainImgoutput');
         output.removeAttribute('src');
-        this._notify.showNotification('', 'Room Added!', 'success', 'right');
+        // this._notify.showNotification('', 'Room Added!', 'success', 'right');
       } else {
         // window.alert('missing Field');
-        this.stepper.reset();
+        // this.stepper.reset();
         this._notify.showNotification('Sorry, Please Fill the form before submitting.', 'Error!', 'error', 'right');
       }
     } else {

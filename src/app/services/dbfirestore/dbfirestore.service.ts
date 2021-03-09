@@ -102,7 +102,7 @@ export class DbfirestoreService {
 
     console.log('GOT IT', extra);
     data.images.extras = extra;
-
+    let self = this;
     var n = Date.now().toString() + '_' + docId.toString();
     const filePath = `RoomsImages/${n}`;
     const fileRef = this.fireStorage.ref(filePath);
@@ -128,6 +128,11 @@ export class DbfirestoreService {
                   'success',
                   'right'
                 );
+                let Cururl = self._Router.url;
+                console.log(Cururl);
+                self._Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                  self._Router.navigate([Cururl]);
+                });
               })
               .catch((err) => {
                 this._DataService.changeLoadingStatus(false);
@@ -141,6 +146,18 @@ export class DbfirestoreService {
 
   getRooms() {
     return this.roomCollection.ref.where('isAvailable', '==', true).get();
+  }
+
+  getRoomUsingPagination(page, lastVisibleDoc, prevPage, firstVisibleDoc, limitSize) {
+    let doc = this.roomCollection.ref.where('isAvailable', '==', true);
+    if (page == 1) {
+      doc = doc.limit(3);
+    } else if (page > prevPage) {
+      doc = doc.startAfter(lastVisibleDoc).limit(limitSize);
+    } else if (page < prevPage) {
+      doc = doc.endBefore(firstVisibleDoc).limit(limitSize);
+    }
+    return doc.get();
   }
 
   getALLROOMLIST() {
@@ -191,7 +208,12 @@ export class DbfirestoreService {
                 'success',
                 'left'
               );
-              location.reload();
+              // location.reload();
+              let url = '/' + self._Router.url;
+              console.log(url);
+              self._Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                self._Router.navigate([url]);
+              });
             })
             .catch((err) => {
               self._DataService.changeLoadingStatus(false);
@@ -261,12 +283,13 @@ export class DbfirestoreService {
     return this.LocationCollection.get().toPromise();
   }
   deleteRoom(id, photoList) {
+    let self = this;
     this.roomCollection
       .doc(id)
       .delete()
       .then((res) => {
         this._notify.showNotification('ROOM DELTED', '', 'success');
-        location.reload();
+
         for (const obj of photoList) {
           var desertRef = this.fireStorage.storage.refFromURL(obj['thumbImage']);
           // Delete the file
@@ -279,6 +302,11 @@ export class DbfirestoreService {
               console.log('// Uh-oh, an error occurred!');
             });
         }
+        let url = '/' + self._Router.url;
+        console.log(url);
+        self._Router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          self._Router.navigate([url]);
+        });
       });
   }
 }

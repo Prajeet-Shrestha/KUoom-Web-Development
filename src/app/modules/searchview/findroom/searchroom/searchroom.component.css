@@ -14,6 +14,38 @@
   margin: 0 auto;
 }
 
+.paginationBlock {
+  /* background-color: royalblue; */
+  padding: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.paginationBlock div {
+  /* background-color: red; */
+  width: 65px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paginationBlock div button {
+  width: 30px;
+
+  height: 30px;
+  background-color: #037ef3;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+paginationBlock div button:hover {
+  background-color: gray;
+}
+
 .filtersidenav {
   width: 18%;
   min-width: 260px;
@@ -74,6 +106,8 @@
 
 .product-display {
   padding-top: 0.5rem;
+  /* padding-left: 10px; */
+  padding-right: 15px;
   /* background-color: tomato; */
   height: 90vh;
 }
@@ -177,6 +211,14 @@
   }
   .rightside .top {
     margin-bottom: 5px;
+  }
+
+  .product-display {
+    padding-top: 0.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* background-color: tomato; */
+    height: 90vh;
   }
   .filter_listIcon {
     display: inline;
