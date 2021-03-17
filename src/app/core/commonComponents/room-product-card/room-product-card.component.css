@@ -14,6 +14,9 @@
 .product-card:hover {
   box-shadow: -5px -5px 15px #acacac, 5px 5px 15px #ffffff;
 }
+.RequestedUser:hover{
+text-decoration: underline;
+}
 
 .product-img {
   width: 100%;

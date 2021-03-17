@@ -32,7 +32,7 @@ export class SearchroomComponent implements OnInit {
   paginationState = {
     prevPage: 1,
     page: 1,
-    displaySize: 3,
+    displaySize: 5,
     totalPage: 1,
     totalSize: 0,
   };
@@ -242,10 +242,12 @@ export class SearchroomComponent implements OnInit {
     this.paginationState = {
       prevPage: 1,
       page: 1,
-      displaySize: 3,
+      displaySize: 5,
       totalPage: 1,
       totalSize: 0,
     };
+    this.AllRoomData = [];
+    this.products = [];
     if (
       this.SELECTEDFILTERS.maxPrice == 0 &&
       this.SELECTEDFILTERS.roomType.length <= 0 &&
@@ -296,6 +298,7 @@ export class SearchroomComponent implements OnInit {
   FilteredProduct = [];
   CompileRoomData() {
     this.products = [];
+    this.FilteredProduct = [];
     let self = this;
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
@@ -343,12 +346,16 @@ export class SearchroomComponent implements OnInit {
           : 'Date is Unavailable',
         status: data.isAvailable ? 'Available' : 'Booked',
       };
+
       if (this.FilterMode) {
+        console.log(':::FILTER MODE:::');
+
         this.FilteredProduct.push(DataSet);
       } else {
         this.products.push(DataSet);
       }
     });
+    console.log(this.FilteredProduct);
     if (this.FilterMode) {
       this.products = this.FilteredProduct.slice(
         this.paginationState.page - 1,

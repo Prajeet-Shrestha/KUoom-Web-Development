@@ -5,6 +5,8 @@ import { DbfirestoreService } from 'src/app/services/dbfirestore/dbfirestore.ser
 import { FirestoreQueryService } from 'src/app/services/firestorequery/firestore-query.service';
 import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
 import { NotifierService } from '../notifier/notifier.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ViewUserProfileComponent } from '../dialogBox/view-user-profile/view-user-profile.component';
 
 @Component({
   selector: 'app-room-product-card',
@@ -17,10 +19,12 @@ export class RoomProductCardComponent implements OnInit, AfterViewInit {
     private _router: Router,
     private _DataService: DataService,
     private _notify: NotifierService,
+    public dialog: MatDialog,
     private _fireService: DbfirestoreService
   ) {}
   @Input() productObj: object;
   @Input() name: string;
+  @Input() dateofbooking: string;
   @Input() imgUrl: string;
   @Input() imgObj: Array<object> = [];
   @Input() title: string;
@@ -30,7 +34,7 @@ export class RoomProductCardComponent implements OnInit, AfterViewInit {
   @Input() capacity: number | string | null;
   @Input() chair: boolean;
   @Input() bed: boolean;
-
+  @Input() applicantId: string;
   @Input() table: boolean;
   @Input() applicantName: string;
   @Input() cupboard: boolean;
@@ -77,5 +81,14 @@ export class RoomProductCardComponent implements OnInit, AfterViewInit {
     } else {
       return;
     }
+  }
+
+  viewUserDetails() {
+    this._DataService.changeApplicantId(this.applicantId);
+    const dialogconfig = new MatDialogConfig();
+    dialogconfig.width = 'fit-content';
+    dialogconfig.autoFocus = true;
+    dialogconfig.panelClass = 'custom-dialog-container';
+    this.dialog.open(ViewUserProfileComponent, dialogconfig);
   }
 }

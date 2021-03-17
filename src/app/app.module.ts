@@ -33,6 +33,7 @@ import { FindroomComponent } from './modules/searchview/findroom/findroom.compon
 import { ProductprofileComponent } from './modules/searchview/findroom/productprofile/productprofile.component';
 import { SearchroomComponent } from './modules/searchview/findroom/searchroom/searchroom.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -69,6 +70,8 @@ import { UserprofileComponent } from './core/commonComponents/userprofile/userpr
 import { HowdoesthisworkComponent } from './core/UIcomponents/howdoesthiswork/howdoesthiswork.component';
 // import { ImageLazyloadModule } from 'src/app/core/imagelazyload/image-lazyload/image-lazyload.module';
 import { ImagesLazyloadModule } from 'src/app/core/lazyLoadImg/images-lazyload.module';
+import { ViewUserProfileComponent } from './core/commonComponents/dialogBox/view-user-profile/view-user-profile.component';
+import { BookingConfirmationComponent } from './core/commonComponents/dialogBox/booking-confirmation/booking-confirmation.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -98,6 +101,8 @@ declare const Buffer;
     NotifierComponent,
     UserprofileComponent,
     HowdoesthisworkComponent,
+    ViewUserProfileComponent,
+    BookingConfirmationComponent,
   ],
   imports: [
     MatTabsModule,
@@ -105,6 +110,7 @@ declare const Buffer;
     MatSlideToggleModule,
     MatSidenavModule,
     MatSliderModule,
+    MatDialogModule,
     MatStepperModule,
     MatIconModule,
     MatButtonToggleModule,
@@ -148,6 +154,7 @@ declare const Buffer;
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [ViewUserProfileComponent, BookingConfirmationComponent],
 })
 export class AppModule {
   declare Buffer;

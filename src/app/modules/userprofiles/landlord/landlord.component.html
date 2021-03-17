@@ -1,7 +1,14 @@
 <div class="main-container">
   <div class="nav">
     <div class="tabs">
-      <mat-tab-group id="TenantProfile" animationDuration="0ms" dynamicHeight (click)="eventCatcher($event)">
+      <mat-tab-group
+        #tabGroup
+        (selectedTabChange)="tabChanged($event)"
+        id="TenantProfile"
+        animationDuration="0ms"
+        dynamicHeight
+        (click)="eventCatcher($event)"
+      >
         <mat-tab label="Booking Requests">
           <div class="Bookings">
             <div class="RequestCategories" style="width: fit-content">
@@ -15,6 +22,8 @@
                         [imgUrl]="product.url"
                         [Location]="product.location"
                         [date]="product.date"
+                        [dateofbooking]="product.RequestedDate"
+                        [applicantId]="product.applicantId"
                         [status]="product.status"
                         [like]="product.like"
                         [title]="product.title"
@@ -62,10 +71,10 @@
             </div>
           </div>
         </mat-tab>
-        <mat-tab label="Your Rooms List ({{ AllRoomData.length }})">
+        <mat-tab label="Your Rooms List ">
           <div class="Bookings">
             <div class="YourBooking-title">
-              <h2 style="margin: 0%; padding: 0">Your Rooms List</h2>
+              <h2 style="margin: 0%; padding: 0">Your Rooms List ({{ AllRoomData.length }})</h2>
             </div>
             <div class="BookedProducts">
               <div *ngFor="let product of AllRoomData">

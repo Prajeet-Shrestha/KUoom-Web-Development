@@ -14,6 +14,9 @@ import { DataService } from '../data.service';
 import { NotifierService } from 'src/app/core/commonComponents/notifier/notifier.service';
 import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
 import { Console } from 'console';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { isThisTypeNode } from 'typescript';
+import { BookingConfirmationComponent } from 'src/app/core/commonComponents/dialogBox/booking-confirmation/booking-confirmation.component';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +28,8 @@ export class DbfirestoreService {
     public fireStorage: AngularFireStorage,
     private _DataService: DataService,
     private _fireQuery: FirestoreQueryService,
-    private _Router: Router
+    private _Router: Router,
+    public dialog: MatDialog
   ) {}
 
   userCollection = this.fireservice.collection('users');
@@ -68,7 +72,7 @@ export class DbfirestoreService {
       this.uploads.push(uploadTrack);
 
       // for every upload do whatever you want in firestore with the uploaded file
-      const _t = task.then((f) => {
+      const _t = await task.then((f) => {
         f.ref.getDownloadURL().then((url) => {
           urlList.push(url);
         });
@@ -151,7 +155,7 @@ export class DbfirestoreService {
   getRoomUsingPagination(page, lastVisibleDoc, prevPage, firstVisibleDoc, limitSize) {
     let doc = this.roomCollection.ref.where('isAvailable', '==', true);
     if (page == 1) {
-      doc = doc.limit(3);
+      doc = doc.limit(5);
     } else if (page > prevPage) {
       doc = doc.startAfter(lastVisibleDoc).limit(limitSize);
     } else if (page < prevPage) {
@@ -178,6 +182,11 @@ export class DbfirestoreService {
     const docId = this.fireservice.createId();
     data.reqId = docId;
     let self = this;
+    const dialogconfig = new MatDialogConfig();
+    dialogconfig.width = 'fit-content';
+
+    dialogconfig.autoFocus = true;
+    dialogconfig.panelClass = 'custom-dialog-container';
     this._DataService.changeLoadingStatus(true);
     this._fireQuery
       .getaBookingDoc(data.landLord.phone, data.RoomId, data.TenantId.id)
@@ -201,6 +210,7 @@ export class DbfirestoreService {
             .set(data)
             .then((res) => {
               self._DataService.changeLoadingStatus(false);
+              self.dialog.open(BookingConfirmationComponent, dialogconfig);
 
               self._notify.showNotification(
                 'Your Booking has been Succesfully Delivered. Please Wait for few days for the response',
@@ -208,6 +218,7 @@ export class DbfirestoreService {
                 'success',
                 'left'
               );
+
               // location.reload();
               let url = '/' + self._Router.url;
               console.log(url);
@@ -308,5 +319,9 @@ export class DbfirestoreService {
           self._Router.navigate([url]);
         });
       });
+  }
+
+  deleteABooking(BookingId) {
+    return this.BookingsCollection.doc(BookingId).delete();
   }
 }

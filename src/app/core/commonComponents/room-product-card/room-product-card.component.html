@@ -23,9 +23,22 @@
           <span *ngIf="table"> • Desk </span>
         </div>
       </div>
-      <div *ngIf="isPending_LANDLORD" class="Requestedby" style="font-weight: lighter">
-        Requested By
-        <span style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer"> {{ applicantName }} </span>
+
+      <div>
+        <div *ngIf="isPending_LANDLORD" style="font-weight: lighter">
+          Requested By:
+          <span
+            class="RequestedUser"
+            (click)="viewUserDetails()"
+            style="font-weight: normal; color: rgb(14, 102, 235); cursor: pointer"
+          >
+            {{ applicantName }}
+          </span>
+          <span *ngIf="isPending_LANDLORD" style="font-weight: lighter">
+            Requested Date:
+            <span style="font-weight: normal; color: rgb(14, 102, 235)"> {{ dateofbooking }} </span>
+          </span>
+        </div>
       </div>
       <div
         *ngIf="!isPending_LANDLORD && !CanDeleteorEdit"

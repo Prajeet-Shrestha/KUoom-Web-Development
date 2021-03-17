@@ -64,7 +64,7 @@ export class FirestoreQueryService {
         query = query.where('facilities.laundary', '==', true);
       }
       if (filterObj.service.includes('WiFi')) {
-        query = query.where('feeDetails.wifi', '==', true);
+        query = query.where('facilities.wifi', '==', true);
       }
       if (filterObj.service.includes('Balcony')) {
         query = query.where('facilities.terrance', '==', true);

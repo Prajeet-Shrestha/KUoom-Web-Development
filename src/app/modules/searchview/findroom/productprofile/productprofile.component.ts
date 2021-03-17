@@ -9,6 +9,7 @@ import { roomDetailsTemplate } from '../../../../interfaces/roomDetails';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirestoreQueryService } from 'src/app/services/firestorequery/firestore-query.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-productprofile',
   templateUrl: './productprofile.component.html',
@@ -26,6 +27,7 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
   ];
   LandlordDetails = [];
   LandlordImgtrue = false;
+  BOOKEDDATA: object;
   UsableEmbbedCode: SafeResourceUrl;
   constructor(
     private _notify: NotifierService,
@@ -90,9 +92,11 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
               querySnapshot.forEach(function (doc) {
                 list.push(doc.data());
               });
-              console.log(list);
+              console.log(list[0]);
               if (list.length >= 1) {
                 self.isBookedbyuser = true;
+                self.BOOKEDDATA = list[0];
+                // console.log(this.BOOKEDDATA);
               } else if (list.length == 0) {
                 self.isBookedbyuser = false;
               }
@@ -121,9 +125,11 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
           res.forEach(function (doc) {
             self.LandlordDetails.push(doc.data());
           });
-          // console.log(self.LandlordDetails);
-          if (self.LandlordDetails[0].imgUrl.length >= 2) {
-            self.LandlordImgtrue = true;
+          console.log(self.LandlordDetails);
+          if (self.LandlordDetails.length >= 1) {
+            if (self.LandlordDetails[0].imgUrl.length >= 2) {
+              self.LandlordImgtrue = true;
+            }
           }
         });
         self._DS.changeLoadingStatus(false);
@@ -268,5 +274,26 @@ export class ProductprofileComponent implements OnInit, AfterViewInit {
   mapError = false;
   sanitizeURLFunction(url): SafeResourceUrl {
     return this.sanitizeURL.bypassSecurityTrustResourceUrl(url);
+  }
+
+  unbook() {
+    const unBookReqData = {
+      RoomId: this.BOOKEDDATA['reqId'],
+    };
+
+    this._fireService
+      .deleteABooking(unBookReqData.RoomId)
+      .then((res) => {
+        console.log(res);
+        let url = this._router.url;
+        this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this._router.navigate([url]);
+        });
+        this._notify.showNotification('THE ROOM HAS BEEN UNBOOKED', '', 'success', 'left');
+      })
+      .catch((err) => {
+        console.log(err);
+        this._notify.showNotification('OPPS! Something went wrong!', 'Please Try Again', 'error');
+      });
   }
 }

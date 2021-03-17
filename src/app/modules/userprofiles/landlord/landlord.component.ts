@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
@@ -6,6 +6,9 @@ import { UserDetailsResposeMap } from '../tenant/tenant.component';
 import { DbfirestoreService } from 'src/app/services/dbfirestore/dbfirestore.service';
 
 import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+// import * as EventEmitter from 'events';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-landlord',
@@ -14,6 +17,8 @@ import Url_SuperPath from 'src/app/environment/Url_SuperPath.json';
 })
 export class LandlordComponent implements OnInit {
   isSuperUser: boolean = false;
+  @Output() selectedTabChange: EventEmitter<MatTabChangeEvent>;
+
   ConfigForm: FormGroup;
   UserDetails: UserDetailsResposeMap;
   isVerifiedEmail = false;
@@ -42,6 +47,7 @@ export class LandlordComponent implements OnInit {
 
     this.DataService.currentUserFullDetails.subscribe((data: UserDetailsResposeMap) => {
       console.log(data);
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
       this.UserDetails = {
         email: data.email,
         phone: data.phone,
@@ -49,29 +55,9 @@ export class LandlordComponent implements OnInit {
         Lname: data.Lname,
       };
       let opt = data.email;
-      if (data.email == 'prazzeettstha@gmail.com') {
+      if (opt == 'prazzeettstha@gmail.com') {
         opt = 'ALL';
       }
-      this.DataService.isSuperUser.subscribe((data: boolean) => {
-        this.isSuperUser = data;
-        if (this.isSuperUser) {
-          this._fireService.getALLROOMLIST().then((data) => {
-            data.forEach((doc) => {
-              self.AllRoomListRaw.push(doc.data());
-            });
-            this.CompileRoomData();
-          });
-        } else {
-          console.log(':::::NORMAL LANDLORD::::::');
-          this._fireService.getCertainLandLordRoomList(this.UserDetails.email).then((data) => {
-            console.log(data);
-            data.forEach((doc) => {
-              self.AllRoomListRaw.push(doc.data());
-            });
-            this.CompileRoomData();
-          });
-        }
-      });
       this._fireService.getPendingBookingList(opt).then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
           self.PendingBookingList.push(doc.data());
@@ -86,9 +72,16 @@ export class LandlordComponent implements OnInit {
               const DataSet = {
                 id: remodeledData.id,
                 index: i,
+                RequestedDate:
+                  new Date(self.PendingBookingList[i].dateofBooking.seconds * 1000).getDate().toString() +
+                  ' ' +
+                  monthNames[new Date(self.PendingBookingList[i].dateofBooking.seconds * 1000).getMonth()].toString() +
+                  ', ' +
+                  new Date(self.PendingBookingList[i].dateofBooking.seconds * 1000).getFullYear().toString(),
                 applicantName: self.PendingBookingList[i].TenantId.name
                   ? self.PendingBookingList[i].TenantId.name
                   : 'Unknown',
+                applicantId: self.PendingBookingList[i].TenantId.id,
                 like: false,
                 url: remodeledData.images.mainPhoto,
                 title: (
@@ -100,7 +93,7 @@ export class LandlordComponent implements OnInit {
                 date: 'Available from 20th Oct, 2020',
                 status: remodeledData.isBooked ? 'Booked' : 'Available',
               };
-
+              console.log(DataSet);
               self.PendingBookingRoomDetails.push(DataSet);
             }
           });
@@ -141,6 +134,7 @@ export class LandlordComponent implements OnInit {
   products = [];
   CompileRoomData() {
     this.products = [];
+    this.AllRoomData = [];
     this.AllRoomListRaw.forEach((data, index) => {
       const DataSet = {
         id: data.id,
@@ -165,4 +159,39 @@ export class LandlordComponent implements OnInit {
   }
 
   addLocation() {}
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    console.log('tabChangeEvent => ', tabChangeEvent);
+    console.log('index => ', tabChangeEvent.index);
+    let self = this;
+    if (tabChangeEvent.index.toString() == '1') {
+      this.AllRoomListRaw = [];
+      this.DataService.changeLoadingStatus(true);
+      let opt = this.UserDetails.email;
+      if (this.UserDetails.email == 'prazzeettstha@gmail.com') {
+        opt = 'ALL';
+      }
+      this.DataService.isSuperUser.subscribe((data: boolean) => {
+        this.isSuperUser = data;
+        if (this.isSuperUser) {
+          this._fireService.getALLROOMLIST().then((data) => {
+            data.forEach((doc) => {
+              self.AllRoomListRaw.push(doc.data());
+            });
+            this.CompileRoomData();
+            this.DataService.changeLoadingStatus(false);
+          });
+        } else {
+          console.log(':::::NORMAL LANDLORD::::::');
+          this._fireService.getCertainLandLordRoomList(this.UserDetails.email).then((data) => {
+            console.log(data);
+            data.forEach((doc) => {
+              self.AllRoomListRaw.push(doc.data());
+            });
+            this.CompileRoomData();
+            this.DataService.changeLoadingStatus(false);
+          });
+        }
+      });
+    }
+  }
 }

@@ -1,0 +1,11 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.mainBody {
+  padding-left: 10px;
+}
+img {
+  width: 80px;
+  height: 80px;
+}

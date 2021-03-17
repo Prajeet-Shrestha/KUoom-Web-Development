@@ -23,6 +23,7 @@ export class DataService {
   private isEditRoomSource = new BehaviorSubject<boolean>(false);
   private isEmailVerifiedSource = new BehaviorSubject<boolean>(false);
   private indexDateFilterSouce = new BehaviorSubject<any>(false);
+  private applicantViewIdSource = new BehaviorSubject<string>('');
   currentMaxPrice = this.MaxPriceSource.asObservable();
   currentlang = this.langSource.asObservable();
   currentUsername = this.usernameSource.asObservable();
@@ -38,7 +39,7 @@ export class DataService {
   currentUserImg = this.userImgSource.asObservable();
   isEditRoom = this.isEditRoomSource.asObservable();
   indexDateFilter = this.indexDateFilterSouce.asObservable();
-
+  currentApplicantId = this.applicantViewIdSource.asObservable();
   LocalStorageUserDetail;
   LocalStorageLang;
   code = {
@@ -131,6 +132,10 @@ export class DataService {
   }
   changeRoomId(id: string) {
     this.roomIdSource.next(id);
+  }
+
+  changeApplicantId(id: string) {
+    this.applicantViewIdSource.next(id);
   }
 
   isEmailVerifiedStatus(status: boolean) {

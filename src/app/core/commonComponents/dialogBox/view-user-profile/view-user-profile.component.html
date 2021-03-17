@@ -1,0 +1,21 @@
+<h2>{{ UserDetails.name }}</h2>
+<div class="mainContainer">
+  <div class="img">
+    <img *ngIf="LandlordImgtrue" src="{{ UserDetails.imgUrl }}" alt="" />
+    <img *ngIf="!LandlordImgtrue" src="assets/Icon/roomprofile/user.png" alt="" />
+  </div>
+  <div class="mainBody">
+    <div class="detail">
+      <b> Name: </b> <span> {{ UserDetails.name }} </span>
+    </div>
+    <div class="detail">
+      <b> Phone: </b> <span> {{ UserDetails.phone.length >= 5 ? UserDetails.phone : 'Not Available' }} </span>
+    </div>
+    <div class="detail">
+      <b> Email: </b> <span> {{ UserDetails.email }} </span>
+    </div>
+    <div class="detail">
+      <b> Type: </b> <span> {{ UserDetails.userType }} </span>
+    </div>
+  </div>
+</div>
